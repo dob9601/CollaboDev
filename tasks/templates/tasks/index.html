@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		<title>Tasks</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'tasks/style.css' %}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="nav">
+			<ul>
+				<li id="logo"><a href="/"><b>Collabo<span class="crimson">Dev</span></b></a></li>
+				<li><a href="/tasks/" class="active">Tasks</a></li>
+				<li><a href="/users/">Users</a></li>
+				<li><a href="/profile/">Profile</a></li>
+			</ul>
+		</div>
+
+		<div id="page-description">
+			{% if error_message %}
+				<p>{{ error_message }}</p>
+			{% else %}
+				<p>On this page you can see a list of all open and closed tasks. You are also able to claim any open and unclaimed tasks for yourself.</p>
+			{% endif %}
+		</div>
+
+		{% if tasks %}
+			<h2>Open Tasks</h2>
+			<table class="task-table">
+				<tr>
+					<th>Name</th>
+					<th class="task-priority">Priority</th>
+					<th>Deadline</th>
+					<th>Age</th>
+					<th class="claim-info"></th>
+				</tr>
+				{% for task in tasks %}
+				{% if task.task_open %}
+				<tr id="{{ task.id }}">
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
+					<td onclick = "show_modal({{ task.id }})"></td>
+					<td>
+						<form action="/tasks/claim/" method="post">
+							{% csrf_token %}
+							<input type="hidden" value="{{ task.id }}" name="task_id">
+							<input type="submit" value="Claim" class="claim" />
+						</form>
+						<form action="/tasks/close/" method="post" style="display: none" onsubmit="return confirm('Are you sure you want to close this task?');">
+							{% csrf_token %}
+							<input type="hidden" value="{{ task.id }}" name="task_id">
+							<input type="submit" value="Close" class="close-task" />
+						</form>
+						<form action="/tasks/unclaim/" method="post" style="display: none" onsubmit="return confirm('Are you sure you want to unclaim this task?');">
+							{% csrf_token %}
+							<input type="hidden" value="{{ task.id }}" name="task_id">
+							<input type="submit" value="Unclaim" class="unclaim" />
+						</form>
+					</td>
+					<script>
+					var t=document.getElementById("{{ task.id }}").children[4].children[0].children[2];
+					if ("{{ task.task_owner }}"=="") {
+						t.value="Claim";
+						t.style.backgroundColor="#2ECC40";
+						t.style.cursor = 'pointer';
+					}
+					else {
+						t.style.backgroundColor="#FF851B";
+						t.style.cursor="not-allowed";
+						t.disabled = true;
+						if("{{ task.task_owner }}" == "dob9601") { //TBC
+							t.value='Claimed by you';
+
+							const unclaim_elements = document.getElementsByClassName('unclaim');
+							const unclaim = unclaim_elements[unclaim_elements.length-1];
+							const close_elements = document.getElementsByClassName('close-task');
+							const close = close_elements[close_elements.length-1];
+							unclaim.parentNode.style = 'display: inline';
+							unclaim.style.backgroundColor = '#AAAAAA';
+							unclaim.style.cursor = 'pointer';
+							
+							close.parentNode.style = 'display: inline';
+							close.style.backgroundColor = '#0074d9';
+							close.style.cursor = 'pointer';
+
+							t.style.webkitBorderRadius = '8px 8px 0 0';
+							t.style.MozBorderRadius = '8px 8px 0 0';
+							t.style.borderRadius = '8px 8px 0 0';
+
+							unclaim.style.webkitBorderRadius = '0 0 8px 8px';
+							unclaim.style.MozBorderRadius = '0 0 8px 8px';
+							unclaim.style.borderRadius = '0 0 8px 8px';
+
+							close.style.webkitBorderRadius = '0';
+							close.style.MozBorderRadius = '0';
+							close.style.borderRadius = '0';
+						}
+						else {
+							t.value="Claimed by {{ task.task_owner }}";
+						}
+					}
+					</script>
+					<script>var t=document.getElementById("{{ task.id }}").children[3];
+						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
+						if(dD>172800000){
+							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
+						}
+						else if(dD>3600000) {
+							t.innerHTML=String(Math.ceil(dD/(1000*60*60)))+" Hours";
+						}
+						else if(dD>60000) {
+							t.innerHTML=String(Math.ceil(dD/(1000*60)))+" Minutes";
+						}
+						else if(dD<60000){
+							t.innerHTML="New";
+						}
+					</script>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+			<h2>Closed Tasks</h2>
+			<table class="task-table">
+				<tr>
+					<th>Name</th>
+					<th class="task-priority">Priority</th>
+					<th>Deadline</th>
+					<th>Age</th>
+				</tr>
+				{% for task in tasks %}
+				{% if not task.task_open %}
+				<tr id="{{ task.id }}">
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
+					<td onclick = "show_modal({{ task.id }})"></td>
+					<script>var t=document.getElementById("{{ task.id }}").children[3];
+						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
+						if(dD>172800000){
+							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
+						}
+						else if(dD>3600000) {
+							t.innerHTML=String(Math.ceil(dD/(1000*60*60)))+" Hours";
+						}
+						else if(dD>60000) {
+							t.innerHTML=String(Math.ceil(dD/(1000*60)))+" Minutes";
+						}
+						else if(dD<60000){
+							t.innerHTML="New";
+						}
+					</script>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+		{% else %}
+			<p>No tasks have been created. Create one <a href="/tasks/create">here</a></p>
+		{% endif %}
+	<div class="modal-box">
+		<div class="modal-content">
+			<span class="modal-close-button" onclick="modal.style.display = 'none'">&times;</span>
+			<div class="modal-text">
+			</div>
+		</div>
+	</div>
+	<script>
+	function show_modal(task_id) {
+		const modal_box = document.getElementsByClassName('modal-box')[0];
+		const modal_content = modal_box.children[0].children[1];
+
+		{% for task in tasks %}
+			if('{{ task.id }}' == task_id) {
+				modal_content.innerHTML = '<h3 class="modal-header">{{ task.task_name }}</h3><br>' + 
+		   					  '<b>Description: </b> {{ task.task_description }}<br>' +
+							  '<b>Owner: </b> {{ task.task_owner }}<br>' +
+							  '<b>Priority: </b> {{ task.task_priority }}<br>' +
+						 	  '<b>Created: </b> {{ task.publish_date }}<br>' +
+		  					  '<b>Deadline: </b> {{ task.deadline_date }}<br>' +
+							  '<b>Status: </b> {% if task.task_open %}Open{% else %}Closed{% endif %}'
+				modal_box.style.display = 'block';
+			}
+		{% endfor %}
+	}
+
+	var modal = document.getElementsByClassName('modal-box')[0];
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	</script>
+	</body>
+</html>

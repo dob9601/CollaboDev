@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create Task</title>
+	</head>
+	<body>
+		<h1>Create Task</h1>
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+
+		<form action="/tasks/submit/" method="post">
+			{% csrf_token %}
+			Task Name: <input type="text" name="task_name" id="task_name"><br>
+			Task Description: <input type="text" name="task_description" id="task_description"><br>
+			<!-- task_owner input should be changed to dropdown when possible -->
+			Task Owner: <input type="text" name="task_owner" id="task_owner"><br>
+			Task Priority: <select name="task_priority" id="task_priority">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select><br>
+			Deadline: <input type="date" name="deadline_date" id="deadline_date"><br>
+			<input type="submit" value="Create" />
+		</form>
+	</body>
+</html>

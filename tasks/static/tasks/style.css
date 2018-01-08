@@ -1,0 +1,154 @@
+* {
+	background-color: #cf6766;
+	color: #fff;
+	font-family: Arial, "Verdana", Sans-serif;
+	margin: 0px;
+}
+
+.crimson {
+	color: #cf6766;
+}
+
+.nav * {
+	background-color: #30415D;
+}
+.nav ul {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	background-color: #30415D;
+}
+.nav li {
+	font-size: 1.3em;
+	line-height: 40px;
+	height: 40px;
+	border-bottom: 1px solid #000;
+}
+.nav a, .nav b {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	transition: .4s background-color;
+}
+.nav span {
+	transition: .4s background-color;
+}
+.nav a:hover *, .nav a:hover, .active {
+	background-color: #3f5882;
+}
+.active {
+	cursor: default;
+}
+@media screen and (min-width: 640px) {
+	.nav li {
+		width: 25%;
+		border-bottom: none;
+		height: 50px;
+		line-height: 50px;
+		font-size: 1.3em;
+		float: left;
+
+	}
+	.nav ul {
+		overflow: auto;
+	}
+	#logo {
+		font-size:: 1.75em;
+	}
+}
+@media screen and (max-width: 474px) {
+	.task-table * {
+		font-size: 0.8em;
+	}
+	.claim {}
+}
+
+
+
+h2 {
+	background-color: #30415D;
+	font-size: 1.3em;
+	padding: 1.2%;
+	margin: 0px;
+}
+#page-description * {
+	margin: 0;
+	padding: 5%;
+	background-color: #8EAEBD;
+}
+
+.task-table {
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+.task-table th {
+	font-size: 1.2em;
+	background-color: #c6504f;
+}
+.task-table td {
+	padding: 2%;
+}
+.task-table tr td *, .task-table tr td {
+	transition: .2s background-color;
+}
+.task-table tr {
+	cursor: help;
+}
+.task-table th {
+	cursor: auto;
+}
+.task-table tr:hover td *, .task-table tr:hover td {
+	background-color: #c6504f;
+}
+
+
+.claim, .unclaim, .close-task {
+	-webkit-appearance: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: none;
+	color: #fff;
+	background: #3498db;
+	padding: 4% 20px;
+	text-decoration: none;
+	width: 100%;
+	text-align: center;
+}
+
+
+.modal-box {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+	background-color: #8EAEBD;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+.modal-content * {
+	background-color: #8EAEBD;
+}
+
+.modal-close-button {
+	color: #3F5882;
+	float: right;
+	font-size: 2em;
+}
+.modal-close-button:hover, .modal-close-button:focus {
+	color: #314360;
+	text-decoration: none;
+	cursor: pointer;
+}

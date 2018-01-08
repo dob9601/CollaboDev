@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Delete Task</title>
+	</head>
+	<body>
+		<h1>Tasks</h1>
+		{% if tasks %}
+			<ul>
+			{% for task in tasks %}
+				<li>{{ task.id }}: {{ task.task_name }}</li>
+			{% endfor %}
+			</ul>
+			<form action="/tasks/delete/" method="post">
+				{% csrf_token %}
+				ID of task to be deleted: <input type="text" id="id" name="id">
+				<input type="submit" value="Delete">
+			</form>
+		{% else %}
+			<p>No tasks have been created. Create one <a href="/tasks/create">here</a></p>
+		{% endif %}
+	</body>
+</html>
