@@ -1,3 +1,19 @@
+
+# Created by https://www.gitignore.io/api/vim,linux,macos,django,python,windows
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
+
+# If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
+# in your Git repository. Update and uncomment the following line accordingly.
+# <django-project-name>/staticfiles/
+
 ### Linux ###
 *~
 
@@ -42,7 +58,6 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
 *$py.class
 
@@ -90,11 +105,8 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
 
 # Django stuff:
-*.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -143,6 +155,19 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+### Vim ###
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+# auto-generated tag files
+tags
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -164,17 +189,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
-### Vim ###
-# swap
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-v][a-z]
-[._]sw[a-p]
-# session
-Session.vim
-# temporary
-.netrwhist
-*~
-# auto-generated tag files
-tags
+# End of https://www.gitignore.io/api/vim,linux,macos,django,python,windows
