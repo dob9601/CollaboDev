@@ -5,6 +5,8 @@
 	margin: 0px;
 }
 
+
+
 .crimson {
 	color: #cf6766;
 }
@@ -64,13 +66,20 @@
 	.claim {}
 }
 
-
+.progress-bar-div {
+	margin-top: -6px !important;
+	background-color: #F1F1F1 !important;
+}
+.progress-bar {
+	height:6px !important;
+	width:50% !important;
+	background-color: #9E9E9E !important;
+}
 
 h2 {
 	background-color: #30415D;
 	font-size: 1.3em;
 	padding: 1.2%;
-	margin: 0px;
 }
 #page-description * {
 	margin: 0;
