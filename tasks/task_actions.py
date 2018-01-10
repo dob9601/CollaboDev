@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Task
 
@@ -74,6 +75,12 @@ def close(request):
         chosen_task = Task.objects.get(pk=int(task_id))
         chosen_task.task_open = False
         chosen_task.save()
+        
+        current_user = request.user.id
+        user = User.objects.get(id=current_user)
+        user.profile.tasks_completed += 1
+        user.save()
+        
         return HttpResponseRedirect(reverse('tasks:index') + "?m=7")
 
     except MultiValueDictKeyError:
