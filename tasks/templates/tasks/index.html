@@ -12,11 +12,22 @@
 				<li id="logo" class="nav-hover"><a href="/"><b>Collabo<span class="crimson">Dev</span></b></a></li>
 				<li><a href="/tasks/" class="active">Tasks</a></li>
 				<li><a href="/users/">Users</a></li>
-				<li id="user-widget"><a href="/profile/"><span id="user-widget-text">{{ user.get_username }}<span class="task-count">0</span></span><div class="progress-bar-div"><div class="progress-bar"></div></div></a></li>
+				<li id="user-widget"><a href="/profile/"><span id="user-widget-text">{{ user.get_username }}</span><div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div></a></li>
 			</ul>
 		</div>
 		<script>
-		var ct = "2"
+		const completed_tasks = parseInt("{{ tasks_completed }}");
+		const level = Math.floor(completed_tasks/10); //Should correspond to colour
+							      //1 Level = 10 tasks by default (adjustable?)
+		//Colours:
+		//L1: #9E9E9E
+		//L2: #A0B0BF
+		//L3: #7A3BE3
+		//L4: #C01FD0
+		//L5: #D44040
+		//Announce winners monthly, then reset exp
+		progress_bar = document.getElementsByClassName('progress-bar')[0];
+		progress_bar.style.width = String(((completed_tasks%10)/10)*100)+"%"
 		</script>
 
 		<div id="page-description">

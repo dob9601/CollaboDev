@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Task
 
@@ -9,8 +10,13 @@ from .models import Task
 @login_required
 def index(request):
     tasks = Task.objects.order_by('-publish_date')
+    
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    
     context = {
         'tasks': tasks,
+        'tasks_completed': user.profile.tasks_completed,
     }
     try:
         message_id = int(request.GET.get('m'))
