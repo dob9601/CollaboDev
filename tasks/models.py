@@ -26,7 +26,7 @@ class Task(models.Model):
                                                     MinValueValidator(1)],
                                         blank=False)
     task_open = models.BooleanField(default=True)
-    task_size = models.IntegerField(validators=[MaxValueValidator(10),
+    task_size = models.IntegerField(validators=[MaxValueValidator(7),
                                                 MinValueValidator(1)],
                                         blank=False)
     publish_date = models.DateTimeField(default=now, blank=True)

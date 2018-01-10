@@ -45,6 +45,7 @@
 					<th>Name</th>
 					<th class="task-priority">Priority</th>
 					<th>Deadline</th>
+					<th>Size</th>
 					<th>Age</th>
 					<th class="claim-info"></th>
 				</tr>
@@ -54,6 +55,7 @@
 					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
 					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
 					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
 					<td onclick = "show_modal({{ task.id }})"></td>
 					<td>
 						<form action="/tasks/claim/" method="post">
@@ -73,7 +75,33 @@
 						</form>
 					</td>
 					<script>
-					var t=document.getElementById("{{ task.id }}").children[4].children[0].children[2];
+					var e=document.getElementById("{{ task.id }}").children[3];
+					var t = e.innerHTML;
+					if (t=="1") {
+						var s = "XXS";
+					}
+					else if (t=="2") {
+						var s = "XS";
+					}
+					else if (t=="3") {
+						var s = "S";
+					}
+					else if (t=="4") {
+						var s = "M";
+					}
+					else if (t=="5") {
+						var s = "L";
+					}
+					else if (t=="6") {
+						var s = "XL";
+					}
+					else if (t=="7") {
+						var s = "XXL";
+					}
+					e.innerHTML = s;
+					</script>
+					<script>
+					var t=document.getElementById("{{ task.id }}").children[5].children[0].children[2];
 					if ("{{ task.task_owner }}"=="") {
 						t.value="Claim";
 						t.style.backgroundColor="#2ECC40";
@@ -115,7 +143,7 @@
 						}
 					}
 					</script>
-					<script>var t=document.getElementById("{{ task.id }}").children[3];
+					<script>var t=document.getElementById("{{ task.id }}").children[4];
 						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
 						if(dD>172800000){
 							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
@@ -140,6 +168,7 @@
 					<th>Name</th>
 					<th class="task-priority">Priority</th>
 					<th>Deadline</th>
+					<th>Size</th>
 					<th>Age</th>
 				</tr>
 				{% for task in tasks %}
@@ -148,8 +177,35 @@
 					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
 					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
 					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
+					<td onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
 					<td onclick = "show_modal({{ task.id }})"></td>
-					<script>var t=document.getElementById("{{ task.id }}").children[3];
+					<script>
+					var e=document.getElementById("{{ task.id }}").children[3];
+					var t = e.innerHTML;
+					if (t=="1") {
+						var s = "XXS";
+					}
+					else if (t=="2") {
+						var s = "XS";
+					}
+					else if (t=="3") {
+						var s = "S";
+					}
+					else if (t=="4") {
+						var s = "M";
+					}
+					else if (t=="5") {
+						var s = "L";
+					}
+					else if (t=="6") {
+						var s = "XL";
+					}
+					else if (t=="7") {
+						var s = "XXL";
+					}
+					e.innerHTML = s;
+					</script>
+					<script>var t=document.getElementById("{{ task.id }}").children[4];
 						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
 						if(dD>172800000){
 							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
