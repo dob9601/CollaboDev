@@ -22,6 +22,7 @@ def submit(request):
             task_owner=request.POST['task_owner'],
             task_priority=request.POST['task_priority'],
             deadline_date=request.POST['deadline_date'],
+            task_size=request.POST['task_size'],
         )
         new_task.clean()
         new_task.save()

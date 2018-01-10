@@ -15,20 +15,7 @@
 				<li id="user-widget"><a href="/profile/"><span id="user-widget-text">{{ user.get_username }}</span><div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div></a></li>
 			</ul>
 		</div>
-		<script>
-		const completed_tasks = parseInt("{{ tasks_completed }}");
-		const level = Math.floor(completed_tasks/10); //Should correspond to colour
-							      //1 Level = 10 tasks by default (adjustable?)
-		//Colours:
-		//L1: #9E9E9E
-		//L2: #A0B0BF
-		//L3: #7A3BE3
-		//L4: #C01FD0
-		//L5: #D44040
-		//Announce winners monthly, then reset exp
-		progress_bar = document.getElementsByClassName('progress-bar')[0];
-		progress_bar.style.width = String(((completed_tasks%10)/10)*100)+"%"
-		</script>
+		<script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ tasks_completed }}"></script>
 
 		<div id="page-description">
 			{% if error_message %}
@@ -74,90 +61,9 @@
 							<input type="submit" value="Unclaim" class="unclaim" />
 						</form>
 					</td>
-					<script>
-					var e=document.getElementById("{{ task.id }}").children[3];
-					var t = e.innerHTML;
-					if (t=="1") {
-						var s = "XXS";
-					}
-					else if (t=="2") {
-						var s = "XS";
-					}
-					else if (t=="3") {
-						var s = "S";
-					}
-					else if (t=="4") {
-						var s = "M";
-					}
-					else if (t=="5") {
-						var s = "L";
-					}
-					else if (t=="6") {
-						var s = "XL";
-					}
-					else if (t=="7") {
-						var s = "XXL";
-					}
-					e.innerHTML = s;
-					</script>
-					<script>
-					var t=document.getElementById("{{ task.id }}").children[5].children[0].children[2];
-					if ("{{ task.task_owner }}"=="") {
-						t.value="Claim";
-						t.style.backgroundColor="#2ECC40";
-						t.style.cursor = 'pointer';
-					}
-					else {
-						t.style.backgroundColor="#FF851B";
-						t.style.cursor="not-allowed";
-						t.disabled = true;
-						if("{{ task.task_owner }}" == "dob9601") { //TBC
-							t.value='Claimed by you';
-
-							const unclaim_elements = document.getElementsByClassName('unclaim');
-							const unclaim = unclaim_elements[unclaim_elements.length-1];
-							const close_elements = document.getElementsByClassName('close-task');
-							const close = close_elements[close_elements.length-1];
-							unclaim.parentNode.style = 'display: inline';
-							unclaim.style.backgroundColor = '#AAAAAA';
-							unclaim.style.cursor = 'pointer';
-							
-							close.parentNode.style = 'display: inline';
-							close.style.backgroundColor = '#2ECC40';
-							close.style.cursor = 'pointer';
-
-							t.style.webkitBorderRadius = '8px 8px 0 0';
-							t.style.MozBorderRadius = '8px 8px 0 0';
-							t.style.borderRadius = '8px 8px 0 0';
-
-							unclaim.style.webkitBorderRadius = '0 0 8px 8px';
-							unclaim.style.MozBorderRadius = '0 0 8px 8px';
-							unclaim.style.borderRadius = '0 0 8px 8px';
-
-							close.style.webkitBorderRadius = '0';
-							close.style.MozBorderRadius = '0';
-							close.style.borderRadius = '0';
-						}
-						else {
-							t.value="Claimed by {{ task.task_owner }}";
-						}
-					}
-					</script>
-					<script>var t=document.getElementById("{{ task.id }}").children[4];
-						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
-						if(dD>172800000){
-							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
-						}
-						else if(dD>3600000) {
-							t.innerHTML=String(Math.ceil(dD/(1000*60*60)))+" Hours";
-						}
-						else if(dD>60000) {
-							t.innerHTML=String(Math.ceil(dD/(1000*60)))+" Minutes";
-						}
-						else if(dD<60000){
-							t.innerHTML="New";
-						}
-					</script>
+					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
+					<script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}"></script>
+					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
 				{% endif %}
 				{% endfor %}
@@ -179,47 +85,8 @@
 					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
 					<td onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
 					<td onclick = "show_modal({{ task.id }})"></td>
-					<script>
-					var e=document.getElementById("{{ task.id }}").children[3];
-					var t = e.innerHTML;
-					if (t=="1") {
-						var s = "XXS";
-					}
-					else if (t=="2") {
-						var s = "XS";
-					}
-					else if (t=="3") {
-						var s = "S";
-					}
-					else if (t=="4") {
-						var s = "M";
-					}
-					else if (t=="5") {
-						var s = "L";
-					}
-					else if (t=="6") {
-						var s = "XL";
-					}
-					else if (t=="7") {
-						var s = "XXL";
-					}
-					e.innerHTML = s;
-					</script>
-					<script>var t=document.getElementById("{{ task.id }}").children[4];
-						var dD=Math.abs(new Date("{{ task.publish_date.isoformat }}").getTime()-new Date().getTime());
-						if(dD>172800000){
-							t.innerHTML=String(Math.ceil(dD/(1000*60*60*24)))+" Days";
-						}
-						else if(dD>3600000) {
-							t.innerHTML=String(Math.ceil(dD/(1000*60*60)))+" Hours";
-						}
-						else if(dD>60000) {
-							t.innerHTML=String(Math.ceil(dD/(1000*60)))+" Minutes";
-						}
-						else if(dD<60000){
-							t.innerHTML="New";
-						}
-					</script>
+					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
+					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
 				{% endif %}
 				{% endfor %}
