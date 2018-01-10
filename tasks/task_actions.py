@@ -78,7 +78,7 @@ def close(request):
         
         current_user = request.user.id
         user = User.objects.get(id=current_user)
-        user.profile.tasks_completed += 1
+        user.profile.tasks_completed += chosen_task.task_size
         user.save()
         
         return HttpResponseRedirect(reverse('tasks:index') + "?m=7")
