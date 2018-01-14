@@ -89,6 +89,7 @@ h2 {
 	border-collapse: collapse;
 	width: 100%;
 	text-align: center;
+	table-layout: fixed;
 }
 .task-table th {
 	font-size: 1.2em;
@@ -101,7 +102,7 @@ h2 {
 	transition: .2s background-color;
 }
 .task-table tr {
-	cursor: help;
+	cursor: default;
 }
 .task-table th {
 	cursor: auto;
@@ -110,6 +111,24 @@ h2 {
 	background-color: #c6504f;
 }
 
+#task-table-name {
+	width: 35%;
+}
+#tast-table-priority {
+	width: 5%;
+}
+#task-table-deadline {
+	width: 15%;
+}
+#task-table-size {
+	width: 10%;
+}
+#task-table-age {
+	width: 13%;
+}
+.claim-info {
+	width: 17%;
+}
 
 .claim, .unclaim, .close-task {
 	-webkit-appearance: none;
