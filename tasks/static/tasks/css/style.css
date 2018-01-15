@@ -1,14 +1,5 @@
 * {
 	background-color: #cf6766;
-	color: #fff;
-	font-family: Arial, "Verdana", Sans-serif;
-	margin: 0px;
-}
-
-
-
-.crimson {
-	color: #cf6766;
 }
 
 .nav * {
@@ -56,14 +47,13 @@
 		overflow: auto;
 	}
 	#logo {
-		font-size:: 1.75em;
+		font-size: 1.75em;
 	}
 }
 @media screen and (max-width: 474px) {
 	.task-table * {
 		font-size: 0.8em;
 	}
-	.claim {}
 }
 
 .progress-bar-div {
