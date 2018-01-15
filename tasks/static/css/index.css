@@ -1,0 +1,30 @@
+h1 {
+	text-align: center;
+	font-size: 12vw;
+	margin-top: 10%;
+}
+#collaborate, #develop, #login-button {
+	font-size: 1.2em;
+	text-align: center;
+	padding: 2%;
+}
+#login-button button {
+	-webkit-appearance: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: none;
+	color: #fff;
+	background: #CF6766;
+	padding: 0.5% 2%;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	transition: .4s background-color;
+}
+#login-button button:hover {
+	background: #C6504F;
+}
+#login-button button:focus {
+	outline:0;
+}
