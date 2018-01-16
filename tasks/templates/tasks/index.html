@@ -30,25 +30,30 @@
 		</div>
 
 		{% if tasks %}
-			<h2>Open Tasks</h2>
+			<div style="position: relative">
+				<h2>Open Tasks</h2>
+				<div class="new-task-div">
+					<button class="new-task">New Task</button>
+				</div>
+			</div>
 			<table class="task-table">
 				<tr>
-					<th id="task-table-name">Name</th>
-					<th id="task-table-priority">Priority</th>
-					<th id="task-table-deadline">Deadline</th>
-					<th id="task-table-size">Size</th>
-					<th id="task-table-age">Age</th>
+					<th class="task-table-name">Name</th>
+					<th class="task-table-priority">Priority</th>
+					<th class="task-table-deadline">Deadline</th>
+					<th class="task-table-size">Size</th>
+					<th class="task-table-age">Age</th>
 					<th class="claim-info"></th>
 				</tr>
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}">
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
-					<td onclick = "show_modal({{ task.id }})"></td>
-					<td>
+					<td class="task-table-name" onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
+					<td class="task-table-priority" onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
+					<td class="task-table-deadline" onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
+					<td class="task-table-size" onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick = "show_modal({{ task.id }})"></td>
+					<td class="claim-info">
 						<form action="/tasks/claim/" method="post">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
