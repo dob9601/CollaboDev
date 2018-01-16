@@ -50,9 +50,18 @@
 		font-size: 1.75em;
 	}
 }
-@media screen and (max-width: 474px) {
-	.task-table * {
-		font-size: 0.8em;
+@media screen and (max-width: 500px) {
+	.task-table-priority, .task-table-deadline, .task-table-size, .task-table-age {
+		display: none;
+	}
+	.task-table-name {
+		width: 60%;
+	}
+	.claim-info {
+		width: 40%;
+	}
+	.claim-info input {
+		font-size: 0.7em;
 	}
 }
 
@@ -67,7 +76,8 @@
 h2 {
 	background-color: #30415D;
 	font-size: 1.3em;
-	padding: 1.2%;
+	line-height: 56px;
+	padding-left: 1.2%;
 }
 #page-description * {
 	margin: 0;
@@ -101,39 +111,55 @@ h2 {
 	background-color: #c6504f;
 }
 
-#task-table-name {
+.task-table-name {
 	width: 35%;
 }
-#tast-table-priority {
+.tast-table-priority {
 	width: 5%;
 }
-#task-table-deadline {
+.task-table-deadline {
 	width: 15%;
 }
-#task-table-size {
+.task-table-size {
 	width: 10%;
 }
-#task-table-age {
+.task-table-age {
 	width: 13%;
 }
 .claim-info {
 	width: 17%;
 }
 
-.claim, .unclaim, .close-task {
+input, button {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	border: none;
 	color: #fff;
-	background: #3498db;
+	background: #30415D;
 	padding: 4% 20px;
 	text-decoration: none;
 	width: 100%;
 	text-align: center;
 }
-
+input:focus, button:focus {
+	outline: 0;
+}
+.new-task {
+	cursor: pointer;
+	background-color: #3F5882;
+	padding: 5% 40px;
+}
+.new-task-div {
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: right;
+	margin-right: 3.4%;
+	margin-top: 13.9px;
+	background-color: transparent;
+}
 
 .modal-box {
 	display: none;
