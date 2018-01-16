@@ -1,0 +1,40 @@
+h1 {
+	padding: 2%;
+	font-size: 3em;
+}
+.content {
+	padding: 2%;
+}
+.message {
+	padding: 2% 0;
+}
+.content input {
+	padding: 1%;
+	margin: 1%;
+	border: 2px solid #3F5882;
+	margin-left: -150px;
+}
+.content label {
+	display: inline-block;
+	width: 250px;
+}
+.content button {
+	-webkit-appearance: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: none;
+	color: #fff;
+	background: #CF6766;
+	padding: 0.5% 2%;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	transition: .4s background-color;
+}
+.content button:hover {
+	background: #C6504F;
+}
+.content button:focus, .content input:focus {
+	outline:0;
+}

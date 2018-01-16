@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}" />
 		<title>Login</title>
+		{% include 'bases/favicon_base.html' %}
 	</head>
 	<body>
-		{% if next %}
-    			{% if user.is_authenticated %}
-   				<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-			{% else %}
-				<p>Please login to see this page.</p>
+		<h1><b>Collabo<span class="crimson">Dev</span></b></h1>
+		<div class="content">
+			<h2>Login</h2>
+			{% if form.errors %}
+				<p class="message">Please enter a valid username or password</p>
+			{% elif next %}
+    				{% if user.is_authenticated %}
+   					<p class="message">Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+				{% else %}
+					<p class="message">Please login to see this page.</p>
+				{% endif %}
 			{% endif %}
-		{% endif %}
-
-		<h2>Login</h2>
-		<form method="post">
-		{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit">Login</button>
-		</form>
+			<form method="post">
+			{% csrf_token %}
+				<p>{{ form.username.label_tag }} {{ form.username }}</p>
+  				<p>{{ form.password.label_tag }} {{ form.password }}</p>
+				<button type="submit">Login</button>
+			</form>
+		</div>
 	</body>
 </html>
