@@ -50,7 +50,7 @@
 		font-size: 1.75em;
 	}
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 570px) {
 	.task-table-priority, .task-table-deadline, .task-table-size, .task-table-age {
 		display: none;
 	}
