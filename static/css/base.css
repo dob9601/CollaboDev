@@ -23,6 +23,11 @@ body {
 	color: #fff;
 	margin: 0;
 	line-height: 40px;
+	text-decoration: none;
+}
+.footer img {
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .horizontal-break {
