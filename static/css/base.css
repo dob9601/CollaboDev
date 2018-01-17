@@ -1,11 +1,31 @@
 body {
 	background-color: #30415D;
 	color: #fff;
-	font-family: 'Open Sans', sans-serif;
 	margin: 0px;
+}
+* {
+	font-family: 'Saira Condensed', sans-serif;
 }
 
 .crimson {
 	color: #cf6766;
 }
 
+.footer {
+	background-color: #031424;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	font-size: 0.8em;
+}
+.footer a, .footer p {
+	position: relative;
+	color: #fff;
+	margin: 0;
+	line-height: 40px;
+}
+
+.horizontal-break {
+	background-color: #c6504f;
+	height: 30px;
+}
