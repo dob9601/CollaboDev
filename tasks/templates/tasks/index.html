@@ -134,32 +134,32 @@
 			modal_content.innerHTML = '<h3>Create Task</h3>' +		
 						  '<form action="/tasks/submit/" method="post">' +
 						  "{% csrf_token %}" +
-						  'Task Name: <input type="text" name="task_name" id="task_name"><br>' +
-						  'Task Description: <input type="text" name="task_description" id="task_description"><br>' +
-						  'Task Owner: <input type="text" name="task_owner" id="task_owner"><br>' +
-						  'Task Priority: <select name="task_priority" id="task_priority">' +
-						  '<option value="1">1</option>' +
-						  '<option value="2">2</option>' +
-						  '<option value="3">3</option>' +
-						  '<option value="4">4</option>' +
-						  '<option value="5">5</option>' +
-						  '<option value="6">6</option>' +
-						  '<option value="7">7</option>' +
-						  '<option value="8">8</option>' +
-						  '<option value="9">9</option>' +
-						  '<option value="10">10</option>' +
+						  '<label>Task Name: </label><input type="text" name="task_name" id="task_name"><br>' +
+						  '<label>Task Description: </label><input type="text" name="task_description" id="task_description"><br>' +
+						  '<label>Task Owner: </label><input type="text" name="task_owner" id="task_owner"><br>' +
+						  '<label>Task Priority: </label><select name="task_priority" id="task_priority">' +
+						  '	<option value="1">1</option>' +
+						  '	<option value="2">2</option>' +
+						  '	<option value="3">3</option>' +
+						  '	<option value="4">4</option>' +
+						  '	<option value="5">5</option>' +
+						  '	<option value="6">6</option>' +
+						  '	<option value="7">7</option>' +
+						  '	<option value="8">8</option>' +
+						  '	<option value="9">9</option>' +
+						  '	<option value="10">10</option>' +
 						  '</select><br>' +
-						  'Task Size: <select name="task_size" id="task_size">' +
-						  '<option value="1">XXS</option>' +
-						  '<option value="2">XS</option>' +
-						  '<option value="3">S</option>' +
-						  '<option value="4" selected="selected">M</option>' +
-						  '<option value="5">L</option>' +
-						  '<option value="6">XL</option>' +
-						  '<option value="7">XXL</option>' +
+						  '<label>Task Size: </label><select name="task_size" id="task_size">' +
+						  '	<option value="1">XXS</option>' +
+						  '	<option value="2">XS</option>' +
+						  '	<option value="3">S</option>' +
+						  '	<option value="4" selected="selected">M</option>' +
+						  '	<option value="5">L</option>' +
+						  '	<option value="6">XL</option>' +
+						  '	<option value="7">XXL</option>' +
 						  '</select><br>' +
-						  'Deadline: <input type="date" name="deadline_date" id="deadline_date"><br>' +
-						  '<input class="submit-button" type="submit" value="Create" />' +
+						  '<label>Deadline: </label><input type="date" name="deadline_date" id="deadline_date"><br>' +
+						  '<input id="create-task-button" type="submit" value="Create" />' +
 				  		  '</form>'
 			modal_box.style.display = 'block';
 		}

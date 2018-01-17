@@ -130,7 +130,7 @@ h2 {
 	width: 17%;
 }
 
-input, button {
+button, #create-task-button, .close-task, .unclaim, .claim {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -142,7 +142,9 @@ input, button {
 	text-decoration: none;
 	width: 100%;
 	text-align: center;
+	cursor: pointer;
 }
+
 input:focus, button:focus {
 	outline: 0;
 }
@@ -180,7 +182,7 @@ input:focus, button:focus {
 	border: 1px solid #888;
 	width: 80%;
 }
-.modal-content p, .modal-content h3, .modal-content b, .modal-content br, .modal-content div, .modal-content span {
+.modal-content * {
 	background-color: #8EAEBD;
 }
 
@@ -194,13 +196,24 @@ input:focus, button:focus {
 	text-decoration: none;
 	cursor: pointer;
 }
-.modal-content form {
-	width: 100%;
+.modal-content label {
+	display: inline-block;
+	width: 250px;
 }
 .modal-text input, .modal-text select {
 	border: 1px solid #000;
 	padding: 0.5%;
-	margin: 1%;
-	width: 80%;
+	margin: 1% 1% 1% -100px;
+	width: 50%;
 	text-align: left;
 }
+.modal-text select {
+	width: 51.25%;
+}
+#create-task-button {
+	margin: 1% 1% 1% 40%;
+	width: 20%;
+	text-align: center;
+	padding: 1%;
+}
+
