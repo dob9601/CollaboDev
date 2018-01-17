@@ -174,17 +174,23 @@ input:focus, button:focus {
 	overflow: auto;
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.4);
+	margin-bottom: 0;
+	border-bottom: 0;
+	padding-bottom: 0;
+	overflow: hidden;
 }
 .modal-content {
 	background-color: #8EAEBD;
-	margin: 15% auto;
+	margin: 10% auto;
 	padding: 20px;
 	border: 1px solid #888;
 	width: 80%;
 }
 .modal-content * {
 	background-color: #8EAEBD;
+	color: #fff;
 }
+
 
 .modal-close-button {
 	color: #3F5882;
@@ -201,19 +207,22 @@ input:focus, button:focus {
 	width: 250px;
 }
 .modal-text input, .modal-text select {
-	border: 1px solid #000;
+	border: 0;
 	padding: 0.5%;
 	margin: 1% 1% 1% -100px;
 	width: 50%;
 	text-align: left;
+	background-color: #3F5882;
 }
 .modal-text select {
-	width: 51.25%;
+	width: 51%;
+	background-color: #3F5882;
 }
 #create-task-button {
 	margin: 1% 1% 1% 40%;
 	width: 20%;
 	text-align: center;
 	padding: 1%;
+	background-color: #3F5882;
 }
 
