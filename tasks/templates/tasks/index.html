@@ -2,11 +2,14 @@
 <html>
 	<head>
 		{% load static %}
-		{% include 'bases/favicon_base.html' %}
+		{% include 'bases/head_base.html' %}
 
 		<title>Tasks</title>
+	
 		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'tasks/css/style.css' %}" />
+
+		
 
 	</head>
 	<body>
@@ -134,10 +137,10 @@
 			modal_content.innerHTML = '<h3>Create Task</h3>' +		
 						  '<form action="/tasks/submit/" method="post">' +
 						  "{% csrf_token %}" +
-						  '<label>Task Name: </label><input type="text" name="task_name" id="task_name"><br>' +
-						  '<label>Task Description: </label><input type="text" name="task_description" id="task_description"><br>' +
-						  '<label>Task Owner: </label><input type="text" name="task_owner" id="task_owner"><br>' +
-						  '<label>Task Priority: </label><select name="task_priority" id="task_priority">' +
+						  '<label>Task Name: </label><input type="text" name="task_name" id="task_name" autocomplete="off"><br>' +
+						  '<label>Task Description: </label><input type="text" name="task_description" id="task_description" autocomplete="off"><br>' +
+						  '<label>Task Owner: </label><input type="text" name="task_owner" id="task_owner" autocomplete="off"><br>' +
+						  '<label>Task Priority: </label><select name="task_priority" id="task_priority" autocomplete="off">' +
 						  '	<option value="1">1</option>' +
 						  '	<option value="2">2</option>' +
 						  '	<option value="3">3</option>' +
@@ -149,7 +152,7 @@
 						  '	<option value="9">9</option>' +
 						  '	<option value="10">10</option>' +
 						  '</select><br>' +
-						  '<label>Task Size: </label><select name="task_size" id="task_size">' +
+						  '<label>Task Size: </label><select name="task_size" id="task_size" autocomplete="off">' +
 						  '	<option value="1">XXS</option>' +
 						  '	<option value="2">XS</option>' +
 						  '	<option value="3">S</option>' +
@@ -158,7 +161,7 @@
 						  '	<option value="6">XL</option>' +
 						  '	<option value="7">XXL</option>' +
 						  '</select><br>' +
-						  '<label>Deadline: </label><input type="date" name="deadline_date" id="deadline_date"><br>' +
+						  '<label>Deadline: </label><input type="date" name="deadline_date" id="deadline_date" autocomplete="off"><br>' +
 						  '<input id="create-task-button" type="submit" value="Create" />' +
 				  		  '</form>'
 			modal_box.style.display = 'block';
