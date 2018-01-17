@@ -180,7 +180,7 @@ input:focus, button:focus {
 	border: 1px solid #888;
 	width: 80%;
 }
-.modal-content * {
+.modal-content p, .modal-content h3, .modal-content b, .modal-content br, .modal-content div, .modal-content span {
 	background-color: #8EAEBD;
 }
 
@@ -193,4 +193,14 @@ input:focus, button:focus {
 	color: #314360;
 	text-decoration: none;
 	cursor: pointer;
+}
+.modal-content form {
+	width: 100%;
+}
+.modal-text input, .modal-text select {
+	border: 1px solid #000;
+	padding: 0.5%;
+	margin: 1%;
+	width: 80%;
+	text-align: left;
 }

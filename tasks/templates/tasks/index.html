@@ -33,7 +33,7 @@
 			<div style="position: relative">
 				<h2>Open Tasks</h2>
 				<div class="new-task-div">
-					<button class="new-task" onclick="window.location='create/'">New Task</button>
+					<button class="new-task" onclick="show_modal('0', 'create_task')">New Task</button>
 				</div>
 			</div>
 			<table class="task-table">
@@ -48,11 +48,11 @@
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}">
-					<td class="task-table-name" onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
-					<td class="task-table-priority" onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
-					<td class="task-table-size" onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick = "show_modal({{ task.id }})"></td>
+					<td class="task-table-name" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_name }}</td>
+					<td class="task-table-priority" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_priority }}</td>
+					<td class="task-table-deadline" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.deadline_date }}</td>
+					<td class="task-table-size" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick = "show_modal({{ task.id }}, 'task_data')"></td>
 					<td class="claim-info">
 						<form action="/tasks/claim/" method="post">
 							{% csrf_token %}
@@ -80,20 +80,20 @@
 			<h2>Closed Tasks</h2>
 			<table class="task-table">
 				<tr>
-					<th id="task-table-name">Name</th>
-					<th id="task-table-priority">Priority</th>
-					<th id="task-table-deadline">Deadline</th>
-					<th id="task-table-size">Size</th>
-					<th id="task-table-age">Age</th>
+					<th class="task-table-name">Name</th>
+					<th class="task-table-priority">Priority</th>
+					<th class="task-table-deadline">Deadline</th>
+					<th class="task-table-size">Size</th>
+					<th class="task-table-age">Age</th>
 				</tr>
 				{% for task in tasks %}
 				{% if not task.task_open %}
 				<tr id="{{ task.id }}">
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_name }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_priority }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.deadline_date }}</td>
-					<td onclick = "show_modal({{ task.id }})">{{ task.task_size }}</td>
-					<td onclick = "show_modal({{ task.id }})"></td>
+					<td class="task-table-name" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_name }}</td>
+					<td class="task-table-priority" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_priority }}</td>
+					<td class="task-table-deadline" onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.deadline_date }}</td>
+					<td class="task-table-size"  onclick = "show_modal({{ task.id }}, 'task_data')">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick = "show_modal({{ task.id }}, 'task_data')"></td>
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
 					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
@@ -111,23 +111,58 @@
 		</div>
 	</div>
 	<script>
-	function show_modal(task_id) {
+	function show_modal(task_id, data_type) {
 		const modal_box = document.getElementsByClassName('modal-box')[0];
 		const modal_content = modal_box.children[0].children[1];
 
-		{% for task in tasks %}
-			if('{{ task.id }}' == task_id) {
-				modal_content.innerHTML = '<h3 class="modal-header">{{ task.task_name }}</h3><br>' + 
-		   					  '<b>Description: </b> {{ task.task_description }}<br>' +
-							  '<b>Owner: </b> {{ task.task_owner }}<br>' +
-							  '<b>Priority: </b> {{ task.task_priority }}<br>' +
-		  					  '<b>Size: </b> '+document.getElementById('{{ task.id }}').children[3].innerHTML+'<br>' +
-						 	  '<b>Created: </b> {{ task.publish_date }}<br>' +
-		  					  '<b>Deadline: </b> {{ task.deadline_date }}<br>' +
-							  '<b>Status: </b> {% if task.task_open %}Open{% else %}Closed{% endif %}'
-				modal_box.style.display = 'block';
-			}
-		{% endfor %}
+		if (data_type == 'task_data') {
+			{% for task in tasks %}
+				if('{{ task.id }}' == task_id) {
+					modal_content.innerHTML = '<h3 class="modal-header">{{ task.task_name }}</h3><br>' + 
+			   					  '<b>Description: </b> {{ task.task_description }}<br>' +
+								  '<b>Owner: </b> {{ task.task_owner }}<br>' +
+								  '<b>Priority: </b> {{ task.task_priority }}<br>' +
+		  						  '<b>Size: </b> '+document.getElementById('{{ task.id }}').children[3].innerHTML+'<br>' +
+							 	  '<b>Created: </b> {{ task.publish_date }}<br>' +
+		  						  '<b>Deadline: </b> {{ task.deadline_date }}<br>' +
+								  '<b>Status: </b> {% if task.task_open %}Open{% else %}Closed{% endif %}'
+					modal_box.style.display = 'block';
+				}
+			{% endfor %}
+		}
+		else if(data_type == 'create_task') {
+			modal_content.innerHTML = '<h3>Create Task</h3>' +		
+						  '<form action="/tasks/submit/" method="post">' +
+						  "{% csrf_token %}" +
+						  'Task Name: <input type="text" name="task_name" id="task_name"><br>' +
+						  'Task Description: <input type="text" name="task_description" id="task_description"><br>' +
+						  'Task Owner: <input type="text" name="task_owner" id="task_owner"><br>' +
+						  'Task Priority: <select name="task_priority" id="task_priority">' +
+						  '<option value="1">1</option>' +
+						  '<option value="2">2</option>' +
+						  '<option value="3">3</option>' +
+						  '<option value="4">4</option>' +
+						  '<option value="5">5</option>' +
+						  '<option value="6">6</option>' +
+						  '<option value="7">7</option>' +
+						  '<option value="8">8</option>' +
+						  '<option value="9">9</option>' +
+						  '<option value="10">10</option>' +
+						  '</select><br>' +
+						  'Task Size: <select name="task_size" id="task_size">' +
+						  '<option value="1">XXS</option>' +
+						  '<option value="2">XS</option>' +
+						  '<option value="3">S</option>' +
+						  '<option value="4" selected="selected">M</option>' +
+						  '<option value="5">L</option>' +
+						  '<option value="6">XL</option>' +
+						  '<option value="7">XXL</option>' +
+						  '</select><br>' +
+						  'Deadline: <input type="date" name="deadline_date" id="deadline_date"><br>' +
+						  '<input class="submit-button" type="submit" value="Create" />' +
+				  		  '</form>'
+			modal_box.style.display = 'block';
+		}
 	}
 
 	var modal = document.getElementsByClassName('modal-box')[0];
