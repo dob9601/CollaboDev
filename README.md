@@ -2,6 +2,7 @@
 
 An open source web application made for collaboration and built on Django.
 
+[Tasks page](https://i.imgur.com/RQqjzQA.png)
 ---
 
 ## Installation
