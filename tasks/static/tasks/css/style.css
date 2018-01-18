@@ -201,19 +201,18 @@ input:focus, button:focus {
 }
 .modal-content label {
 	display: inline-block;
-	width: 250px;
+	width: 10%;
 }
-.modal-text input, .modal-text select {
+
+.modal-text select, .modal-text input {
 	border: 0;
-	padding: 0.5%;
-	margin: 1% 1% 1% -100px;
-	width: 50%;
-	text-align: left;
+	margin: 5px 0 5px 0;
+	width: 90%;
 	background-color: #3F5882;
+	padding: 2px;
 }
-.modal-text select {
-	width: 51%;
-	background-color: #3F5882;
+.modal-text input {
+	width: 89.5%;
 }
 #create-task-button {
 	margin: 1% 1% 1% 40%;
