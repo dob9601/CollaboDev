@@ -8,7 +8,7 @@ body {
 }
 
 .crimson {
-	color: #cf6766;
+	color: #C6504F;
 }
 
 .footer {
@@ -33,4 +33,26 @@ body {
 .horizontal-break {
 	background-color: #c6504f;
 	height: 30px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #C6504F;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track {
+  background: #031424;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
