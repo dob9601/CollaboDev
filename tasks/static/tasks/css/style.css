@@ -222,4 +222,6 @@ input:focus, button:focus {
 	background-color: #3F5882;
 }
 
-
+::-webkit-calendar-picker-indicator {
+	background: transparent;
+}
