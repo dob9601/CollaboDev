@@ -19,7 +19,7 @@ def index(request):
         'tasks_completed': user.profile.tasks_completed,
     }
     try:
-        message_id = int(request.GET.get('m'))
+        message_id = request.session['response_message']
         if message_id == 1:
             message = "Task claimed successfully."
         elif message_id == 2:
@@ -35,7 +35,8 @@ def index(request):
         elif message_id == 7:
             message = "Task closed successfully."
         context['error_message'] = message
-    except TypeError:
+        del request.session['response_message']
+    except KeyError:
         pass
 
     return render(request, 'tasks/index.html', context)

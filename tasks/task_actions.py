@@ -27,10 +27,12 @@ def submit(request):
         )
         new_task.clean()
         new_task.save()
-
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=4")
+        
+        request.session['response_message'] = 4
+        return HttpResponseRedirect(reverse('tasks:index'))
     except ValidationError:
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=5")
+        request.session['response_message'] = 5
+        return HttpResponseRedirect(reverse('tasks:index'))
 
 
 @login_required
@@ -44,15 +46,15 @@ def claim(request):
         if old_owner == "":
             chosen_task.task_owner = new_owner
             chosen_task.save()
-            return HttpResponseRedirect(reverse('tasks:index') + "?m=1")
+            request.session['response_message'] = 1
+            return HttpResponseRedirect(reverse('tasks:index'))
         else:
-            return HttpResponseRedirect(reverse('tasks:index') + "?m=2")
-            # return HttpResponse('Task already claimed.')
-            # return task already claimed
-            # read logged in user
-            # assign chosen task to user
+            request.session['response_message'] = 2
+            return HttpResponseRedirect(reverse('tasks:index'))
+
     except MultiValueDictKeyError:
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=3")
+        request.session['response_message'] = 3
+        return HttpResponseRedirect(reverse('tasks:index'))
 
 
 @login_required
@@ -62,10 +64,12 @@ def unclaim(request):
         chosen_task = Task.objects.get(pk=int(task_id))
         chosen_task.task_owner = ""
         chosen_task.save()
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=6")
+        request.session['response_message'] = 6
+        return HttpResponseRedirect(reverse('tasks:index'))
 
     except MultiValueDictKeyError:
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=3")
+        request.session['response_message'] = 3
+        return HttpResponseRedirect(reverse('tasks:index'))
 
 
 @login_required
@@ -80,8 +84,10 @@ def close(request):
         user = User.objects.get(id=current_user)
         user.profile.tasks_completed += chosen_task.task_size
         user.save()
-        
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=7")
+
+        request.session['response_message'] = 7
+        return HttpResponseRedirect(reverse('tasks:index'))
 
     except MultiValueDictKeyError:
-        return HttpResponseRedirect(reverse('tasks:index') + "?m=3")
+        request.session['response_message'] = 3
+        return HttpResponseRedirect(reverse('tasks:index'))
