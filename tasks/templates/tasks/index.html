@@ -66,15 +66,15 @@
 							<input type="hidden" value="{{ task.id }}" name="task_id">
 							<input type="submit" value="Claim" class="claim" />
 						</form>
-						<form action="/tasks/close/" method="post" style="display: none" onsubmit="return confirm('Are you sure you want to close this task?');">
+						<form action="/tasks/close/" method="post" style="display: none">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="submit" value="Complete" class="close-task" />
+							<input type="button" value="Complete" class="close-task" onclick="show_modal('confirmation', ['{{ task.id }}', '1', 'Are you sure you want to close this task?'])"/>
 						</form>
-						<form action="/tasks/unclaim/" method="post" style="display: none" onsubmit="return confirm('Are you sure you want to unclaim this task?');">
+						<form action="/tasks/unclaim/" method="post" style="display: none">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="submit" value="Unclaim" class="unclaim" />
+							<input type="button" value="Unclaim" class="unclaim" onclick="show_modal('confirmation', ['{{ task.id }}', '2', 'Are you sure you want to unclaim this task?'])"/>
 						</form>
 					</td>
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
@@ -97,11 +97,15 @@
 				{% for task in tasks %}
 				{% if not task.task_open %}
 				<tr id="{{ task.id }}">
-					<td class="task-table-name" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_name }}</td>
-					<td class="task-table-priority" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.deadline_date }}</td>
-					<td class="task-table-size"  onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])"></td>
+					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
+					<td style="display: none">{{ task.task_description }}</td>
+					<td style="display: none">{{ task.task_owner }}</td>
+					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
+					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.deadline_date }}</td>
+					<td class="task-table-size"  onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
+					<td style="display: none">{{ task.task_open }}</td>
+
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
 					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>

@@ -50,12 +50,17 @@ function show_modal(data_type, data) {
 					  '<input id="create-task-button" type="submit" value="Create" />' +
 			  		  '</form>'
 	}
+	else if(data_type == 'confirmation') {
+		modal_text.innerHTML = '<p>'+data[2]+'</p>' +
+				       '<button onclick="document.getElementById('+data[0]+').children[8].children['+data[1]+'].submit()">Yes</button>' +
+				       '<button onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button>'
+	}
 	modal_box.style.display = 'block';
 }
 
 var modal = document.getElementsByClassName('modal-box')[0];
 window.onclick = function(event) {
 	if (event.target == modal) {
-	        modal.style.display = "none";
+	        modal.style.display = 'none';
 	}
 }
