@@ -148,15 +148,15 @@ input:focus, button:focus {
 .new-task {
 	cursor: pointer;
 	background-color: #3F5882;
-	padding: 5% 40px;
+	padding: 5% 66px;
 }
 .new-task-div {
 	position: absolute;
 	right: 0;
 	top: 0;
 	text-align: right;
-	margin-right: 3.4%;
-	margin-top: 13.9px;
+	margin-right: 2%;
+	margin-top: 9px;
 	background-color: transparent;
 }
 
