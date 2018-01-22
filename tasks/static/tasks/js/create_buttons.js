@@ -1,5 +1,5 @@
 var script_tag=document.getElementsByTagName('script');
-var target=script_tag[script_tag.length - 1].parentNode.children[5].children[0].children[2];
+var target=script_tag[script_tag.length - 1].parentNode.children[8].children[0].children[2];
 var task_owner = document.currentScript.getAttribute('task-owner');
 
 if (task_owner=="") {

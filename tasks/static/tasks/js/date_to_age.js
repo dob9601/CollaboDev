@@ -1,5 +1,5 @@
 var script_tag = document.getElementsByTagName('script');
-var target = script_tag[script_tag.length - 1].parentNode.children[4];
+var target = script_tag[script_tag.length - 1].parentNode.children[6];
 var publish_date = document.currentScript.getAttribute('task-publish-date');
 
 var dD=Math.abs(new Date(publish_date).getTime()-new Date().getTime());

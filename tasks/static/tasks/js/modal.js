@@ -3,19 +3,19 @@ function show_modal(data_type, data) {
 	const modal_text = modal_box.children[0].children[1];
 
 	if (data_type == 'task_data') {
-		if (data[6] == 'True') {
+		if (document.getElementById(data).children[7].innerHTML == 'True') {
 			task_status = "Open";
 		}
 		else {
 			task_status = "Closed";
 		}
-		modal_text.innerHTML = '<h3 class="modal-header">'+data[1]+'</h3><br>' + 
-					  '<b>Description: </b>'+data[2]+'<br>' +
-					  '<b>Owner: </b>'+data[3]+'<br>' +
-					  '<b>Priority: </b>'+data[4]+'<br>' +
-	  				  '<b>Size: </b> '+document.getElementById(data[0]).children[3].innerHTML+'<br>' +
-				 	  '<b>Age: </b>'+document.getElementById(data[0]).children[4].innerHTML+'<br>' +
-	  				  '<b>Deadline: </b>'+data[5]+'<br>' +
+		modal_text.innerHTML = '<h3 class="modal-header">'+document.getElementById(data).children[0].innerHTML+'</h3><br>' + 
+					  '<b>Description: </b>'+document.getElementById(data).children[1].innerHTML+'<br>' +
+					  '<b>Owner: </b>'+document.getElementById(data).children[2].innerHTML+'<br>' +
+					  '<b>Priority: </b>'+document.getElementById(data).children[3].innerHTML+'<br>' +
+	  				  '<b>Deadline: </b>'+document.getElementById(data).children[4].innerHTML+'<br>' +
+	  				  '<b>Size: </b> '+document.getElementById(data).children[5].innerHTML+'<br>' +
+				 	  '<b>Age: </b>'+document.getElementById(data).children[6].innerHTML+'<br>' +
 				  	  '<b>Status: </b> '+task_status+'<br>'
 	}
 	else if(data_type == 'create_task') {

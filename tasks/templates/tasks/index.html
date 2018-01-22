@@ -51,11 +51,15 @@
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}">
-					<td class="task-table-name" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_name }}</td>
-					<td class="task-table-priority" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.deadline_date }}</td>
-					<td class="task-table-size" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick = "show_modal('task_data', ['{{ task.id }}', '{{ task.task_name }}','{{ task.task_description }}','{{ task.task_owner }}', '{{ task.task_priority }}', '{{ task.deadline_date }}', '{{ task.task_open }}'])"></td>
+					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
+					<td style="display: none">{{ task.task_description }}</td>
+					<td style="display: none">{{ task.task_owner }}</td>
+					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
+					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.deadline_date }}</td>
+					<td class="task-table-size" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
+					<td style="display: none">{{ task.task_open }}</td>
+
 					<td class="claim-info">
 						<form action="/tasks/claim/" method="post">
 							{% csrf_token %}

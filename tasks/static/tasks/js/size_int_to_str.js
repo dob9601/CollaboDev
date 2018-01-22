@@ -1,5 +1,5 @@
 var script_tag=document.getElementsByTagName('script');
-var target=script_tag[script_tag.length - 1].parentNode.children[3];
+var target=script_tag[script_tag.length - 1].parentNode.children[5];
 
 
 var int_size = target.innerHTML;
