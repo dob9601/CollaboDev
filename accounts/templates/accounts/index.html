@@ -12,9 +12,10 @@
 	<body>
 		{% include 'bases/navbar_base.html' %}
 		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
+		<h1>Users</h1>
 		{% for user in users %}
 			<div class="card">
-				<img src="http://www.freeiconspng.com/uploads/profile-icon-9.png"></img>
+				<img src="{% static 'accounts/images/default_avatar.png' %}"></img>
 				<div class="card-text">
 					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>
 					<p>{{ user.profile.tasks_completed }} tasks completed</p>
