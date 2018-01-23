@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["192.168.0.44", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'tasks.apps.TasksConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,6 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/tasks/'
+LOGIN_URL = '/login/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

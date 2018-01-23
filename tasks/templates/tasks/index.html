@@ -14,8 +14,7 @@
 	</head>
 	<body>
 		{% include 'bases/navbar_base.html' %}
-		<div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
-		<script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ tasks_completed }}"></script>
+		<script>document.getElementsByClassName('nav')[0].children[0].children[1].children[0].className = 'active'</script>
 
 		<div id="page-description">
 			{% if error_message %}

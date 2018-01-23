@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+
+		<title>Tasks</title>
+	
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/style.css' %}" />
+	</head>
+	<body>
+		{% include 'bases/navbar_base.html' %}
+		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
+		{% for user in users %}
+			<div class="card">
+				<img src="http://www.freeiconspng.com/uploads/profile-icon-9.png"></img>
+				<div class="card-text">
+					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>
+					<p>{{ user.profile.tasks_completed }} tasks completed</p>
+					<p>Joined on {{ user.date_joined }}</p>
+				</div>
+			</div>
+		{% endfor %}
+
+		{% include 'bases/footer_base.html' %}
+	</body>
+</html>
