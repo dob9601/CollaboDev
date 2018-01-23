@@ -148,7 +148,7 @@ input:focus, button:focus {
 .new-task {
 	cursor: pointer;
 	background-color: #3F5882;
-	padding: 5% 66px;
+	padding: 8px 66px;
 }
 .new-task-div {
 	position: absolute;
@@ -224,4 +224,14 @@ input:focus, button:focus {
 
 ::-webkit-calendar-picker-indicator {
 	background: transparent;
+}
+
+.yes-button, .no-button {
+	width: 10%;
+	background-color: #3F5882;
+	padding: 10px 20px;
+	margin: 0 10px;
+}
+.buttons {
+	text-align: center;
 }
