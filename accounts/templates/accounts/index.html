@@ -14,7 +14,7 @@
 		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
 		<h1>Users</h1>
 		{% for user in users %}
-			<div class="card">
+			<div class="card" onclick="location.href = '{{ user.username }}/'">
 				<img src="{% static user.profile.associated_image %}"></img>
 				<div class="card-text">
 					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>

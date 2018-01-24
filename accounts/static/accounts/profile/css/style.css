@@ -1,0 +1,18 @@
+h1 {
+	margin: 2% 0 0 5%;
+}
+
+.profile-picture {
+	float: left;
+	width: 18%;
+	padding: 2%;
+}
+.content-text p {
+	margin: 4px;
+}
+.content-text {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column; /* column | row */
+}
