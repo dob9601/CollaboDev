@@ -179,3 +179,7 @@ input:focus, button:focus {
 .buttons {
 	text-align: center;
 }
+
+.no-tasks-message {
+	padding: 2%;
+}
