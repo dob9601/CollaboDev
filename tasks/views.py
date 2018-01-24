@@ -16,7 +16,6 @@ def index(request):
     
     context = {
         'tasks': tasks,
-        'tasks_completed': user.profile.tasks_completed,
     }
     try:
         message_id = request.session['response_message']

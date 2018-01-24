@@ -8,4 +8,4 @@
 </div>
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
 {% load static %}
-<script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ tasks_completed }}"></script>
+<script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ user.profile.tasks_completed }}"></script>
