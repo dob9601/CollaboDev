@@ -113,3 +113,7 @@ body {
 	height:6px;
 	background-color: #9E9E9E;
 }
+
+a {
+	cursor: pointer;
+}

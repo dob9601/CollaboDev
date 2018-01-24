@@ -105,7 +105,7 @@
 				{% endfor %}
 			</table>
 		{% else %}
-			<p>No tasks have been created. Create one <a href="/tasks/create">here</a></p>
+		<p class="no-tasks-message">No tasks have been created. Create one <u><a onclick="show_modal('create_task', '{{ csrf_token }}')">here</a></u></p>
 		{% endif %}
 	<div class="modal-box">
 		<div class="modal-content">

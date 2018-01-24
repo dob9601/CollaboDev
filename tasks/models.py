@@ -38,6 +38,7 @@ class Task(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tasks_completed = models.IntegerField(default=0)
+    associated_image = models.CharField(default='/accounts/images/default_avatar.png', max_length=1000)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
