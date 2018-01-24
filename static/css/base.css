@@ -17,6 +17,8 @@ body {
 	height: 40px;
 	text-align: center;
 	font-size: 0.8em;
+	position: absolute;
+	bottom: 0;
 }
 .footer a, .footer p {
 	position: relative;
@@ -115,5 +117,5 @@ body {
 }
 
 a {
-	cursor: pointer;
+	cursor: pointer
 }
