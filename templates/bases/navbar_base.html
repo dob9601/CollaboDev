@@ -3,7 +3,7 @@
 		<li id="logo" class="nav-hover"><a href="/"><b>Collabo<span class="crimson">Dev</span></b></a></li>
 		<li><a href="/tasks/">Tasks</a></li>
 		<li><a href="/accounts/">Users</a></li>
-		<li id="user-widget"><a href="/profile/"><span id="user-widget-text">{{ user.get_username }}</span></a></li>
+		<li id="user-widget"><a href="/accounts/{{ user.username }}"><span id="user-widget-text">{{ user.username }}</span></a></li>
 	</ul>
 </div>
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
