@@ -14,9 +14,6 @@
 			Math.max(document.body.clientHeight, document.documentElement.clientHeight)
 		);
 		var hasVScroll = docHeight > window.innerHeight;
-		console.log(hasVScroll);
-		console.log(docHeight);
-		console.log(window.innerHeight);
 		var footer = document.getElementsByClassName('footer')[0];
 		if(hasVScroll) {
 			footer.style.position = 'static';

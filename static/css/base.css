@@ -92,7 +92,7 @@ body {
 }
 @media screen and (min-width: 640px) {
 	.nav li {
-		width: 25%;
+		width: 31%;
 		border-bottom: none;
 		height: 50px;
 		line-height: 50px;
@@ -106,6 +106,17 @@ body {
 	#logo {
 		font-size: 1.75em;
 	}
+	#user-widget {
+		width: 7%;
+		display: inline-block;
+	}
+}
+
+.navbar-avatar {
+	margin: auto;
+	transition: .4s background-color;
+	width: 30px;
+	vertical-align: middle;
 }
 
 .progress-bar-div {
@@ -123,3 +134,4 @@ a {
 a {
 	outline: 0;
 }
+
