@@ -11,18 +11,22 @@
 	</head>
 	<body onload="positionFooter()">
 		{% include 'bases/navbar_base.html' %}
-		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
+		<script>
+		if("{{ user.username }}" == "{{ chosen_user.username }}") {
+			document.getElementsByClassName('nav')[0].children[0].children[3].children[0].className = 'active'
+		}
+		</script>
 		<div class="content">
-			<img class="profile-picture" src="{% static user.profile.associated_image %}"></img>
+			<img class="profile-picture" src="{% static chosen_user.profile.associated_image %}"></img>
 			<div class="content-text">
-				<h1>{{ user.first_name }} {{ user.last_name }}</h1>
-				{% if user.is_superuser %}
+				<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }}</h1>
+				{% if chosen_user.is_superuser %}
 					<p><strong>This user is an admin</strong></p>
 				{% endif %}
-				<p>Username: {{ user.username }}</p>
-				<p>Joined: {{ user.date_joined }}</p>
-				<p>Email: {{ user.email }}</p>
-				<p>Last logged in: {{ user.last_login }}</p>
+				<p>Username: {{ chosen_user.username }}</p>
+				<p>Joined: {{ chosen_user.date_joined }}</p>
+				<p>Email: {{ chosen_user.email }}</p>
+				<p>Last logged in: {{ chosen_user.last_login }}</p>
 			</div>
 		</div>
 		{% include 'bases/footer_base.html' %}
