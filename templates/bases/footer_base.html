@@ -1,11 +1,4 @@
 <div class="footer">
-	<script>
-	var hasVScroll = document.body.scrollHeight > window.innerHeight;
-	var footer = document.getElementsByClassName('footer')[0];
-	if(hasVScroll) {
-		footer.style.position = 'static';
-	}
-	</script>
 	<p>CollaboDev is licensed under the 
 	<a href="https://opensource.org/licenses/MIT" target="_blank"><u>MIT License</u></a> 
 	and was originally created by 
@@ -13,4 +6,21 @@
 		<img src="/static/images/llama.png" height="20px">
 		<u>Daniel O'Brien</u>
 	</a></p>
+	<script>
+	function positionFooter() {
+		var docHeight = Math.max(
+			Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+			Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
+			Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+		);
+		var hasVScroll = docHeight > window.innerHeight;
+		console.log(hasVScroll);
+		console.log(docHeight);
+		console.log(window.innerHeight);
+		var footer = document.getElementsByClassName('footer')[0];
+		if(hasVScroll) {
+			footer.style.position = 'static';
+		}
+	}
+	</script>
 </div>
