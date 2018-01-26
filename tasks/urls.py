@@ -6,6 +6,7 @@ from . import task_actions
 app_name = 'tasks'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('quests/', views.quests, name='quests'),
     path('submit/', task_actions.submit, name='submit'),
     path('delete/', views.delete, name='delete'),
     path('claim/', task_actions.claim, name='claim'),

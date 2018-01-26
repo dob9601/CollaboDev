@@ -1,0 +1,46 @@
+.error-message {
+	text-align: center;
+	font-size: 3em;
+	line-height: 65px;
+	margin-top: 17%;
+}
+.task {
+	margin: 2%;
+	width: 80%;
+	height: 50%;
+	overflow: auto;
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+.task-name {
+	background-color: #C6504F;
+	margin: 0;
+	padding: 1%;
+	font-size: 2em;
+}
+.task-data {
+	background-color: #031424;
+}
+.task-data p {
+	margin: 0;
+	padding: 1%;
+	font-size: 1.1em;
+}
+
+.submit {
+	-webkit-appearance: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: none;
+	color: #fff;
+	background: #CF6766;
+	padding: 0.5% 2%;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	transition: .4s background-color;
+	margin: 20px;
+	text-align: center;
+}

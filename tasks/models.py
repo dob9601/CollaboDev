@@ -29,8 +29,12 @@ class Task(models.Model):
     task_size = models.IntegerField(validators=[MaxValueValidator(7),
                                                 MinValueValidator(1)],
                                         blank=False)
+
+    quest_position = models.IntegerField(default=-1)
+
     publish_date = models.DateTimeField(default=now, blank=True)
     deadline_date = models.DateTimeField(blank=False)
+
 
     def __str__(self):
         return self.task_name
@@ -39,6 +43,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tasks_completed = models.IntegerField(default=0)
     associated_image = models.CharField(default='/accounts/images/default_avatar.png', max_length=1000)
+    quest = models.CharField(default='null', max_length=1000)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -48,5 +53,23 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class Quest(models.Model):
+    quest_name = models.CharField(max_length=70, blank=False)
+    quest_description = models.CharField(max_length=400)
+    quest_owner = models.ManyToManyField(User)
+    quest_priority = models.IntegerField(validators=[MaxValueValidator(10),
+                                                     MinValueValidator(1)],
+                                                     blank=False)
+    quest_open = models.BooleanField(default=True)
+    quest_tasks = models.ManyToManyField(Task)
+    quest_stage = models.IntegerField(default=0)
+    
+    publish_date = models.DateTimeField(default=now, blank=True)
+    deadline_date = models.DateTimeField(blank=False)
+                                         
+
+
+
 
 

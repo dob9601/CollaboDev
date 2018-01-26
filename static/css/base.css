@@ -92,7 +92,7 @@ body {
 }
 @media screen and (min-width: 640px) {
 	.nav li {
-		width: 24%;
+		width: 19%;
 		border-bottom: none;
 		height: 50px;
 		line-height: 50px;
@@ -107,7 +107,7 @@ body {
 		font-size: 1.75em;
 	}
 	#user-widget {
-		width: 4%;
+		width: 5%;
 		display: inline-block;
 	}
 }

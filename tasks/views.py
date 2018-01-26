@@ -4,15 +4,12 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .models import Task
+from .models import Task, Quest
 
 
 @login_required
 def index(request):
     tasks = Task.objects.order_by('-publish_date')
-    
-    user_id = request.user.id
-    user = User.objects.get(id=user_id)
     
     context = {
         'tasks': tasks,
@@ -54,3 +51,17 @@ def delete(request):
             'tasks': tasks,
         }
         return render(request, 'tasks/delete.html', context)
+
+@login_required
+def quests(request):
+    user = User.objects.get(id=request.user.id)
+    quest = Quest.objects.get(id=1)
+    quest_tasks = quest.quest_tasks
+    quest_stage = quest.quest_stage
+    current_task = quest_tasks.get(quest_position=quest_stage)
+    
+    context = {
+        'quest_stage': quest_stage,
+        'current_task': current_task,
+    }
+    return render(request, 'tasks/quests.html', context)
