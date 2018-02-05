@@ -2,7 +2,7 @@
 
 An open source web application made for collaboration and built on Django.
 
-![Tasks page](https://imgur.com/ahTKDu5)
+![CollaboDev Logo](https://imgur.com/ahTKDu5)
 ---
 
 ## Installation
