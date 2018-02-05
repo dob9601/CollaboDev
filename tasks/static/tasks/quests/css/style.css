@@ -44,3 +44,6 @@
 	margin: 20px;
 	text-align: center;
 }
+.submit:hover {
+	background-color: #C6504F
+}
