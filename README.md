@@ -1,8 +1,7 @@
-# CollaboDev
+# ![CollaboDev](https://i.imgur.com/ahTKDu5.png)
 
 An open source web application made for collaboration and built on Django.
 
-![CollaboDev Logo](https://imgur.com/ahTKDu5)
 ---
 
 ## Installation
