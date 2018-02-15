@@ -1,5 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ValidationError
@@ -10,12 +9,12 @@ from .models import Task
 
 
 @login_required
-def create(request):
-    return render(request, 'tasks/create.html', {})
-
-
-@login_required
 def submit(request):
+    """
+    Function to handle the submission of task data, parses all data from the
+    request for the task and raises an error if any of the required data is
+    missing.
+    """
     try:
         new_task = Task(
             task_name=request.POST['task_name'],
@@ -27,7 +26,7 @@ def submit(request):
         )
         new_task.clean()
         new_task.save()
-        
+
         request.session['response_message'] = 4
         return HttpResponseRedirect(reverse('tasks:index'))
     except ValidationError:
@@ -37,9 +36,12 @@ def submit(request):
 
 @login_required
 def claim(request):
+    """
+    Function that handles the claiming of new tasks
+    """
     try:
         task_id = request.POST['task_id']
-        new_owner = "dob9601"  # Change to read from user db and logged in user
+        new_owner = request.user.username
         chosen_task = Task.objects.get(pk=int(task_id))
         old_owner = chosen_task.task_owner
 
@@ -48,9 +50,8 @@ def claim(request):
             chosen_task.save()
             request.session['response_message'] = 1
             return HttpResponseRedirect(reverse('tasks:index'))
-        else:
-            request.session['response_message'] = 2
-            return HttpResponseRedirect(reverse('tasks:index'))
+        request.session['response_message'] = 2
+        return HttpResponseRedirect(reverse('tasks:index'))
 
     except MultiValueDictKeyError:
         request.session['response_message'] = 3
@@ -59,6 +60,9 @@ def claim(request):
 
 @login_required
 def unclaim(request):
+    """
+    Function that handles the pressing of the 'unclaim task' button.
+    """
     try:
         task_id = request.POST['task_id']
         chosen_task = Task.objects.get(pk=int(task_id))
@@ -74,12 +78,15 @@ def unclaim(request):
 
 @login_required
 def close(request):
+    """
+    Function that handles the closing/completion of tasks
+    """
     try:
         task_id = request.POST['task_id']
         chosen_task = Task.objects.get(pk=int(task_id))
         chosen_task.task_open = False
         chosen_task.save()
-        
+
         current_user = request.user.id
         user = User.objects.get(id=current_user)
         user.profile.tasks_completed += chosen_task.task_size

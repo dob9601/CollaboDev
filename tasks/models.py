@@ -10,6 +10,9 @@ from django.dispatch import receiver
 
 class Task(models.Model):
     """
+    A model containing information regarding a piece of work that needs to be
+    done.
+
     Arguments:
         task_name: Name of task (max of 70 characters)
         task_description: Description of task (max of 400 characters)
@@ -28,48 +31,57 @@ class Task(models.Model):
     task_open = models.BooleanField(default=True)
     task_size = models.IntegerField(validators=[MaxValueValidator(7),
                                                 MinValueValidator(1)],
-                                        blank=False)
+                                    blank=False)
 
     quest_position = models.IntegerField(default=-1)
 
     publish_date = models.DateTimeField(default=now, blank=True)
     deadline_date = models.DateTimeField(blank=False)
 
-
     def __str__(self):
         return self.task_name
 
+
 class Profile(models.Model):
+    """
+    Extension of user model, added automatically upon user creation.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tasks_completed = models.IntegerField(default=0)
-    associated_image = models.CharField(default='/accounts/images/default_avatar.png', max_length=1000)
+    associated_image = models.CharField(
+        default='/accounts/images/default_avatar.png',
+        max_length=1000
+    )
     quest = models.CharField(default='null', max_length=1000)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """
+    Create profile model upon user creation
+    """
     if created:
         Profile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
 class Quest(models.Model):
+    """
+    A series of tasks interlinked as part of 1 large quest.
+    """
     quest_name = models.CharField(max_length=70, blank=False)
     quest_description = models.CharField(max_length=400)
     quest_owner = models.ManyToManyField(User)
     quest_priority = models.IntegerField(validators=[MaxValueValidator(10),
                                                      MinValueValidator(1)],
-                                                     blank=False)
+                                         blank=False)
     quest_open = models.BooleanField(default=True)
     quest_tasks = models.ManyToManyField(Task)
     quest_stage = models.IntegerField(default=0)
-    
+
     publish_date = models.DateTimeField(default=now, blank=True)
     deadline_date = models.DateTimeField(blank=False)
-                                         
-
-
-
-
-

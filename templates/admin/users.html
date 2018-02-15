@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+
+		<title>CollaboDev Admin</title>
+	</head>
+	<body>
+		{% include 'bases/navbar_base.html' %}
+		<h1>Manage Users</h1>
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>Real name</th>
+				<th>Email address</th>
+				<th>Current task</th>
+			</tr>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.username }}</td>
+					<td>{{ user.first_name }} {{ user.last_name }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.profile.current_task }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		{% include 'bases/footer_base.html' %}
+	</body>
+</html>

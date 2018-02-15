@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["192.168.0.44", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
+    'cAdmin.apps.cAdminConfig',
     'tasks.apps.TasksConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'CollaboDev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates',],
+        'DIRS': ['./templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

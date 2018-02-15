@@ -2,15 +2,18 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 from .models import Task, Quest
 
 
 @login_required
 def index(request):
+    """
+    View for the main index of the 'tasks' section of the
+    webapp
+    """
     tasks = Task.objects.order_by('-publish_date')
-    
+
     context = {
         'tasks': tasks,
     }
@@ -40,6 +43,10 @@ def index(request):
 
 @login_required
 def delete(request):
+    """
+    Temporary view to facilitate the removal of tasks. To be removed
+    as soon as viable alternative available.
+    """
     try:
         task_id = request.POST['id']
         Task.objects.get(pk=int(task_id)).delete()
@@ -52,14 +59,17 @@ def delete(request):
         }
         return render(request, 'tasks/delete.html', context)
 
+
 @login_required
 def quests(request):
-    user = User.objects.get(id=request.user.id)
+    """
+    View for the 'quests' page of the webapp.
+    """
     quest = Quest.objects.get(id=1)
     quest_tasks = quest.quest_tasks
     quest_stage = quest.quest_stage
     current_task = quest_tasks.get(quest_position=quest_stage)
-    
+
     context = {
         'quest_stage': quest_stage,
         'current_task': current_task,
