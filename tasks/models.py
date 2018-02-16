@@ -18,6 +18,7 @@ class Task(models.Model):
         task_description: Description of task (max of 400 characters)
         task_owner: Username of person assigned to task (max of 15 characters)
         task_priority: The priority of a task (integer between 1 and 10)
+        created_by: The username of the user that created the task
         publish_date: The date the task was published on
         deadline_date: The date the task should be completed by
     """
@@ -35,6 +36,7 @@ class Task(models.Model):
 
     quest_position = models.IntegerField(default=-1)
 
+    created_by = models.CharField(max_length=20, blank=False)
     publish_date = models.DateTimeField(default=now, blank=True)
     deadline_date = models.DateTimeField(blank=False)
 
