@@ -8,13 +8,9 @@
 	</a></p>
 	<script>
 	function positionFooter() {
-		var docHeight = Math.max(
-			Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
-			Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
-			Math.max(document.body.clientHeight, document.documentElement.clientHeight)
-		);
-		var hasVScroll = docHeight > window.innerHeight;
+		var hasVScroll = document.documentElement.scrollHeight > window.innerHeight;
 		var footer = document.getElementsByClassName('footer')[0];
+		console.log(hasVScroll);
 		if(hasVScroll) {
 			footer.style.position = 'static';
 		}
@@ -23,5 +19,6 @@
 		}
 	}
 	window.addEventListener('resize', positionFooter);
+	document.getElementsByTagName('body')[0].setAttribute('onload', 'positionFooter()');
 	</script>
 </div>
