@@ -50,6 +50,7 @@ class Profile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tasks_completed = models.IntegerField(default=0)
+    current_task = models.OneToOneField(Task, on_delete=models.CASCADE, null=True, default=None)
     associated_image = models.CharField(
         default='/accounts/images/default_avatar.png',
         max_length=1000

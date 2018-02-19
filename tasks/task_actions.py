@@ -49,6 +49,10 @@ def claim(request):
             chosen_task.task_owner = new_owner
             chosen_task.save()
             request.session['response_message'] = 1
+
+            request.user.profile.current_task = chosen_task
+            request.user.save()
+
             return HttpResponseRedirect(reverse('tasks:index'))
         request.session['response_message'] = 2
         return HttpResponseRedirect(reverse('tasks:index'))
@@ -68,6 +72,10 @@ def unclaim(request):
         chosen_task = Task.objects.get(pk=int(task_id))
         chosen_task.task_owner = ""
         chosen_task.save()
+
+        request.user.profile.current_task = None
+        request.user.save()
+
         request.session['response_message'] = 6
         return HttpResponseRedirect(reverse('tasks:index'))
 
