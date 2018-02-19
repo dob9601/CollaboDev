@@ -20,19 +20,21 @@ def index(request):
     try:
         message_id = request.session['response_message']
         if message_id == 1:
-            message = "Task claimed successfully."
+            message = 'Task claimed successfully.'
         elif message_id == 2:
-            message = "Task already claimed."
+            message = 'Task already claimed.'
         elif message_id == 3:
-            message = "POST data did not contain a task ID."
+            message = 'POST data did not contain a task ID.'
         elif message_id == 4:
-            message = "Task created successfully."
+            message = 'Task created successfully.'
         elif message_id == 5:
-            message = "Please completely fill out the form."
+            message = 'Please completely fill out the form.'
         elif message_id == 6:
-            message = "Task unclaimed successfully."
+            message = 'Task unclaimed successfully.'
         elif message_id == 7:
-            message = "Task closed successfully."
+            message = 'Task closed successfully.'
+        elif message_id == 8:
+            message = 'You are already on a task'
         context['error_message'] = message
         del request.session['response_message']
     except KeyError:

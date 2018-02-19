@@ -45,7 +45,7 @@ def claim(request):
         chosen_task = Task.objects.get(pk=int(task_id))
         old_owner = chosen_task.task_owner
 
-        if old_owner == "":
+        if old_owner == "" and request.user.profile.current_task is None:
             chosen_task.task_owner = new_owner
             chosen_task.save()
             request.session['response_message'] = 1
@@ -54,6 +54,10 @@ def claim(request):
             request.user.save()
 
             return HttpResponseRedirect(reverse('tasks:index'))
+        elif request.user.profile.current_task is None:
+            request.session['response_message'] = 8
+            return HttpResponseRedirect(reverse('tasks:index'))
+
         request.session['response_message'] = 2
         return HttpResponseRedirect(reverse('tasks:index'))
 
