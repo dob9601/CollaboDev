@@ -3,6 +3,7 @@
 	<head>
 		{% load static %}
 		{% include 'bases/head_base.html' %}
+		<link rel="stylesheet" type="text/css" href="{% static 'admin/users/css/style.css' %}" />
 
 		<title>CollaboDev Admin</title>
 	</head>
@@ -15,6 +16,7 @@
 				<th>Real name</th>
 				<th>Email address</th>
 				<th>Current task</th>
+				<th></th>
 			</tr>
 			{% for user in users %}
 				<tr>
@@ -22,6 +24,13 @@
 					<td>{{ user.first_name }} {{ user.last_name }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.profile.current_task }}</td>
+					<td>
+						{% if user.is_superuser %}
+							Cannot delete the account of a superuser
+						{% else %}
+							<button>Delete User</button>
+						{% endif %}
+					</td>
 				</tr>
 			{% endfor %}
 		</table>
