@@ -66,7 +66,7 @@
 						</form>
 					</td>
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
-					<script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}"></script>
+					<script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}" current-user="{{ user.username }}"></script>
 					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
 				{% endif %}
