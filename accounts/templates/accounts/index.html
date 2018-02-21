@@ -14,7 +14,7 @@
 		<h1>Users</h1>
 		{% for user in users %}
 			<div class="card" onclick="location.href = '{{ user.username }}/'">
-				<img src="{% static user.profile.associated_image %}"></img>
+				<img src="{% static user.profile.associated_image %}" class="profile-picture"></img>
 				<div class="card-text">
 					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>
 					<p>{{ user.profile.tasks_completed }} tasks completed</p>

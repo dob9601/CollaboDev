@@ -12,7 +12,7 @@
 		{% include 'bases/navbar_base.html' %}
 		<script>
 		if("{{ user.username }}" == "{{ chosen_user.username }}") {
-			document.getElementsByClassName('nav')[0].children[0].children[3].children[0].className = 'active'
+			document.getElementsByClassName('nav')[0].children[0].children[5].children[0].className = 'active';
 		}
 		</script>
 		<div class="content">
@@ -22,6 +22,7 @@
 				{% if chosen_user.is_superuser %}
 					<p><strong>This user is an admin</strong></p>
 				{% endif %}
+				<p>Name: {{ chosen_user.first_name }} {{ chosen_user.last_name }}</p>
 				<p>Username: {{ chosen_user.username }}</p>
 				<p>Joined: {{ chosen_user.date_joined }}</p>
 				<p>Email: {{ chosen_user.email }}</p>
