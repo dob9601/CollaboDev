@@ -1,7 +1,7 @@
-input {
+input[type=button], input[type=submit], button {
 	-moz-appearance: none;
 	-webkit-appearance: none;
-	background: #CF6766;
+	background-color: #CF6766;
 	border: none;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -13,9 +13,17 @@ input {
 	text-decoration: none;
 	transition: .4s background-color;
 }
-input:hover {
+input[type=button]:hover, input[type=submit]:hover, button:hover {
 	background: #C6504F;
 }
-input:focus {
+input[type=button]:focus, input[type=submit]:hover, button:focus {
 	outline:0;
+}
+
+#create-user-button {
+	margin: 1% 1% 1% 40%;
+	width: 20%;
+	text-align: center;
+	padding: 1%;
+	background-color: #3F5882;
 }

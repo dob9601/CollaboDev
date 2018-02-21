@@ -10,6 +10,7 @@
 	<body>
 		{% include 'bases/navbar_base.html' %}
 		<h1>Manage Users</h1>
+		<button onclick="show_modal('{{ csrf_token }}')">Create User</button>
 		<table>
 			<tr>
 				<th>Username</th>
@@ -38,6 +39,10 @@
 				</tr>
 			{% endfor %}
 		</table>
+
+		{% include 'bases/modal_base.html' %}
+		<script src="{% static 'admin/js/modal.js' %}"></script>
+
 		{% include 'bases/footer_base.html' %}
 	</body>
 </html>

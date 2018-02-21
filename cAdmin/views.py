@@ -1,3 +1,7 @@
+from hashlib import md5
+import urllib.request
+from random import choice
+
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
@@ -33,5 +37,38 @@ def users(request):
 def delete_user(request):
     user = User.objects.get(pk=int(request.POST['user']))
     user.delete()
+
+    return HttpResponseRedirect(reverse('cAdmin:users'))
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def create_user(request):
+    temporary_password = ''.join(choice('0123456789ABCDEF') for i in range(8))
+
+    user = User.objects.create_user(
+        username=request.POST['username'],
+        first_name=request.POST['first_name'],
+        last_name=request.POST['last_name'],
+        email=request.POST['email'],
+        password=temporary_password,
+    )
+
+    encoded_email = request.POST['email'].encode('utf-8')
+
+    gravatar_url = (
+        'https://www.gravatar.com/avatar/' +
+        md5(encoded_email.strip().lower()).hexdigest()
+    )
+
+    try:
+        urllib.request.urlopen(gravatar_url+'?d=404')
+        user.profile.gravatar_url = gravatar_url+'?s=1000'
+        user.profile.gravatar_enabled = True
+    except urllib.error.HTTPError:
+        user.profile.associated_image = 'accounts/images/default_avatar.png'
+        user.profile.gravatar_enabled = False
+
+    user.clean()
+    user.save()
 
     return HttpResponseRedirect(reverse('cAdmin:users'))

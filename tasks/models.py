@@ -60,6 +60,11 @@ class Profile(models.Model):
         default='/accounts/images/default_avatar.png',
         max_length=1000
     )
+    gravatar_url = models.CharField(
+        default='',
+        max_length=1000
+    )
+    gravatar_enabled = models.BooleanField(default=False)
     quest = models.CharField(default='null', max_length=1000)
 
 

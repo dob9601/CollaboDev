@@ -16,7 +16,13 @@
 		}
 		</script>
 		<div class="content">
-			<img class="profile-picture" src="{% static chosen_user.profile.associated_image %}"></img>
+			<img class="profile-picture" src="
+				{% if chosen_user.profile.gravatar_enabled %}
+					{{ chosen_user.profile.gravatar_url }}
+				{% else %}
+					{% static chosen_user.profile.associated_image %}
+				{% endif %}
+			"></img>
 			<div class="content-text">
 				<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }}</h1>
 				{% if chosen_user.is_superuser %}
