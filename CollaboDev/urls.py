@@ -24,5 +24,5 @@ urlpatterns = [
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, name='logout'),
     path('accounts/', include('accounts.urls'), name='accounts'),
-    path('admin/', include('cAdmin.urls')),
+    path('admin/', include('cAdmin.urls'), name='cAdmin'),
 ]

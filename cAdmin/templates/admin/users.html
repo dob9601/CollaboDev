@@ -26,9 +26,13 @@
 					<td>{{ user.profile.current_task }}</td>
 					<td>
 						{% if user.is_superuser %}
-							Cannot delete the account of a superuser
+							Cannot delete the account of a superuser unless using admin account
 						{% else %}
-							<button>Delete User</button>
+							<form method="post" action="delete/">
+								{% csrf_token %}
+								<input type="hidden" value="{{ user.id }}" name="user">
+								<input type="submit" value="Delete User">
+							</form>
 						{% endif %}
 					</td>
 				</tr>
