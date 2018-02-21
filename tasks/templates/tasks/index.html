@@ -101,16 +101,12 @@
 				{% endfor %}
 			</table>
 		{% else %}
-		<p class="no-tasks-message">No tasks have been created. Create one <u><a onclick="show_modal('create_task', '{{ csrf_token }}')">here</a></u></p>
+			<p class="no-tasks-message">No tasks have been created. Create one <u><a onclick="show_modal('create_task', '{{ csrf_token }}')">here</a></u></p>
 		{% endif %}
-	<div class="modal-box">
-		<div class="modal-content">
-			<span class="modal-close-button" onclick="modal.style.display = 'none'">&times;</span>
-			<div class="modal-text">
-			</div>
-		</div>
-	</div>
-	<script src="{% static 'tasks/js/modal.js' %}"></script>
-	{% include 'bases/footer_base.html' %}
+
+		{% include 'bases/modal_base.html' %}
+		<script src="{% static 'tasks/js/modal.js' %}"></script>
+
+		{% include 'bases/footer_base.html' %}
 	</body>
 </html>
