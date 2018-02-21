@@ -16,7 +16,7 @@ function show_modal(data_type, data) {
 	  				  '<b>Deadline: </b>'+document.getElementById(data).children[4].innerHTML+'<br>' +
 	  				  '<b>Size: </b> '+document.getElementById(data).children[5].innerHTML+'<br>' +
 				 	  '<b>Age: </b>'+document.getElementById(data).children[6].innerHTML+'<br>' +
-				  	  '<b>Status: </b> '+task_status+'<br>'
+				  	  '<b>Status: </b> '+task_status+'<br>';
 	}
 	else if(data_type == 'create_task') {
 		modal_text.innerHTML = '<h3>Create Task</h3>' +		
@@ -48,12 +48,12 @@ function show_modal(data_type, data) {
 					  '</select><br>' +
 					  '<label>Deadline: </label><input type="date" name="deadline_date" id="deadline_date" autocomplete="off"><br>' +
 					  '<input id="create-task-button" type="submit" value="Create" />' +
-			  		  '</form>'
+			  		  '</form>';
 	}
 	else if(data_type == 'confirmation') {
 		modal_text.innerHTML = '<div class="buttons"><p>'+data[2]+'</p>' +
 				       '<button class = "yes-button" onclick="document.getElementById('+data[0]+').children[8].children['+data[1]+'].submit()">Yes</button>' +
-				       '<button class = "no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>'
+				       '<button class = "no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>';
 	}
 	modal_box.style.display = 'block';
 }
@@ -63,4 +63,4 @@ window.onclick = function(event) {
 	if (event.target == modal) {
 	        modal.style.display = 'none';
 	}
-}
+};
