@@ -16,7 +16,9 @@ def index(request):
     """
     Front page of administrative app
     """
+
     context = {}
+
     return render(request, 'admin/index.html', context)
 
 
@@ -25,16 +27,25 @@ def users(request):
     """
     User management page of administrative app
     """
+    try:
+        temporary_password = request.session['temp_password']
+        del request.session['temp_password']
+    except KeyError:
+        temporary_password = ''
 
     user_list = User.objects.all()
     context = {
         'users': user_list,
+        'temporary_password': temporary_password,
     }
     return render(request, 'admin/users.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def delete_user(request):
+    """
+    View to handle the deletion of users
+    """
     user = User.objects.get(pk=int(request.POST['user']))
     user.delete()
 
@@ -43,6 +54,9 @@ def delete_user(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def create_user(request):
+    """
+    View to handle the creation of user
+    """
     temporary_password = ''.join(choice('0123456789ABCDEF') for i in range(8))
 
     user = User.objects.create_user(
@@ -70,5 +84,7 @@ def create_user(request):
 
     user.clean()
     user.save()
+
+    request.session['temp_password'] = temporary_password
 
     return HttpResponseRedirect(reverse('cAdmin:users'))

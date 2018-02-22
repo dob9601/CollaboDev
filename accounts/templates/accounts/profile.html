@@ -28,7 +28,6 @@
 				{% if chosen_user.is_superuser %}
 					<p><strong>This user is an admin</strong></p>
 				{% endif %}
-				<p>Name: {{ chosen_user.first_name }} {{ chosen_user.last_name }}</p>
 				<p>Username: {{ chosen_user.username }}</p>
 				<p>Joined: {{ chosen_user.date_joined }}</p>
 				<p>Email: {{ chosen_user.email }}</p>
