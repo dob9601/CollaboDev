@@ -21,12 +21,10 @@
 		</div>
 
 		{% if tasks %}
-			<div style="position: relative">
-				<h2>Open Tasks</h2>
-				<div class="new-task-div">
-					<button class="new-task" onclick="show_modal('create_task', '{{ csrf_token }}')">New Task</button>
-				</div>
-			</div>
+			<table class="header-table">
+				<td><h1>Open Tasks</h1></td>
+				<td><button class="header-button" onclick="show_modal('create_task', '{{ csrf_token }}')">New Task</button></td>
+			</table>
 			<table class="task-table">
 				<tr>
 					<th class="task-table-name">Name</th>
@@ -49,12 +47,12 @@
 					<td style="display: none">{{ task.task_open }}</td>
 
 					<td class="claim-info">
-						<form action="/tasks/claim/" method="post">
+						<form action="/tasks/claim/" method="post" class="claim-form">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
 							<input type="submit" value="Claim" class="claim" />
 						</form>
-						<form action="/tasks/close/" method="post" style="display: none">
+						<form action="/tasks/close/" method="post" style="display: none" class="close-task-form">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
 							<input type="button" value="Complete" class="close-task" onclick="show_modal('confirmation', ['{{ task.id }}', '1', 'Are you sure you want to close this task?'])"/>
@@ -73,7 +71,9 @@
 				{% endfor %}
 			</table>
 			<div class="horizontal-break"></div>
-			<h2>Closed Tasks</h2>
+			<table class="header-table">
+				<td><h1>Closed Tasks</h1></td>
+			</table>
 			<table class="task-table">
 				<tr>
 					<th class="task-table-name">Name</th>

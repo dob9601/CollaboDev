@@ -13,13 +13,6 @@
 	}
 }
 
-h2 {
-	background-color: #30415D;
-	line-height: 56px;
-	padding: 0 0 0 1.2%;
-	margin: 0;
-	font-size: 2em;
-}
 #page-description * {
 	margin: 0;
 	padding: 5%;
@@ -45,7 +38,20 @@ h2 {
 	width: 17%;
 }
 
-button, #create-task-button, .close-task, .unclaim, .claim {
+.claim-info form {
+	font-size: 0;
+}
+.claim-info input {
+	font-size: 14px;
+}
+.close-task-form input {
+	margin-bottom: -2px;
+}
+.claim-form input {
+	margin-bottom: -1.6094px;
+}
+
+#create-task-button, .close-task, .unclaim, .claim {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -58,24 +64,11 @@ button, #create-task-button, .close-task, .unclaim, .claim {
 	width: 100%;
 	text-align: center;
 	cursor: pointer;
+	-webkit-text-size-adjust: none;
 }
 
 input:focus, button:focus {
 	outline: 0;
-}
-.new-task {
-	cursor: pointer;
-	background-color: #3F5882;
-	padding: 8px 66px;
-}
-.new-task-div {
-	position: absolute;
-	right: 0;
-	top: 0;
-	text-align: right;
-	margin-right: 2%;
-	margin-top: 9px;
-	background-color: transparent;
 }
 
 #create-task-button {
