@@ -14,8 +14,9 @@ function show_modal(data, type) {
 				       '</form>';
 	}
 	else if (type == 'show-pass') {
-		modal_text.innerHTML = '<h2>Temporary password for new user:</h2>' +
-				       '<p class="temp-pword">'+data+'</p>';
+		modal_text.innerHTML = '<div class="pword-content"><h2>Temporary password for new user:</h2>' +
+				       '<b><p class="temp-pword">'+data+'</p></b>' +
+				       '<p>Take note of this now, it will not be shown again.</p></div>';
 	}
 	modal_box.style.display = 'block';
 }

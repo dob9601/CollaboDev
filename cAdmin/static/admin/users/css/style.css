@@ -27,3 +27,13 @@ input[type=button]:focus, input[type=submit]:hover, button:focus {
 	padding: 1%;
 	background-color: #3F5882;
 }
+
+.pword-content {
+	text-align: center;
+}
+.pword-content h2 {
+	font-size: 2em;
+}
+.temp-pword {
+	font-size: 3em;
+}
