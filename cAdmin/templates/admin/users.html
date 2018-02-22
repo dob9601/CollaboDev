@@ -9,8 +9,10 @@
 	</head>
 	<body>
 		{% include 'bases/navbar_base.html' %}
-		<h1>Manage Users</h1>
-		<button onclick="show_modal('{{ csrf_token }}', 'new-user')">Create User</button>
+		<table class="header-table">
+			<td><h1>Manage Users</h1></td>
+			<td><button class="header-button" onclick="show_modal('{{ csrf_token }}', 'new-user')">Create User</button></td>
+		</table>
 		<table>
 			<tr>
 				<th>Username</th>

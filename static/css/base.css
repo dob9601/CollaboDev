@@ -179,6 +179,27 @@ table tr:hover td *, table tr:hover td {
 	background-color: #c6504f;
 }
 
+.header-table * {
+	margin: 2%;
+	padding: 0;
+}
+.header-table td {
+	text-align: right;
+}
+.header-table td h1 {
+	text-align: left;
+}
+.header-table:hover td, .header-table:hover h1 {
+	background-color: transparent;
+}
+.header-button {
+	padding: 2%;
+	background-color: #C5504E;
+}
+.header-button:hover {
+	background-color: #A53533;
+}
+
 .modal-box {
 	display: none;
 	position: fixed;
