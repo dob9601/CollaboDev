@@ -12,6 +12,9 @@
 		{% include 'bases/navbar_base.html' %}
 		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
 		<h1>Users</h1>
+		<script>
+		const fallback_image = "{% static 'accounts/images/default_avatar.png' %}"
+		</script>
 		{% for user in users %}
 			<div class="card" onclick="location.href = '{{ user.username }}/'">
 				<img src="
@@ -20,7 +23,7 @@
 					{% else %}
 						{% static user.profile.associated_image %}
 					{% endif %}
-				" class="profile-picture"></img>
+					" class="profile-picture" onerror="this.src = fallback_image"></img>
 				<div class="card-text">
 					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>
 					<p>{{ user.profile.tasks_completed }} tasks completed</p>

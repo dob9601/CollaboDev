@@ -51,7 +51,7 @@
 	margin-bottom: -1.6094px;
 }
 
-#create-task-button, .close-task, .unclaim, .claim {
+#create-task-button, .close-task, .unclaim, .claim, .yes-button, .no-button {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
