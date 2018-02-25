@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
@@ -15,13 +17,18 @@ def submit(request):
     request for the task and raises an error if any of the required data is
     missing.
     """
+    if request.POST['deadline_date'] != '':
+        deadline_date = request.POST['deadline_date']
+    else:
+        deadline_date = datetime(1, 1, 1)
+
     try:
         new_task = Task(
             task_name=request.POST['task_name'],
             task_description=request.POST['task_description'],
             task_owner=request.POST['task_owner'],
             task_priority=request.POST['task_priority'],
-            deadline_date=request.POST['deadline_date'],
+            deadline_date=deadline_date,
             task_size=request.POST['task_size'],
         )
         new_task.clean()
@@ -29,7 +36,8 @@ def submit(request):
 
         request.session['response_message'] = 4
         return HttpResponseRedirect(reverse('tasks:index'))
-    except ValidationError:
+    except ValidationError as error:
+        print(error)
         request.session['response_message'] = 5
         return HttpResponseRedirect(reverse('tasks:index'))
 

@@ -34,11 +34,9 @@ class Task(models.Model):
                                                 MinValueValidator(1)],
                                     blank=False)
 
-    quest_position = models.IntegerField(default=-1)
-
     created_by = models.CharField(max_length=20, blank=False)
     publish_date = models.DateTimeField(default=now, blank=True)
-    deadline_date = models.DateTimeField(blank=False)
+    deadline_date = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.task_name
