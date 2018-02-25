@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
 
-from .models import Task, Quest
+from .models import Task
 
 
 @login_required
@@ -60,20 +60,3 @@ def delete(request):
             'tasks': tasks,
         }
         return render(request, 'tasks/delete.html', context)
-
-
-@login_required
-def quests(request):
-    """
-    View for the 'quests' page of the webapp.
-    """
-    quest = Quest.objects.get(id=1)
-    quest_tasks = quest.quest_tasks
-    quest_stage = quest.quest_stage
-    current_task = quest_tasks.get(quest_position=quest_stage)
-
-    context = {
-        'quest_stage': quest_stage,
-        'current_task': current_task,
-    }
-    return render(request, 'tasks/quests.html', context)

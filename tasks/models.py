@@ -80,21 +80,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-class Quest(models.Model):
-    """
-    A series of tasks interlinked as part of 1 large quest.
-    """
-    quest_name = models.CharField(max_length=70, blank=False)
-    quest_description = models.CharField(max_length=400)
-    quest_owner = models.ManyToManyField(User)
-    quest_priority = models.IntegerField(validators=[MaxValueValidator(10),
-                                                     MinValueValidator(1)],
-                                         blank=False)
-    quest_open = models.BooleanField(default=True)
-    quest_tasks = models.ManyToManyField(Task)
-    quest_stage = models.IntegerField(default=0)
-
-    publish_date = models.DateTimeField(default=now, blank=True)
-    deadline_date = models.DateTimeField(blank=False)
