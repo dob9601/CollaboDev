@@ -25,7 +25,8 @@ class Task(models.Model):
 
     task_name = models.CharField(max_length=70, blank=False)
     task_description = models.CharField(max_length=400)
-    task_owner = models.CharField(max_length=15)
+    task_owner = models.OneToOneField(User, on_delete=models.CASCADE,
+                                      blank=True, default=None, null=True)
     task_priority = models.IntegerField(validators=[MaxValueValidator(10),
                                                     MinValueValidator(1)],
                                         blank=False)
