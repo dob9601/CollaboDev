@@ -3,7 +3,7 @@ var target=script_tag[script_tag.length - 1].parentNode.children[8].children[0].
 var task_owner = document.currentScript.getAttribute('task-owner');
 var current_user = document.currentScript.getAttribute('current-user');
 
-if (task_owner=="") {
+if (task_owner=="None") {
 	target.value="Claim";
 	target.style.backgroundColor="#2ECC40";
 	target.style.cursor = 'pointer';
