@@ -6,13 +6,14 @@
 		<li><a href="/accounts/">Users</a></li>
 		<li><a href="/timeline/">Timeline</a></li>
 		<li id="user-widget"><a href="/accounts/{{ user.username }}"> 
-			<img class="navbar-avatar" src="
+			<img class="navbar-image" src="
 				{% if user.profile.gravatar_enabled %}
 					{{ user.profile.gravatar_url }}
 				{% else %}
 					{% static user.profile.associated_image %}
 				{% endif %}
-			" alt="Profile Picture"></img></a></li>
+			" alt="Profile Picture"></a></li>
+		<li id="settings-widget"><a href="/accounts/settings"><img class="navbar-image" src="{% static  'images/settings_icon.png' %}" alt="Settings"></a></li>
 	</ul>
 </div>
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
