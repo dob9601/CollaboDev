@@ -62,8 +62,9 @@ def claim(request):
                 previous_task = request.user.profile.current_task
                 previous_task.task_owner = None
                 previous_task.save()
-            except AttributeError:
-                pass
+            except AttributeError as e:
+                print(e)
+                
 
             task.task_owner = new_owner
             task.save()
@@ -114,6 +115,7 @@ def close(request):
         task_id = request.POST['task_id']
         chosen_task = Task.objects.get(pk=int(task_id))
         chosen_task.task_open = False
+        chosen_task.task_owner = None
         chosen_task.save()
 
         user = request.user

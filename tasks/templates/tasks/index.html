@@ -59,7 +59,13 @@
 						<form action="/tasks/claim/" method="post" class="claim-form">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="submit" value="Claim" class="claim" />
+							<input value="Claim" class="claim"
+							{% if user.profile.current_task is None %}
+	  							type="submit"
+	  						{% else %}
+	  							type="button" onclick="show_modal('confirmation', ['{{ task.id }}', '0', 'Are you sure you want to claim this task? You are already on a task so claiming this one will unclaim your current one'])"
+					  		{% endif %}
+							/>
 						</form>
 						<form action="/tasks/close/" method="post" style="display: none" class="close-task-form">
 							{% csrf_token %}

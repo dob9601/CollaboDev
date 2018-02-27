@@ -52,8 +52,8 @@ function show_modal(data_type, data) {
 	}
 	else if(data_type == 'confirmation') {
 		modal_text.innerHTML = '<div class="buttons"><p>'+data[2]+'</p>' +
-				       '<button class = "yes-button" onclick="document.getElementById('+data[0]+').children[8].children['+data[1]+'].submit()">Yes</button>' +
-				       '<button class = "no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>';
+				       '<button class="yes-button" onclick="document.getElementById('+data[0]+').children[8].children['+data[1]+'].submit()">Yes</button>' +
+				       '<button class="no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>';
 	}
 	modal_box.style.display = 'block';
 }
