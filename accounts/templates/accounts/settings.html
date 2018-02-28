@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+
+		<link rel="stylesheet" type="text/css" href="{% static 'accounts/settings/css/style.css' %}" />
+
+		<title>Settings</title>
+	</head>
+	<body>
+		{% include 'bases/navbar_base.html' %}
+		<script>document.getElementsByClassName('nav')[0].children[0].children[5].children[0].className = 'active'</script>
+		<div class="content">
+			<div class="sidebar">
+				<ul>
+					<a href="#"><li>Profile</li></a>
+					<a href="#"><li>Account</li></a>
+					<a href="#"><li>Notifications</li></a>
+				</ul>
+			</div>
+			<div class="inner-content">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus laoreet vulputate iaculis. Donec rhoncus, ipsum nec consectetur rutrum, elit purus consequat arcu, at pulvinar dolor eros id nunc. In fringilla dui in ante consequat, ac aliquam eros mattis. Integer ut sagittis lacus. Suspendisse potenti. Nullam sed est nisl. Quisque tincidunt pretium ante nec ultricies. Suspendisse posuere vitae massa eget mollis. Vestibulum cursus suscipit ipsum, sit amet lacinia urna malesuada nec. Nullam quis suscipit elit. Proin nisi justo, fermentum eleifend massa a, pellentesque accumsan nulla. Morbi id lectus at arcu egestas imperdiet eget ac odio. Proin quis posuere quam, placerat sagittis nibh.</p>
+		</div>
+		{% include 'bases/footer_base.html' %}
+	</body>
+</html>
