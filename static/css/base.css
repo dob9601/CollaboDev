@@ -19,6 +19,7 @@ body {
 	position: absolute;
 	text-align: center;
 	width: 100%;
+	z-index: 1;
 }
 .footer a, .footer p {
 	line-height: 40px;
@@ -87,6 +88,7 @@ a {
 	font-size: 1.3em;
 	height: 40px;
 	line-height: 40px;
+	width: 100%;
 }
 .nav a, .nav b {
 	color: #fff;
@@ -103,6 +105,15 @@ a {
 .active {
 	cursor: default;
 }
+
+.navbar-image {
+	margin: auto;
+	transition: .4s background-color;
+	vertical-align: middle;
+	width: 30px;
+	display: none;
+}
+
 @media screen and (min-width: 640px) {
 	.nav li {
 		border-bottom: none;
@@ -110,7 +121,7 @@ a {
 		font-size: 1.3em;
 		height: 50px;
 		line-height: 50px;
-		width: 23.75%;
+		width: 22.5%;
 
 	}
 	.nav ul {
@@ -119,17 +130,18 @@ a {
 	#logo {
 		font-size: 1.75em;
 	}
-	#user-widget {
+	#user-widget, #settings-widget {
 		display: inline-block;
 		width: 5%;
 	}
-}
-
-.navbar-avatar {
-	margin: auto;
-	transition: .4s background-color;
-	vertical-align: middle;
-	width: 30px;
+	.navbar-image {
+		display: inline-block;
+	}
+	.nav-image-text {
+		display: none;
+		height: 0;
+		display: none
+	}
 }
 
 .progress-bar-div {
