@@ -17,7 +17,13 @@
 			<blockquote><b>Develop:</b> <i>Transitive verb, to (cause something to) grow or change into a more advanced, larger, or stronger form.</i></blockquote>
 		</div>
 		<div id="login-button">
-			<button onclick="location.href='/login/'">Login</button>
+			<button onclick="
+			{% if user.is_authenticated %}
+				location.href='/tasks/'">Proceed
+			{% else %}
+				location.href='/login/'">Login
+			</button>
+			{% endif %}
 		</div>
 		{% include 'bases/footer_base.html' %}
 	</body>
