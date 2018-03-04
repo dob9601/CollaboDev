@@ -10,6 +10,7 @@ An open source web application made for collaboration and built on Django.
  ```
  git clone https://github.com/dob9601/CollaboDev.git
  ```
+ - Alternatively, if you don't wish to use Git, download the repository [here](https://github.com/dob9601/CollaboDev/archive/master.zip)
  - Open up a console to the project directory and run the following commands in order to create a superuser and run the server on 127.0.0.1:8000.
  ```
  python manage.py createsuperuser
