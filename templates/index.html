@@ -19,7 +19,7 @@
 		<div id="login-button">
 			<button onclick="
 			{% if user.is_authenticated %}
-				location.href='/tasks/'">Proceed
+				location.href='/tasks/'">Welcome back {{ user.first_name }}
 			{% else %}
 				location.href='/login/'">Login
 			</button>
