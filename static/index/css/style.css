@@ -17,7 +17,7 @@ h1 {
 	border-radius: 8px;
 	color: #fff;
 	cursor: pointer;
-	padding: 0.5% 2%;
+	padding: 8px 32px;
 	text-align: center;
 	text-decoration: none;
 	transition: .4s background-color;
