@@ -25,7 +25,7 @@
 					{% endif %}
 					" class="profile-picture" onerror="this.src = fallback_image"></img>
 				<div class="card-text">
-					<p>{{ user.username }}, also known as {{ user.first_name }} {{user.last_name }}</p>
+					<p>{{ user.username }}{% if user.first_name != '' %}, also known as {{ user.first_name }} {{user.last_name }}{% endif %}</p>
 					<p>{{ user.profile.tasks_completed }} tasks completed</p>
 					<p>Joined on {{ user.date_joined }}</p>
 				</div>
