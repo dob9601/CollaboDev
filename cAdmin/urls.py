@@ -8,4 +8,6 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('users/delete/', views.delete_user, name='delete_user'),
     path('users/create/', views.create_user, name='create_user'),
+    path('github/', views.github,
+         name='github'),
 ]

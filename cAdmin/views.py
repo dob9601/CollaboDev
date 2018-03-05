@@ -58,7 +58,6 @@ def create_user(request):
     View to handle the creation of user
     """
     temporary_password = ''.join(choice('0123456789ABCDEF') for i in range(8))
-
     user = User.objects.create_user(
         username=request.POST['username'],
         first_name=request.POST['first_name'],
@@ -88,3 +87,11 @@ def create_user(request):
     request.session['temp_password'] = temporary_password
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
+
+
+def github(request):
+    """
+    GitHub Integration settings page
+    """
+    context = {}
+    return render(request, 'admin/github.html', context)
