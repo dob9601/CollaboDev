@@ -277,3 +277,14 @@ table tr:hover td *, table tr:hover td {
 .modal-text input {
 	width: 89.5%;
 }
+
+.standard-form input {
+	border: 2px solid #3F5882;
+	margin: 0.5%;
+	margin-left: -150px;
+	padding: 5px;
+}
+.standard-form label {
+	display: inline-block;
+	width: 300px;
+}
