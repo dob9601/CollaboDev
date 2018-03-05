@@ -14,13 +14,35 @@
 		<div class="content">
 			<div class="sidebar">
 				<ul>
-					<a href="#"><li>Profile</li></a>
-					<a href="#"><li>Account</li></a>
-					<a href="#"><li>Notifications</li></a>
+					<a onclick="update_page('settings-profile')"><li>Profile</li></a>
+					<a onclick="update_page('settings-account')"><li>Account</li></a>
+					<a onclick="update_page('settings-notifications')"><li>Notifications</li></a>
+					{% if user.is_superuser %}
+						<a href="/admin/"><li>CollaboDev Admin</li></a>
+					{% endif %}
 				</ul>
 			</div>
 			<div class="inner-content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus laoreet vulputate iaculis. Donec rhoncus, ipsum nec consectetur rutrum, elit purus consequat arcu, at pulvinar dolor eros id nunc. In fringilla dui in ante consequat, ac aliquam eros mattis. Integer ut sagittis lacus. Suspendisse potenti. Nullam sed est nisl. Quisque tincidunt pretium ante nec ultricies. Suspendisse posuere vitae massa eget mollis. Vestibulum cursus suscipit ipsum, sit amet lacinia urna malesuada nec. Nullam quis suscipit elit. Proin nisi justo, fermentum eleifend massa a, pellentesque accumsan nulla. Morbi id lectus at arcu egestas imperdiet eget ac odio. Proin quis posuere quam, placerat sagittis nibh.</p>
+				<form class="standard-form settings-form" method="post" action="/accounts/update_settings/" autocomplete="false">
+					{% csrf_token %}
+					<div id="settings-profile">
+						<p><label>First Name: </label><input type="text" name="first_name" value="{{ user.first_name }}"></p>
+						<p><label>Last Name: </label><input type="text" name="last_name" value="{{ user.last_name }}"></p>
+						<p><label>Bio: </label><input type="text" name="profile_biography" value="{{ user.profile.biography }}"></p>
+						<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>
+					</div>
+					<div id="settings-account" style="display:none">
+						<p><label>Username: </label><input type="text" name="username" value="{{ user.username }}"></p>
+						<h2>Change Password</h2>
+						<p><label>Old Password: </label><input type="password" name="old_pword"></p>
+						<p><label>New Password: </label><input type="password" name="new_pword"></p>
+						<p><label>Confirm Password: </label><input type="password" name="new_pword_conf"></p>
+					</div>
+					<div id="settings-notifications" style="display:none">
+					</div>
+				</form>
+			</div>
+			<script src="{% static 'accounts/settings/js/update_page.js' %}"></script>
 		</div>
 		{% include 'bases/footer_base.html' %}
 	</body>

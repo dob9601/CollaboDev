@@ -17,3 +17,8 @@ def profile(request, user):
         'chosen_user': User.objects.get(username=user)
     }
     return render(request, 'accounts/profile.html', context)
+
+
+def settings(request):
+    context = {}
+    return render(request, 'accounts/settings.html', context)
