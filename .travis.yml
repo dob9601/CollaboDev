@@ -10,9 +10,9 @@ python:
         - "3.7-dev"
 
 install:
-        pip install pylint
-        pip install pycodestyle
+        - pip install pylint
+        - pip install pycodestyle
 
 script:
-        pycodestyle .
-        find . -iname "*.py" | xargs pylint
+        - pycodestyle .
+        - find . -iname "*.py" | xargs pylint
