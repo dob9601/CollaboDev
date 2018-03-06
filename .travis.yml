@@ -1,0 +1,9 @@
+language: python
+
+install:
+        pip install pylint
+        pip install pycodestyle
+
+script:
+        pycodestyle .
+        find . -iname "*.py" | xargs pylint
