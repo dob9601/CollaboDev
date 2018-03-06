@@ -10,10 +10,10 @@ python:
         - "3.7-dev"
 
 install:
+        - pip install flake8
         - pip install pylint
-        - pip install pycodestyle
         - pip install -r requirements.txt
 
 script:
-        - pycodestyle .
-        - find . -iname "*.py" | xargs pylint
+        - flake8 . --exclude=migrations
+        - find -name "*.py" -not -path "*/migrations/*" | xargs pylint
