@@ -1,5 +1,8 @@
 language: python
 
+python:
+        "3"
+
 install:
         pip install pylint
         pip install pycodestyle
