@@ -15,8 +15,11 @@ install:
         - pip install -r requirements.txt
         - npm install -g stylelint
         - npm install stylelint-config-standard --save-dev
+        - npm install eslint
+        - npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 
 script:
         - flake8 . --exclude=migrations
         - find -name "*.py" -not -path "*/migrations/*" | xargs pylint
         - stylelint static/**/*.css --max-warnings 20
+        - eslint .
