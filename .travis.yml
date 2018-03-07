@@ -13,9 +13,9 @@ install:
         - pip install flake8
         - pip install pylint
         - pip install -r requirements.txt
-        - npm install stylelint
+        - npm install -g stylelint
 
 script:
         - flake8 . --exclude=migrations
         - find -name "*.py" -not -path "*/migrations/*" | xargs pylint
-        - stylelint static/**/*.css
+        - stylelint static/**/*.css --max-warnings 20
