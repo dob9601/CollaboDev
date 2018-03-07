@@ -2,5 +2,6 @@
 	"extends": "stylelint-config-standard",
 	"rules": {
 		"indentation": "tab",
+		"no-descending-specificity": null,
 	}
 }

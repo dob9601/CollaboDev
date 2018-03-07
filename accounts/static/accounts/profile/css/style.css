@@ -8,19 +8,22 @@ h1 {
 	padding: 0;
 	width: 40%;
 }
+
 .content-text p {
 	margin: 4px;
 	margin-left: 30px;
 }
+
 .content-text {
 	align-content: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
+
 .content {
 	align-items: center;
-	background-color: #C6504F;
+	background-color: #c6504f;
 	display: flex;
 	margin: 10% auto;
 	overflow: hidden;

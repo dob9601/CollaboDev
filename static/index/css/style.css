@@ -3,14 +3,18 @@ h1 {
 	margin: 4.2% 0 0 0;
 	text-align: center;
 }
-#collaborate, #develop, #login-button {
+
+#collaborate,
+#develop,
+#login-button {
 	font-size: 1.2em;
 	padding: 1.8%;
 	text-align: center;
 }
+
 #login-button button {
 	-webkit-appearance: none;
-	background-color: #C5504E;
+	background-color: #c6504f;
 	border: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -20,11 +24,13 @@ h1 {
 	padding: 8px 32px;
 	text-align: center;
 	text-decoration: none;
-	transition: .4s background-color;
+	transition: 0.4s background-color;
 }
+
 #login-button button:hover {
-	background-color: #A53533;
+	background-color: #a53533;
 }
+
 #login-button button:focus {
-	outline:0;
+	outline: 0;
 }

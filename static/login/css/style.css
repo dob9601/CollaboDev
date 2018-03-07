@@ -2,12 +2,15 @@ h1 {
 	padding: 2%;
 	font-size: 3.5em;
 }
+
 .content {
 	padding: 0 2%;
 }
+
 .message {
 	padding: 2% 0;
 }
+
 .content button {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
@@ -15,16 +18,19 @@ h1 {
 	border-radius: 8px;
 	border: none;
 	color: #fff;
-	background-color: #C5504E;
+	background-color: #c6504f;
 	padding: 8px 32px;
 	text-decoration: none;
 	text-align: center;
 	cursor: pointer;
-	transition: .4s background-color;
+	transition: 0.4s background-color;
 }
+
 .content button:hover {
-	background-color: #A53533;
+	background-color: #a53533;
 }
-.content button:focus, .content input:focus {
-	outline:0;
+
+.content button:focus,
+.content input:focus {
+	outline: 0;
 }
