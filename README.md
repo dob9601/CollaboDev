@@ -1,5 +1,5 @@
 ![CollaboDev](https://imgur.com/Vj1C4fO.png)
-[![MIT Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) 
+[![Build Status](https://travis-ci.org/dob9601/CollaboDev.svg?branch=master)](https://travis-ci.org/dob9601/CollaboDev) [![MIT Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) 
 ![Python Version](https://img.shields.io/badge/python-3.x-blue.svg) ![Django Version](https://img.shields.io/badge/django%20version-2.0-blue.svg)
  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://www.paypal.me/dob9601)
 
