@@ -58,9 +58,12 @@ def claim(request):
         old_owner = task.task_owner
 
         if old_owner is None:
-            previous_task = request.user.profile.current_task
-            previous_task.task_owner = None
-            previous_task.save()
+            try:
+                previous_task = request.user.profile.current_task
+                previous_task.task_owner = None
+                previous_task.save()
+            except AttributeError:
+                pass
 
             task.task_owner = new_owner
             task.save()
