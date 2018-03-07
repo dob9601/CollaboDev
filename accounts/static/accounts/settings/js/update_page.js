@@ -7,5 +7,5 @@ function update_page(slide) {
 	notifications.style.display = 'none';
 	profile.style.display = 'none';
 
-	document.getElementById(slide).style.display = 'block';
+	document.getElementById(slide).style.display = 'table-cell';
 }
