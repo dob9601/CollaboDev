@@ -13,7 +13,9 @@ install:
         - pip install flake8
         - pip install pylint
         - pip install -r requirements.txt
+        - npm install -g npm@latest
         - npm install -g stylelint
+        - npm install stylelint-config-standard --save-dev
 
 script:
         - flake8 . --exclude=migrations
