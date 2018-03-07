@@ -34,6 +34,7 @@ class Profile(models.Model):
     tasks_completed = models.IntegerField(default=0)
 
 
+# pylint: disable=unused-argument
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     """
@@ -45,4 +46,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
+    """
+    Save user profile on user save
+    """
     instance.profile.save()
