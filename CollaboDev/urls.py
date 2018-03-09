@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+from django.core.exceptions import ObjectDoesNotExist
 
 
 urlpatterns = [
@@ -26,3 +27,13 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('admin/', include('cAdmin.urls'), name='cAdmin'),
 ]
+
+try:
+    from cAdmin.models import Settings
+    Settings.objects.get(id=1)
+except ObjectDoesNotExist:
+    settings = Settings.objects.create()
+    urlpatterns = [
+        path('', TemplateView.as_view(template_name='first-time-setup.html')),        
+    ]
+    # settings.save() once user configurated CollaboDev

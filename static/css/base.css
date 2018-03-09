@@ -136,6 +136,7 @@ table tr:hover td {
 	height: 40px;
 	line-height: 40px;
 	width: 100%;
+	transition: 0.4s background-color;
 }
 
 a .nav,
@@ -148,13 +149,6 @@ a .nav,
 
 .nav span {
 	transition: 0.4s background-color;
-}
-
-.nav a:hover *,
-.nav a:hover,
-.active,
-.active img {
-	background-color: #3f5882;
 }
 
 .active {
@@ -201,6 +195,12 @@ a .nav,
 		display: none;
 		height: 0;
 	}
+}
+
+.nav a:hover *,
+.active,
+.active img {
+	background-color: #3f5882;
 }
 
 .progress-bar-div {
