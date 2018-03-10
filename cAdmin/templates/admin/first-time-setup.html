@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	{% if password_page %} 
+		<head>
+			{% load static %}
+			{% include 'bases/head_base.html' %}
+			
+			<link rel="stylesheet" type="text/css" href="{% static 'admin/first-time-setup-1/style.css' %}" />
+		</head>
+		<body>
+			<div class="outer-content">
+				<div class="content">
+					<h1>Collabo<span class="crimson">Dev</span></h1>
+					<h2>Initial Setup</h2>
+					<form method="post" action="/" class="standard-form">
+						{% csrf_token %}
+						<p><label>Enter the code located within the uppermost folder of the repository to begin setup</label></p>
+						<p><input type="text" name="setup-key"></p>
+						<p><input type="submit" value="Submit"></p>
+					</form>
+				</div>
+			</div>
+		</body>
+	{% elif setup_complete %}
+		<head>
+			{% load static %}
+			{% include 'bases/head_base.html' %}
+		</head>
+		<body>
+			<h1>Collabo<span class="crimson">Dev</span> Setup</h1>
+			<p>In order to complete setup a system reboot is necessary. Please restart the CollaboDev process on your server</p>
+		</body>
+	{% else %}
+		<head>
+			{% load static %}
+			{% include 'bases/head_base.html' %}
+
+			<link rel="stylesheet" type="text/css" href="{% static 'admin/first-time-setup-2/style.css' %}" />
+		</head>
+		<body>
+			<div class="outer-content">
+				<div class="content">
+					<h1>Collabo<span class="crimson">Dev</span> Setup</h1>
+					<form id="main-form" class="standard-form" method="post">
+						{% csrf_token %}
+						<div id="account-creation">
+							<h2>Let's start by creating you an admin account:</h2>
+							<p><label>Username: </label><input type="text" name="admin-username"></p>
+							<p><label>First Name: </label><input type="text" name="admin-first-name"></p>
+							<p><label>Last Name: </label><input type="text" name="admin-last-name"></p>
+							<p><label>Email: </label><input type="text" name="admin-email"></p>
+							<p><label>Password: </label><input type="password" name="admin-password"></p>
+							<p><label>Confirm Password: </label><input type="password" name="admin-password-conf"></p>
+						</div>
+						<div style="display: none">
+							<p>Div2</p>
+						</div>
+					</form>
+					<div class="buttons">
+						<button onclick="updateDivs(-1)">Previous</button>
+						<button onclick="updateDivs(1)">Next</button>
+					</div>
+					<script>
+					function updateDivs (relativeDistance) {
+						const form = document.getElementById('main-form')
+						var currentPosition
+
+						for (var i=1; i<form.children.length; i++) {
+							if (form.children[i].style.display !== 'none') {
+								if ((i + relativeDistance < 1) || (i + relativeDistance > form.children.length - 1)) {
+									return false
+								}
+
+								const nextButton = document.getElementsByClassName('buttons')[0].children[1]
+								if (i + relativeDistance === form.children.length - 1) {
+									nextButton.innerHTML = 'Submit'
+									nextButton.onclick = function() {document.getElementById("main-form").submit()}
+								}
+								else {
+									nextButton.innerHTML = 'Next'
+									nextButton.onclick = 'updateDivs(1)'
+								}
+								currentPosition = i
+							}
+							form.children[i].style.display = 'none'
+						}
+						form.children[currentPosition+relativeDistance].style.display = 'block';
+					}
+					</script>
+				</div>
+			</div>
+			{% include 'bases/footer_base.html' %}
+		</body>
+	{% endif %}
+</html>
