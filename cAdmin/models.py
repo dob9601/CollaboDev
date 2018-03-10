@@ -2,20 +2,24 @@ from django.db import models
 
 
 class Settings(models.Model):
-    # GitHub settings
+    # GITHUB
     github_integrated = models.BooleanField(default=False)
 
-    # Profile settings
+    # PROFILE
     profile_allow_biography = models.BooleanField(default=True)
     profile_allow_name_changes = models.BooleanField(default=False)
     profile_allow_username_changes = models.BooleanField(default=False)
 
     profile_allow_change_requests = models.BooleanField(default=True)
 
-    # User settings
+    # USER
     users_show_completed_tasks = models.BooleanField(default=True)
     users_show_email = models.BooleanField(default=True)
     users_show_online = models.BooleanField(default=True)
 
-    # Tasks settings
+    # TASKS
     tasks_show_xp_bar = models.BooleanField(default=True)
+
+    # CONFIG
+    settings_initialised = models.BooleanField(default=False)
+    settings_setup_code = models.CharField(blank=True, max_length=19)
