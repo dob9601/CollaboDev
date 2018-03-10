@@ -189,4 +189,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/vim,linux,macos,django,python,windows
+# Project specific
+setup-key.txt
