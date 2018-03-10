@@ -18,6 +18,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
 
+from cAdmin.views import first_time_setup
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
@@ -30,10 +31,13 @@ urlpatterns = [
 
 try:
     from cAdmin.models import Settings
-    Settings.objects.get(id=1)
+    settings = Settings.objects.get(id=1)
+    if not settings.settings_initialised:
+        raise(ObjectDoesNotExist)
 except ObjectDoesNotExist:
     settings = Settings.objects.create()
+    settings.save()
+
     urlpatterns = [
-        path('', TemplateView.as_view(template_name='first-time-setup.html')),        
+        path('', first_time_setup),
     ]
-    # settings.save() once user configurated CollaboDev
