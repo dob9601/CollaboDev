@@ -1,0 +1,48 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+.buttons {
+	text-align: center;
+	margin-top: 10px;
+}
+
+button {
+	width: 100px;
+	height: 35px;
+	padding: 0;
+	margin: 10px 8px;
+}
+
+.content {
+	margin-left: 10px;
+}
+
+.standard-form input[type="text"],
+.standard-form input[type="password"] {
+	width: 211px;
+}
+
+.outer-content {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+@media only screen and (max-width: 390px) {
+	.standard-form input[type="text"],
+	.standard-form input[type="password"] {
+		width: 140px;
+	}
+
+	.outer-content {
+		align-items: flex-start;
+	}
+}

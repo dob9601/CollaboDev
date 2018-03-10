@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Settings(models.Model):
+    """
+    Global settings for the whole CollaboDev WebApp.
+    There should only be ONE INSTANCE of this model.
+    """
     # GITHUB
     github_integrated = models.BooleanField(default=False)
 

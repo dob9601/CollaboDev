@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from .models import Settings
+
 # Create your views here.
 
 
@@ -95,3 +97,70 @@ def github(request):
     """
     context = {}
     return render(request, 'admin/github.html', context)
+
+
+def first_time_setup(request):
+    """
+    First time setup for when the software is first installed on a server
+    """
+
+    settings = Settings.objects.get(id=1)
+
+    context = {
+        'password_page': True,
+    }
+
+    if request.method == 'POST':
+        if 'setup-key' in request.POST:
+            if request.POST['setup-key'] == settings.settings_setup_code:
+                context['password_page'] = False
+                context['settings'] = settings
+        else:
+            context = {}
+            if request.POST['admin-password'] == request.POST['admin-password-conf']:
+                admin_user = User.objects.create_user(
+                    username = request.POST['admin-username'],
+                    first_name = request.POST['admin-first-name'],
+                    last_name = request.POST['admin-last-name'],
+                    email = request.POST['admin-email'],
+                    password = request.POST['admin-password']
+                )
+                admin_user.is_superuser = True
+                admin_user.save()
+            else:
+                pass
+                # Raise password error
+
+            if context == {}:
+                settings.settings_initialised = True
+                settings.save()
+                context = {
+                    'setup_complete': True        
+                }
+            
+
+
+    else:
+
+        try:
+            open("setup-key.txt", "r")
+            if settings.settings_setup_code == "":
+                raise FileNotFoundError
+        except FileNotFoundError:
+            key = ((''.join(choice('0123456789ABCDEF') for i in range(4))) +
+                   '-' +
+                   (''.join(choice('0123456789ABCDEF') for i in range(4))) +
+                   '-' +
+                   (''.join(choice('0123456789ABCDEF') for i in range(4))) +
+                   '-' +
+                   (''.join(choice('0123456789ABCDEF') for i in range(4))))
+
+            key_string = "CollaboDev Setup Code: " + key
+
+            with open("setup-key.txt", "w") as key_file:
+                key_file.write(key_string)
+
+            settings.settings_setup_code = key
+            settings.save()
+
+    return render(request, 'admin/first-time-setup.html', context)
