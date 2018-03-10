@@ -33,7 +33,7 @@ try:
     from cAdmin.models import Settings
     settings = Settings.objects.get(id=1)
     if not settings.settings_initialised:
-        raise(ObjectDoesNotExist)
+        raise ObjectDoesNotExist
 except ObjectDoesNotExist:
     settings = Settings.objects.create()
     settings.save()

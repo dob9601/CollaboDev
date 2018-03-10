@@ -117,13 +117,15 @@ def first_time_setup(request):
                 context['settings'] = settings
         else:
             context = {}
-            if request.POST['admin-password'] == request.POST['admin-password-conf']:
+            admin_pwd = request.POST['admin-password']
+            admin_pwd_conf = request.POST['admin-password-conf']
+            if admin_pwd == admin_pwd_conf:
                 admin_user = User.objects.create_user(
-                    username = request.POST['admin-username'],
-                    first_name = request.POST['admin-first-name'],
-                    last_name = request.POST['admin-last-name'],
-                    email = request.POST['admin-email'],
-                    password = request.POST['admin-password']
+                    username=request.POST['admin-username'],
+                    first_name=request.POST['admin-first-name'],
+                    last_name=request.POST['admin-last-name'],
+                    email=request.POST['admin-email'],
+                    password=admin_pwd
                 )
                 admin_user.is_superuser = True
                 admin_user.save()
@@ -135,10 +137,8 @@ def first_time_setup(request):
                 settings.settings_initialised = True
                 settings.save()
                 context = {
-                    'setup_complete': True        
+                    'setup_complete': True
                 }
-            
-
 
     else:
 

@@ -49,6 +49,29 @@ table tr:hover td {
 	background-color: #c6504f;
 }
 
+button {
+	-webkit-appearance: none;
+	background-color: #c6504f;
+	border: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	color: #fff;
+	cursor: pointer;
+	padding: 8px 32px;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.4s background-color;
+}
+
+button:hover {
+	background-color: #a53533;
+}
+
+button:focus {
+	outline: 0;
+}
+
 .crimson {
 	color: #c6504f;
 }
