@@ -31,3 +31,9 @@ h2 {
 	width: 100%;
 	height: 100%;
 }
+
+.standard-form input[type="submit"] {
+	border: none;
+	width: 100px;
+	height: 35px;
+}
