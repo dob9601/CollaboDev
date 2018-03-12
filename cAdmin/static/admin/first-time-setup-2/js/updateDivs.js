@@ -22,6 +22,7 @@ function updateDivs (relativeDistance) {
 				}
 			}
 			currentPosition = i
+			progressBar.style.width = String(((currentPosition + relativeDistance)/divCount) * 100)+'%'
 		}
 		form.children[i].style.display = 'none'
 	}

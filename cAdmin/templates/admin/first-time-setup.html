@@ -39,6 +39,10 @@
 		</head>
 		<body>
 			<div class="outer-content">
+				<div class="prog-bar">
+					<div class="prog-bar-inner">
+					</div>
+				</div>
 				<div class="content">
 					<h1>Collabo<span class="crimson">Dev</span> Setup</h1>
 					<form id="main-form" class="standard-form" method="post">
@@ -60,8 +64,15 @@
 						<button onclick="updateDivs(-1)">Previous</button>
 						<button onclick="updateDivs(1)">Next</button>
 					</div>
-					<script src="{% static 'admin/first-time-setup-2/js/updateDivs.js' %}">
+					<script>
+					const form = document.getElementById('main-form')
+					const divCount = form.children.length - 1
+					console.log(divCount)
+					const progressBar = document.getElementsByClassName('prog-bar-inner')[0]
+
+					progressBar.style.width = String((1/divCount) * 100)+'%'
 					</script>
+					<script src="{% static 'admin/first-time-setup-2/js/updateDivs.js' %}"></script>
 				</div>
 			</div>
 			{% include 'bases/footer_base.html' %}
