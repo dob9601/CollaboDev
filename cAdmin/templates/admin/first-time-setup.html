@@ -49,12 +49,12 @@
 						{% csrf_token %}
 						<div id="account-creation">
 							<h2>Let's start by creating you an admin account:</h2>
-							<p><label>Username: </label><input type="text" name="admin-username"></p>
-							<p><label>First Name: </label><input type="text" name="admin-first-name"></p>
-							<p><label>Last Name: </label><input type="text" name="admin-last-name"></p>
-							<p><label>Email: </label><input type="text" name="admin-email"></p>
-							<p><label>Password: </label><input type="password" name="admin-password"></p>
-							<p><label>Confirm Password: </label><input type="password" name="admin-password-conf"></p>
+							<p><label>Username: </label><input type="text" name="admin-username" autocomplete="username"></p>
+							<p><label>First Name: </label><input type="text" name="admin-first-name" autocomplete="given-name"></p>
+							<p><label>Last Name: </label><input type="text" name="admin-last-name" autocomplete="family-name"></p>
+							<p><label>Email: </label><input type="text" name="admin-email" autocomplete="email"></p>
+							<p><label>Password: </label><input type="password" name="admin-password" autocomplete="new-password"></p>
+							<p><label>Confirm Password: </label><input type="password" name="admin-password-conf" autocomplete="new-password"></p>
 						</div>
 						<div style="display: none">
 							<p>Div2</p>
