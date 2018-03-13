@@ -65,6 +65,15 @@
 	text-align: center;
 	cursor: pointer;
 	-webkit-text-size-adjust: none;
+	transition: 0.4s background-color;
+}
+#create-task-button:hover,
+.close-task:hover,
+.unclaim:hover,
+.claim:hover,
+.yes-button:hover,
+.no-button:hover {
+	background-color: #384d72;
 }
 
 input:focus, button:focus {
