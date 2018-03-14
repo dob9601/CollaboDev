@@ -1,0 +1,30 @@
+.modal-box input[type="submit"], .modal-box input[type="button"] {
+	width: 10%;
+	background-color: #3F5882;
+	padding: 10px 20px;
+	margin: 0 10px;
+	-webkit-appearance: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: none;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	-webkit-text-size-adjust: none;
+	transition: 0.4s background-color;
+}
+
+.modal-box input[type="submit"]:hover, .modal-box input[type="button"]:hover {
+	background-color: #384d72;
+}
+
+.modal-text {
+	text-align: center;
+}
+
+.modal-box h3 {
+	font-size: 2em;
+	margin: 0;
+}

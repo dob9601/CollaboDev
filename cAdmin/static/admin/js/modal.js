@@ -17,6 +17,13 @@ function show_modal (data, type) {
 		modalText.innerHTML = '<div class="pword-content"><h2>Temporary password for new user:</h2>' +
 					'<b><p class="temp-pword">' + data + '</p></b>' +
 					'<p>Take note of this now, it will not be shown again.</p></div>'
+	} else if (type === 'reset-collabodev') {
+		modalText.innerHTML = '<h3>Reset CollaboDev</h3>' +
+					'<p>Are you sure you want to reset CollaboDev? (THIS ACTION CANNOT BE UNDONE)</p>' +
+					'<form action="reset-collabodev" method="post">' +
+					'<input type="submit" value="Yes">' +
+					'<input type="button" value="No" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">' +
+					'</form>'
 	}
 	modalBox.style.display = 'block'
 }

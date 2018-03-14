@@ -3,6 +3,7 @@
 	<head>
 		{% load static %}
 		{% include 'bases/head_base.html' %}
+		<link rel="stylesheet" type="text/css" href="{% static 'admin/css/style.css' %}" />
 
 		<title>CollaboDev Admin</title>
 	</head>
@@ -13,7 +14,10 @@
 			<li><a><u>Delete task</u></a></li>
 			<li><a href="users/"><u>Manage users</u></a></li>
 			<li><a href="github/"><u>GitHub Integration</u></a></li>
+			<li><a onclick="show_modal('', 'reset-collabodev')"><u>Reset CollaboDev to its original settings</u></a></li>
 		</ul>
+		{% include 'bases/modal_base.html' %}
+		<script src="{% static 'admin/js/modal.js' %}"></script>
 		{% include 'bases/footer_base.html' %}
 	</body>
 </html>
