@@ -20,7 +20,8 @@ function show_modal (data, type) {
 	} else if (type === 'reset-collabodev') {
 		modalText.innerHTML = '<h3>Reset CollaboDev</h3>' +
 					'<p>Are you sure you want to reset CollaboDev? (THIS ACTION CANNOT BE UNDONE)</p>' +
-					'<form action="reset-collabodev" method="post">' +
+					'<form action="reset_collabodev/" method="post">' +
+					'<input type="hidden" name="csrfmiddlewaretoken" value="' + data + '">' +
 					'<input type="submit" value="Yes">' +
 					'<input type="button" value="No" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">' +
 					'</form>'

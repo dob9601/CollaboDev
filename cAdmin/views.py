@@ -1,6 +1,7 @@
 from hashlib import md5
 import urllib.request
 from random import choice
+from os import system
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -90,6 +91,20 @@ def create_user(request):
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
 
+def reset_collabodev(request):
+    settings = Settings.objects.get(id=1)
+    settings.settings_initialised = False
+
+    system('python manage.py flush --noinput')
+
+    settings = settings.objects.create()
+    settings.save()
+
+    context = {
+        'message': 'CollaboDev has been reset to factory settings. Please restart your server, then click <a href="/"><u>here</u></a>',
+    }
+
+    return render(request, 'admin/index.html', context)
 
 def github(request):
     """

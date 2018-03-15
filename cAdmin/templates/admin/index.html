@@ -10,11 +10,14 @@
 	<body>
 		{% include 'bases/navbar_base.html' %}
 		<h1>CollaboDev Administration</h1>
+		{% if message %}
+			<p>{{ message|safe }}</p>
+		{% endif %}
 		<ul>
 			<li><a><u>Delete task</u></a></li>
 			<li><a href="users/"><u>Manage users</u></a></li>
 			<li><a href="github/"><u>GitHub Integration</u></a></li>
-			<li><a onclick="show_modal('', 'reset-collabodev')"><u>Reset CollaboDev to its original settings</u></a></li>
+			<li><a onclick="show_modal('{{ csrf_token }}', 'reset-collabodev')"><u>Reset CollaboDev to its original settings</u></a></li>
 		</ul>
 		{% include 'bases/modal_base.html' %}
 		<script src="{% static 'admin/js/modal.js' %}"></script>
