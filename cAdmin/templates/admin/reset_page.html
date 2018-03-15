@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+		
+		<link rel="stylesheet" type="text/css" href="{% static 'admin/reset_page/css/style.css' %}" />
+	</head>
+	<body>
+		{% if not derail %}
+			<h1>Collabo<span class="crimson">Dev</span> has been reset to factory settings. Please restart your server, then click <a href="/"><u>here</u></a></h1>
+		{% else %}
+			<h1>Whoops! you shouldn't be here right now. if you were taken here by a link, please open an issue over <u><a href="https://github.com/dob9601/CollaboDev/issues">here</a></u></h1>
+		{% endif %}
+		{% include 'bases/footer_base.html' %}
+	</body>
+</html>

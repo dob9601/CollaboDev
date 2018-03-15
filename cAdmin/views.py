@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Settings
 
@@ -91,26 +92,36 @@ def create_user(request):
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
 
+
+@user_passes_test(lambda u: u.is_superuser)
 def reset_collabodev(request):
     settings = Settings.objects.get(id=1)
     settings.settings_initialised = False
 
     system('python manage.py flush --noinput')
 
-    settings = settings.objects.create()
-    settings.save()
+    return HttpResponseRedirect(reverse('cAdmin:reset_page'))
 
-    context = {
-        'message': 'CollaboDev has been reset to factory settings. Please restart your server, then click <a href="/"><u>here</u></a>',
-    }
 
-    return render(request, 'admin/index.html', context)
+def reset_page(request):
+    try:
+        Settings.objects.get(id=1)
+        context = {
+            'derail': True
+        }
+    except ObjectDoesNotExist:
+        context = {}
 
+    return render(request, 'admin/reset_page.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
 def github(request):
     """
     GitHub Integration settings page
     """
     context = {}
+
     return render(request, 'admin/github.html', context)
 
 
