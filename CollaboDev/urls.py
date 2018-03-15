@@ -33,9 +33,11 @@ try:
     from cAdmin.models import Settings
     settings = Settings.objects.get(id=1)
     if not settings.settings_initialised:
-        raise ObjectDoesNotExist
+        urlpatterns = [
+           path('', first_time_setup),
+        ]
 except ObjectDoesNotExist:
-    settings = Settings.objects.create()
+    settings = Settings.objects.create(id=1)
     settings.save()
 
     urlpatterns = [
