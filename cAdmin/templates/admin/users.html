@@ -31,10 +31,10 @@
 						{% if user.is_superuser %}
 							Cannot delete the account of a superuser unless using admin account
 						{% else %}
-							<form method="post" action="delete/">
+							<form method="post" action="delete/" class="delete-user-form">
 								{% csrf_token %}
 								<input type="hidden" value="{{ user.id }}" name="user">
-								<input type="submit" value="Delete User">
+								<input type="submit" value="Delete User" class="button delete-user">
 							</form>
 						{% endif %}
 					</td>
