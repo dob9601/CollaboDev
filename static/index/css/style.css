@@ -8,6 +8,10 @@ h1 {
 #develop,
 #login-button {
 	font-size: 1.2em;
-	padding: 1.8%;
 	text-align: center;
+}
+
+#collaborate,
+#develop {
+	padding: 1.8%;
 }
