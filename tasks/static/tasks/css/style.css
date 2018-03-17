@@ -51,6 +51,11 @@
 	margin-bottom: -1.6094px;
 }
 
+.closed-tasks-header {
+	margin: 1% 2%;
+	cursor: default;
+}
+
 #create-task-button, .close-task, .unclaim, .claim, .yes-button, .no-button {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;

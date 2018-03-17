@@ -44,7 +44,7 @@
 					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
 						{{ task.deadline_date }}
 						<script>
-						if ('{{ task.deadline_date }}' == 'Jan. 1, 1, midnight') {
+						if ('{{ task.deadline_date }}' === 'Jan. 1, 1, midnight') {
 							var tt = document.getElementsByClassName('task-table-deadline');
 							var td = tt[tt.length-1];
 							td.innerHTML = 'None';
@@ -86,9 +86,7 @@
 				{% endfor %}
 			</table>
 			<div class="horizontal-break"></div>
-			<table class="header-table">
-				<td><h1>Closed Tasks</h1></td>
-			</table>
+			<h1 class="closed-tasks-header">Closed Tasks</h1>
 			<table class="task-table">
 				<tr>
 					<th class="task-table-name">Name</th>
