@@ -1,12 +1,13 @@
 // eslint-disable-next-line no-unused-vars, camelcase
 function update_page (slide) {
-	const profile = document.getElementById('settings-profile')
-	const account = document.getElementById('settings-account')
-	const notifications = document.getElementById('settings-notifications')
+	const settingsForm = document.getElementsByClassName('settings-form')[0]
+	const children = settingsForm.children
 
-	account.style.display = 'none'
-	notifications.style.display = 'none'
-	profile.style.display = 'none'
+	for (var i=0; i<children.length-1; i++) {
+		if (children[i].nodeName === 'DIV') {
+			children[i].style.display = 'none'
+		}
+	}
 
 	document.getElementById(slide).style.display = 'table-cell'
 }
