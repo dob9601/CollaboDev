@@ -1,6 +1,7 @@
-.modal-box input[type="submit"], .modal-box input[type="button"] {
+.modal-box input[type="submit"],
+.modal-box input[type="button"] {
 	width: 10%;
-	background-color: #3F5882;
+	background-color: #3f5882;
 	padding: 10px 20px;
 	margin: 0 10px;
 	-webkit-appearance: none;
@@ -16,7 +17,8 @@
 	transition: 0.4s background-color;
 }
 
-.modal-box input[type="submit"]:hover, .modal-box input[type="button"]:hover {
+.modal-box input[type="submit"]:hover,
+.modal-box input[type="button"]:hover {
 	background-color: #384d72;
 }
 

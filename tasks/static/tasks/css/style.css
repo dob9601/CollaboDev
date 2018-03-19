@@ -1,13 +1,19 @@
 @media screen and (max-width: 570px) {
-	.task-table-priority, .task-table-deadline, .task-table-size, .task-table-age {
+	.task-table-priority,
+	.task-table-deadline,
+	.task-table-size,
+	.task-table-age {
 		display: none;
 	}
+
 	.task-table-name {
 		width: 60%;
 	}
+
 	.claim-info {
 		width: 40%;
 	}
+
 	.claim-info input {
 		font-size: 0.7em;
 	}
@@ -16,24 +22,29 @@
 #page-description * {
 	margin: 0;
 	padding: 5%;
-	background-color: #8EAEBD;
+	background-color: #8eaebd;
 }
 
 .task-table-name {
 	width: 35%;
 }
+
 .tast-table-priority {
 	width: 5%;
 }
+
 .task-table-deadline {
 	width: 15%;
 }
+
 .task-table-size {
 	width: 10%;
 }
+
 .task-table-age {
 	width: 13%;
 }
+
 .claim-info {
 	width: 17%;
 }
@@ -41,12 +52,15 @@
 .claim-info form {
 	font-size: 0;
 }
+
 .claim-info input {
 	font-size: 14px;
 }
+
 .close-task-form input {
 	margin-bottom: -2px;
 }
+
 .claim-form input {
 	margin-bottom: -1.6094px;
 }
@@ -56,14 +70,19 @@
 	cursor: default;
 }
 
-#create-task-button, .close-task, .unclaim, .claim, .yes-button, .no-button {
+#create-task-button,
+.close-task,
+.unclaim,
+.claim,
+.yes-button,
+.no-button {
 	-webkit-appearance: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	border: none;
 	color: #fff;
-	background: #30415D;
+	background: #30415d;
 	padding: 4% 20px;
 	text-decoration: none;
 	width: 100%;
@@ -72,6 +91,7 @@
 	-webkit-text-size-adjust: none;
 	transition: 0.4s background-color;
 }
+
 #create-task-button:hover,
 .close-task:hover,
 .unclaim:hover,
@@ -81,7 +101,8 @@
 	background-color: #384d72;
 }
 
-input:focus, button:focus {
+input:focus,
+button:focus {
 	outline: 0;
 }
 
@@ -90,19 +111,21 @@ input:focus, button:focus {
 	width: 20%;
 	text-align: center;
 	padding: 1%;
-	background-color: #3F5882;
+	background-color: #3f5882;
 }
 
 ::-webkit-calendar-picker-indicator {
 	background: transparent;
 }
 
-.yes-button, .no-button {
+.yes-button,
+.no-button {
 	width: 10%;
-	background-color: #3F5882;
+	background-color: #3f5882;
 	padding: 10px 20px;
 	margin: 0 10px;
 }
+
 .buttons {
 	text-align: center;
 }

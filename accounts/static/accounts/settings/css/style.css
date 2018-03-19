@@ -54,3 +54,9 @@ body {
 	width: 20%;
 }
 
+.settings-form input[type=submit] {
+	margin: 20px 20px 20px 12vw;
+	width: auto;
+	padding: 10px 20px;
+	border: none;
+}

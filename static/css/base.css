@@ -14,7 +14,10 @@ a {
 	text-decoration: none;
 }
 
-a:focus {
+a:focus,
+button:focus,
+input[type=button]:focus,
+input[type=submit]:focus {
 	outline: 0;
 }
 
@@ -68,11 +71,6 @@ button,
 button:hover,
 .button:hover {
 	background-color: #a53533;
-}
-
-button:focus,
-.button:focus {
-	outline: 0;
 }
 
 .crimson {
