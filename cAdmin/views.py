@@ -94,7 +94,7 @@ def create_user(request):
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def reset_collabodev(request):
+def reset_collabodev():
     settings = Settings.objects.get(id=1)
     settings.settings_initialised = False
 

@@ -35,7 +35,7 @@ try:
     settings = Settings.objects.get(id=1)
     if not settings.settings_initialised:
         urlpatterns = [
-           path('', first_time_setup),
+            path('', first_time_setup),
         ]
 except ObjectDoesNotExist:
     settings = Settings.objects.create(id=1)
