@@ -23,8 +23,23 @@
 				</ul>
 			</div>
 			<div class="inner-content">
-				<form class="standard-form settings-form" method="post" action="/accounts/update_settings/" autocomplete="false">
+				<form class="standard-form settings-form" method="post" action="/accounts/settings/" autocomplete="false">
 					{% csrf_token %}
+					{% if successful_changes|length > 0 %}
+						<p>
+						{% for change in successful_changes %}
+							{{ change }}
+							{% if forloop.counter != successful_changes|length %}
+								,
+							{% endif %}
+						{% endfor %}
+						{% if successful_changes|length == 1 %}
+							has
+						{% else %}
+							have
+						{% endif %}
+						been updated successfully.
+					{% endif %}
 					<div id="settings-profile">
 						<p><label>First Name: </label><input type="text" name="first_name" value="{{ user.first_name }}"></p>
 						<p><label>Last Name: </label><input type="text" name="last_name" value="{{ user.last_name }}"></p>
@@ -34,6 +49,12 @@
 					<div id="settings-account" style="display:none">
 						<p><label>Username: </label><input type="text" name="username" value="{{ user.username }}"></p>
 						<h2>Change Password</h2>
+						{% if old_pword_incorrect %}
+							<p>Old password is incorrect</p>
+						{% elif pword_conf_error %}
+							<p>Password confirmation didn't match password</p>
+						{% endif %}
+
 						<p><label>Old Password: </label><input type="password" name="old_pword"></p>
 						<p><label>New Password: </label><input type="password" name="new_pword"></p>
 						<p><label>Confirm Password: </label><input type="password" name="new_pword_conf"></p>
