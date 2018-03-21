@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 
 
 @login_required
@@ -25,6 +23,8 @@ def profile(request, user):
     return render(request, 'accounts/profile.html', context)
 
 
+# Remove disable ASAP.
+# pylint: disable-msg=too-many-branches
 @login_required
 def settings(request):
     context = {
@@ -59,7 +59,7 @@ def settings(request):
         else:
             user.last_name = user_last_name
             context['successful_changes'].append('last name')
-        
+
         if len(user_profile_biography) > 300:
             context['error_biography'] = True
         else:
@@ -78,11 +78,10 @@ def settings(request):
             context['error_url'] = True
         # End of profile
 
-
         # Account
         user_username = request.POST['username']
+        user.username = user_username
         # End of account
-
 
         # Password
         user_old_pword = request.POST['old_pword']
@@ -93,7 +92,7 @@ def settings(request):
             # Old password validation
             if not user.check_password(user_old_pword):
                 context['error_old_pword'] = True
-    
+
             # New password validation
             elif user_new_pword != user_new_pword_conf:
                 context['error_pword_conf'] = True
@@ -102,9 +101,10 @@ def settings(request):
                 update_session_auth_hash(request, user)
                 context['successful_changes'].append('password')
         # End of password
-        
+
         user.save()
 
-        context['successful_changes'][0] = context['successful_changes'][0].title()
+        context['successful_changes'][0] = (context['successful_changes'][0]
+                                            .title())
 
     return render(request, 'accounts/settings.html', context)
