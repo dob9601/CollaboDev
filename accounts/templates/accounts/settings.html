@@ -28,9 +28,9 @@
 					{% if successful_changes|length > 0 %}
 						<p>
 						{% for change in successful_changes %}
-							{{ change }}
-							{% if forloop.counter != successful_changes|length %}
-								,
+							{{ change }}{% if forloop.counter < successful_changes|length|add:"-1" %},
+							{% elif forloop.counter == successful_changes|length|add:"-1" %}
+								and
 							{% endif %}
 						{% endfor %}
 						{% if successful_changes|length == 1 %}
@@ -41,7 +41,13 @@
 						been updated successfully.
 					{% endif %}
 					<div id="settings-profile">
+						{% if error_first_name %}
+							<p>First name cannot be blank</p>
+						{% endif %}
 						<p><label>First Name: </label><input type="text" name="first_name" value="{{ user.first_name }}"></p>
+						{% if error_last_name %}
+							<p>Last name cannot be blank</p>
+						{% endif %}
 						<p><label>Last Name: </label><input type="text" name="last_name" value="{{ user.last_name }}"></p>
 						<p><label>Bio: </label><input type="text" name="profile_biography" value="{{ user.profile.biography }}"></p>
 						<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>
