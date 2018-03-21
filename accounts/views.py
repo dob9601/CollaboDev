@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -55,24 +54,20 @@ def settings(request):
         user.username = user_username
         # End of account
 
-        # Password
         user_old_pword = request.POST['old_pword']
         user_new_pword = request.POST['new_pword']
         user_new_pword_conf = request.POST['new_pword_conf']
 
-        if user_old_pword != '' or user_new_pword != '':
-            # Old password validation
-            if not user.check_password(user_old_pword):
-                context['error_old_pword'] = True
-
-            # New password validation
-            elif user_new_pword != user_new_pword_conf:
-                context['error_pword_conf'] = True
-            else:
-                user.set_password(user_new_pword)
-                update_session_auth_hash(request, user)
-                context['successful_changes'].append('password')
-        # End of password
+        password_clean = clean_password_changes(
+            user_old_pword,
+            user_new_pword,
+            user_new_pword_conf,
+            user,
+            request
+        )
+        user = password_clean[0]
+        context['successful_changes'] += password_clean[1]
+        context['errors'] += password_clean[2]
 
         user.save()
 

@@ -66,9 +66,9 @@
 					<div id="settings-account" style="display:none">
 						<p><label>Username: </label><input type="text" name="username" value="{{ user.username }}"></p>
 						<h2>Change Password</h2>
-						{% if old_pword_incorrect %}
+						{% if 'old_pword' in errors %}
 							<p style="background-color:#ff4136">Old password is incorrect</p>
-						{% elif pword_conf_error %}
+						{% elif 'pword_conf' in errors %}
 							<p style="background-color:#ff4136">Password confirmation didn't match password</p>
 						{% endif %}
 
