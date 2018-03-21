@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
 from django.contrib.auth.models import User
 
 from tasks.models import Task
@@ -23,13 +22,16 @@ class Profile(models.Model):
         default='/accounts/images/default_avatar.png',
         max_length=1000
     )
-    gravatar_url = models.CharField(
+    gravatar_url = models.URLField(
         default='',
-        max_length=1000
+        max_length=1000,
+        blank=True
     )
     gravatar_enabled = models.BooleanField(default=False)
 
-    url = models.CharField(max_length=200, blank=True)
+    url = models.URLField(max_length=2000, 
+                          blank=True,
+    )
     biography = models.CharField(max_length=300, blank=True)
     tasks_completed = models.IntegerField(default=0)
 
