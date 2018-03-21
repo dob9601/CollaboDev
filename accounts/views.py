@@ -26,6 +26,9 @@ def profile(request, user):
 @login_required
 def settings(request):
     context = {
+        'error_first_name': False,
+        'error_last_name': False,
+
         'error_old_pword': False,
         'error_pword_conf': False,
 
@@ -40,11 +43,24 @@ def settings(request):
         user_profile_biography = request.POST['profile_biography']
         user_profile_url = request.POST['profile_url']
 
+        if user_first_name == '':
+            context['error_first_name'] = True
+        if user_last_name == '':
+            context['error_last_name'] = True
+
         user_username = request.POST['username']
-    
+
+        # Password
         user_old_pword = request.POST['old_pword']
         user_new_pword = request.POST['new_pword']
         user_new_pword_conf = request.POST['new_pword_conf']
+        
+        if not context['error_first_name']:
+            user.first_name = user_first_name
+            context['successful_changes'].append('first name')
+        if not context['error_last_name']:
+            user.last_name = user_last_name
+            context['successful_changes'].append('last name')
 
 
         if user_old_pword != '' or user_new_pword != '':
@@ -57,11 +73,12 @@ def settings(request):
                 context['error_pword_conf'] = True
             if not context['error_pword_conf'] and not context['error_old_pword']:
                 user.set_password(user_new_pword)
-                user.save()
                 update_session_auth_hash(request, user)
                 context['successful_changes'].append('password')
-
+        # End of password
         
+        user.save()
+
         context['successful_changes'][0] = context['successful_changes'][0].title()
 
     return render(request, 'accounts/settings.html', context)
