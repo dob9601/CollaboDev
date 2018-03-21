@@ -27,36 +27,38 @@
 					{% csrf_token %}
 					{% if successful_changes|length > 0 %}
 						<p>
-						{% for change in successful_changes %}
-							{{ change }}{% if forloop.counter < successful_changes|length|add:"-1" %},
-							{% elif forloop.counter == successful_changes|length|add:"-1" %}
-								and
+							Your
+							{% for change in successful_changes %}
+								{{ change }}{% if forloop.counter < successful_changes|length|add:"-1" %},
+								{% elif forloop.counter == successful_changes|length|add:"-1" %}
+									and
+								{% endif %}
+							{% endfor %}
+							{% if successful_changes|length == 1 %}
+								has
+							{% else %}
+								have
 							{% endif %}
-						{% endfor %}
-						{% if successful_changes|length == 1 %}
-							has
-						{% else %}
-							have
-						{% endif %}
-						been updated successfully.
-						{% if error_first_name or error_last_name or error_url or error_old_pword or error_pword_conf or error_biography %}
-							Form errors have been marked in red
-						{% endif %}
+							been updated successfully.
+							{% if errors %}
+								Form errors have been marked in red
+							{% endif %}
+						</p>
 					{% endif %}
 					<div id="settings-profile">
-						{% if error_first_name %}
+						{% if 'first_name' in errors %}
 							<p style="background-color:#ff4136">First name cannot be blank</p>
 						{% endif %}
 						<p><label>First Name: </label><input type="text" name="first_name" value="{{ user.first_name }}"></p>
-						{% if error_last_name %}
+						{% if 'last_name' in errors %}
 							<p style="background-color:#ff4136">Last name cannot be blank</p>
 						{% endif %}
 						<p><label>Last Name: </label><input type="text" name="last_name" value="{{ user.last_name }}"></p>
-						{% if error_biography %}
+						{% if 'biography' in errors %}
 							<p style="background-color:#ff4136">Biography must be shorter than 300 characters</p>
 						{% endif %}
 						<p><label>Bio: </label><input type="text" name="profile_biography" value="{{ user.profile.biography }}"></p>
-						{% if error_url %}
+						{% if 'url' in errors %}
 							<p style="background-color:#ff4136">URL is invalid</p>
 						{% endif %}
 						<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>

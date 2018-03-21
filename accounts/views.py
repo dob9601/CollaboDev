@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
 
+from .user_verification import *
 
 @login_required
 def index(request):
@@ -28,14 +27,7 @@ def profile(request, user):
 @login_required
 def settings(request):
     context = {
-        'error_first_name': False,
-        'error_last_name': False,
-        'error_biography': False,
-        'error_url': False,
-
-        'error_old_pword': False,
-        'error_pword_conf': False,
-
+        'errors': [],
         'successful_changes': [],
     }
 
@@ -47,36 +39,16 @@ def settings(request):
         user_profile_biography = request.POST['profile_biography']
         user_profile_url = request.POST['profile_url']
 
-        # Profile
-        if user_first_name == '':
-            context['error_first_name'] = True
-        else:
-            user.first_name = user_first_name
-            context['successful_changes'].append('first name')
-
-        if user_last_name == '':
-            context['error_last_name'] = True
-        else:
-            user.last_name = user_last_name
-            context['successful_changes'].append('last name')
-
-        if len(user_profile_biography) > 300:
-            context['error_biography'] = True
-        else:
-            user.profile.biography = user_profile_biography
-            context['successful_changes'].append('biography')
-
-        if '://' not in user_profile_url:
-            user_profile_url = 'http://' + user_profile_url
-        try:
-            url_validate = URLValidator()
-            url_validate(user_profile_url)
-
-            user.profile.url = user_profile_url
-            context['successful_changes'].append('last name')
-        except ValidationError:
-            context['error_url'] = True
-        # End of profile
+        profile_clean = clean_profile_changes(
+            user_first_name,
+            user_last_name,
+            user_profile_biography,
+            user_profile_url,
+            user
+        )        
+        user = profile_clean[0]
+        context['successful_changes'] += profile_clean[1]
+        context['errors'] += profile_clean[2]
 
         # Account
         user_username = request.POST['username']
@@ -103,8 +75,5 @@ def settings(request):
         # End of password
 
         user.save()
-
-        context['successful_changes'][0] = (context['successful_changes'][0]
-                                            .title())
 
     return render(request, 'accounts/settings.html', context)
