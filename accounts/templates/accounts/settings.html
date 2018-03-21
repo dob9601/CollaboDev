@@ -39,26 +39,35 @@
 							have
 						{% endif %}
 						been updated successfully.
+						{% if error_first_name or error_last_name or error_url or error_old_pword or error_pword_conf or error_biography %}
+							Form errors have been marked in red
+						{% endif %}
 					{% endif %}
 					<div id="settings-profile">
 						{% if error_first_name %}
-							<p>First name cannot be blank</p>
+							<p style="background-color:#ff4136">First name cannot be blank</p>
 						{% endif %}
 						<p><label>First Name: </label><input type="text" name="first_name" value="{{ user.first_name }}"></p>
 						{% if error_last_name %}
-							<p>Last name cannot be blank</p>
+							<p style="background-color:#ff4136">Last name cannot be blank</p>
 						{% endif %}
 						<p><label>Last Name: </label><input type="text" name="last_name" value="{{ user.last_name }}"></p>
+						{% if error_biography %}
+							<p style="background-color:#ff4136">Biography must be shorter than 300 characters</p>
+						{% endif %}
 						<p><label>Bio: </label><input type="text" name="profile_biography" value="{{ user.profile.biography }}"></p>
+						{% if error_url %}
+							<p style="background-color:#ff4136">URL is invalid</p>
+						{% endif %}
 						<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>
 					</div>
 					<div id="settings-account" style="display:none">
 						<p><label>Username: </label><input type="text" name="username" value="{{ user.username }}"></p>
 						<h2>Change Password</h2>
 						{% if old_pword_incorrect %}
-							<p>Old password is incorrect</p>
+							<p style="background-color:#ff4136">Old password is incorrect</p>
 						{% elif pword_conf_error %}
-							<p>Password confirmation didn't match password</p>
+							<p style="background-color:#ff4136">Password confirmation didn't match password</p>
 						{% endif %}
 
 						<p><label>Old Password: </label><input type="password" name="old_pword"></p>
