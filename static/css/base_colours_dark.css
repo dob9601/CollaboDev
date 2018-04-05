@@ -1,0 +1,67 @@
+body {
+	background-color: #30415d;
+	color: #fff;
+}
+
+a {
+	color: #fff;
+}
+
+table th {
+	background-color: #c6504f;
+}
+
+table tr:hover td *,
+table tr:hover td {
+	background-color: #c6504f;
+}
+
+button,
+.button {
+	color: #fff;
+	background-color: #c6504f;
+}
+
+button:hover,
+.button:hover {
+	background-color: #a53533;
+}
+
+.footer {
+	background-color: #031424;
+}
+
+.horizontal-break {
+	background-color: #c6504f;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #c6504f;
+}
+
+::-webkit-scrollbar-track {
+	background: #031424;
+}
+
+.nav * {
+	background-color: #30415d;
+}
+
+.nav ul {
+	background-color: #30415d;
+}
+
+a .nav,
+.nav b {
+	color: #fff;
+}
+
+.nav a:hover *,
+.active,
+.active img {
+	background-color: #3f5882;
+}
+
+.header-button:hover {
+	background-color: #a53533;
+}
