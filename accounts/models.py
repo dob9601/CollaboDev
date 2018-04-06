@@ -34,6 +34,7 @@ class Profile(models.Model):
     )
     biography = models.CharField(max_length=300, blank=True)
     tasks_completed = models.IntegerField(default=0)
+    dark_mode = models.BooleanField(default=True)
 
 
 # pylint: disable=unused-argument

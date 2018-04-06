@@ -3,15 +3,12 @@
 }
 
 body {
-	background-color: #30415d;
-	color: #fff;
 	margin: 0;
 	overflow-x: hidden;
 }
 
 a {
 	cursor: pointer;
-	color: #fff;
 	text-decoration: none;
 }
 
@@ -30,7 +27,6 @@ table {
 }
 
 table th {
-	background-color: #c6504f;
 	font-size: 1.2em;
 	cursor: auto;
 }
@@ -48,20 +44,13 @@ table tr {
 	cursor: default;
 }
 
-table tr:hover td *,
-table tr:hover td {
-	background-color: #c6504f;
-}
-
 button,
 .button {
 	-webkit-appearance: none;
-	background-color: #c6504f;
 	border: none;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
-	color: #fff;
 	cursor: pointer;
 	padding: 8px 32px;
 	text-align: center;
@@ -69,17 +58,11 @@ button,
 	transition: 0.4s background-color;
 }
 
-button:hover,
-.button:hover {
-	background-color: #a53533;
-}
-
 .crimson {
 	color: #c6504f;
 }
 
 .footer {
-	background-color: #031424;
 	bottom: 0;
 	font-size: 0.8em;
 	height: 40px;
@@ -113,7 +96,6 @@ button:hover,
 }
 
 .horizontal-break {
-	background-color: #c6504f;
 	height: 30px;
 }
 
@@ -128,13 +110,11 @@ button:hover,
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #c6504f;
 	border: 0 none #fff;
 	border-radius: 0;
 }
 
 ::-webkit-scrollbar-track {
-	background: #031424;
 	border: 0 none #fff;
 	border-radius: 0;
 }
@@ -143,12 +123,7 @@ button:hover,
 	background: transparent;
 }
 
-.nav * {
-	background-color: #30415d;
-}
-
 .nav ul {
-	background-color: #30415d;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -166,7 +141,6 @@ button:hover,
 
 a .nav,
 .nav b {
-	color: #fff;
 	display: block;
 	text-decoration: none;
 	transition: 0.4s background-color;
@@ -222,12 +196,6 @@ a .nav,
 	}
 }
 
-.nav a:hover *,
-.active,
-.active img {
-	background-color: #3f5882;
-}
-
 .progress-bar-div {
 	background-color: #f1f1f1;
 }
@@ -267,10 +235,6 @@ a .nav,
 
 .header-button {
 	padding: 15px;
-}
-
-.header-button:hover {
-	background-color: #a53533;
 }
 
 .modal-box {
