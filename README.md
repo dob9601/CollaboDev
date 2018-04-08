@@ -31,3 +31,11 @@ If you aren't ready to commit yet/want to experience CollaboDev to see if you pr
  ---
  
 My name is Daniel and I am a student in the UK. I founded this project out of boredom and have been working on it in my spare time with little to no intention of making any revenue from it. However, if you have used this webapp, any donations are greatly appreciated and can be done so via PayPal using the PayPal shield at the top of this readme file.
+
+<p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!" />
+    </a>
+</p>
