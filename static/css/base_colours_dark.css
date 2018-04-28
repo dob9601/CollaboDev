@@ -43,10 +43,6 @@ button:hover,
 	background: #031424;
 }
 
-.nav * {
-	background-color: #30415d;
-}
-
 .nav ul {
 	background-color: #30415d;
 }
@@ -56,7 +52,7 @@ a .nav,
 	color: #fff;
 }
 
-.nav a:hover *,
+.nav li:hover,
 .active,
 .active img {
 	background-color: #3f5882;

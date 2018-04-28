@@ -123,6 +123,10 @@ button,
 	background: transparent;
 }
 
+.nav * {
+	background-color: transparent;
+}
+
 .nav ul {
 	list-style: none;
 	margin: 0;
