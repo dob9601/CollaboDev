@@ -21,8 +21,12 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
 
-{% if user.profile.dark_mode %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_dark.css' %}" />
+{% if user.is_authenticated %}
+	{% if user.profile.dark_mode %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_dark.css' %}" />
+	{% else %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_light.css' %}" />
+	{% endif %}
 {% else %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_light.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_dark.css' %}" />
 {% endif %}
