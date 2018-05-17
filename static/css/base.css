@@ -84,7 +84,7 @@ button,
 	vertical-align: middle;
 }
 
-@media (max-width: 561px) {
+@media (max-width: 432px) {
 	.footer {
 		height: 60px;
 	}
@@ -121,6 +121,10 @@ button,
 
 ::-webkit-scrollbar-corner {
 	background: transparent;
+}
+
+.nav {
+	overflow-y: hidden;
 }
 
 .nav * {
@@ -171,13 +175,9 @@ a .nav,
 		border-bottom: none;
 		float: left;
 		font-size: 1.3em;
-		height: 50px;
-		line-height: 50px;
-		width: 22.5%;
-	}
-
-	.nav ul {
-		overflow: auto;
+		height: 45px;
+		line-height: 45px;
+		width: 20%;
 	}
 
 	#logo {
@@ -187,7 +187,7 @@ a .nav,
 	#user-widget,
 	#settings-widget {
 		display: inline-block;
-		width: 5%;
+		width: 10%;
 	}
 
 	.navbar-image {
