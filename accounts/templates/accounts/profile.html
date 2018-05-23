@@ -4,7 +4,7 @@
 		{% load static %}
 		{% include 'bases/head_base.html' %}
 
-		<title>{{ user.username }}</title>
+		<title>{{ chosen_user.username }} {% if chosen_user.first_name %}({{ chosen_user.first_name }} {{ chosen_user.last_name }}){% endif %}</title>
 	
 		<link rel="stylesheet" type="text/css" href="{% static 'accounts/profile/css/style.css' %}" />
 	</head>
