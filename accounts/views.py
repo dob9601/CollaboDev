@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .user_verification import *
+import user_verification
+
 
 @login_required
 def index(request):
@@ -38,13 +39,13 @@ def settings(request):
         user_profile_biography = request.POST['profile_biography']
         user_profile_url = request.POST['profile_url']
 
-        profile_clean = clean_profile_changes(
+        profile_clean = user_verification.clean_profile_changes(
             user_first_name,
             user_last_name,
             user_profile_biography,
             user_profile_url,
             user
-        )        
+        )
         user = profile_clean[0]
         context['successful_changes'] += profile_clean[1]
         context['errors'] += profile_clean[2]
@@ -58,7 +59,7 @@ def settings(request):
         user_new_pword = request.POST['new_pword']
         user_new_pword_conf = request.POST['new_pword_conf']
 
-        password_clean = clean_password_changes(
+        password_clean = user_verification.clean_password_changes(
             user_old_pword,
             user_new_pword,
             user_new_pword_conf,

@@ -29,9 +29,8 @@ class Profile(models.Model):
     )
     gravatar_enabled = models.BooleanField(default=False)
 
-    url = models.URLField(max_length=2000, 
-                          blank=True,
-    )
+    url = models.URLField(max_length=2000,
+                          blank=True)
     biography = models.CharField(max_length=300, blank=True)
     tasks_completed = models.IntegerField(default=0)
     dark_mode = models.BooleanField(default=True)

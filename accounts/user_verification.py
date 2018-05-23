@@ -2,6 +2,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
 
+
 def clean_profile_changes(first_name, last_name, biography, url, user):
     errors = []
     success_list = []
@@ -20,7 +21,7 @@ def clean_profile_changes(first_name, last_name, biography, url, user):
             user.last_name = last_name
             success_list.append('last name')
 
-    if biography != user.profile.biography: 
+    if biography != user.profile.biography:
         if len(biography) > 300:
             errors.append('biography')
         else:
@@ -42,7 +43,8 @@ def clean_profile_changes(first_name, last_name, biography, url, user):
     return [user, success_list, errors]
 
 
-def clean_password_changes(old_pword, new_pword, new_pword_conf, user, request):
+def clean_password_changes(old_pword, new_pword, new_pword_conf, user,
+                           request):
     errors = []
     success_list = []
 
