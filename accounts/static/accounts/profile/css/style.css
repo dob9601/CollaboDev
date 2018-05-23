@@ -29,4 +29,5 @@ h1 {
 	overflow: hidden;
 	padding: 2%;
 	width: 50%;
+	min-width: 320px;
 }
