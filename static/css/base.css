@@ -156,7 +156,7 @@ button,
 #dropdown-icon {
 	width: 60%;
 	vertical-align: middle;
-	margin-top: -4px;
+	margin-top: -3px;
 }
 
 a .nav,
@@ -217,8 +217,10 @@ a .nav,
 }
 
 @media screen and (max-width: 639px) {
-	.nav a:not(:first-child):not(:last-child) {
+	.nav a:not(:first-child):not(:nth-child(2)) {
 		display: none;
+		width: 100%;
+		float: left;
 	}
 
 	#dropdown-widget,

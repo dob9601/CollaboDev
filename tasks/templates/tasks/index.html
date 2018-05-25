@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		{% include 'bases/navbar_base.html' %}
-		<script>document.getElementsByClassName('nav')[0].children[0].children[1].children[0].className = 'active'</script>
+		<script>document.getElementsByClassName('nav')[0].children[0].children[2].children[0].className = 'active'</script>
 
 		<div id="page-description">
 			{% if error_message %}
@@ -51,8 +51,8 @@
 						}
 						</script>
 					</td>
-					<td class="task-table-size" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
+					<td class="task-table-size" onclick="show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
+					<td class="task-table-age" onclick="show_modal('task_data', '{{ task.id }}')"></td>
 					<td style="display: none">{{ task.task_open }}</td>
 
 					<td class="claim-info">

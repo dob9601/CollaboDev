@@ -2,6 +2,7 @@
 <div class="nav">
 	<ul>
 		<a href="/"><li id="logo" class="nav-hover"><b>Collabo<span class="crimson">Dev</span></b></li></a>
+		<a><li id="dropdown-widget"><img id="dropdown-icon" src="{% static 'images/dropdown_icon.png' %}"></li></a>
 		<a href="/tasks/"><li>Tasks</li></a>
 		<a href="/accounts/"><li>Users</li></a>
 		<a href="/timeline/"><li>Timeline</li></a>
@@ -14,7 +15,6 @@
 				{% endif %}
 			" alt="Profile Picture"><span class="nav-image-text">Profile</span></li></a>
 		<a href="/accounts/settings"><li id="settings-widget"><img class="navbar-image" src="{% static  'images/settings_icon.png' %}" alt="Settings"><span class="nav-image-text">Settings</span></li></a>
-		<a><li id="dropdown-widget"><img id="dropdown-icon" src="{% static 'images/dropdown_icon.png' %}"></li></a>
 	</ul>
 </div>
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
