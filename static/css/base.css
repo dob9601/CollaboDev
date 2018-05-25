@@ -139,11 +139,24 @@ button,
 }
 
 .nav li {
-	font-size: 1.3em;
-	height: 40px;
-	line-height: 40px;
-	width: 100%;
+	font-size: 1.6em;
+	height: 50px;
+	line-height: 50px;
 	transition: 0.4s background-color;
+}
+
+#logo {
+	width: 90%;
+}
+
+#dropdown-widget {
+	width: 10%;
+}
+
+#dropdown-icon {
+	width: 60%;
+	vertical-align: middle;
+	margin-top: -4px;
 }
 
 a .nav,
@@ -189,6 +202,10 @@ a .nav,
 		width: 10%;
 	}
 
+	#dropdown-widget {
+		display: none;
+	}
+
 	.navbar-image {
 		display: inline-block;
 	}
@@ -196,6 +213,17 @@ a .nav,
 	.nav-image-text {
 		display: none;
 		height: 0;
+	}
+}
+
+@media screen and (max-width: 639px) {
+	.nav a:not(:first-child):not(:last-child) {
+		display: none;
+	}
+
+	#dropdown-widget,
+	#logo {
+		float: left;
 	}
 }
 
