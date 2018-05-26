@@ -189,17 +189,18 @@ a .nav,
 		font-size: 1.3em;
 		height: 45px;
 		line-height: 45px;
-		width: 20%;
+		width: 26%;
 	}
 
 	#logo {
 		font-size: 1.75em;
+		width: 100%;
 	}
 
 	#user-widget,
 	#settings-widget {
 		display: inline-block;
-		width: 10%;
+		width: 11%;
 	}
 
 	#dropdown-widget {
@@ -231,6 +232,9 @@ a .nav,
 		-moz-user-select: none;
 		-o-user-select: none;
 		user-select: none;
+	}
+	#user-widget {
+		width: 100%;
 	}
 }
 
