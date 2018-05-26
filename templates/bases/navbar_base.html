@@ -2,7 +2,7 @@
 <div class="nav">
 	<ul>
 		<a href="/"><li id="logo" class="nav-hover"><b>Collabo<span class="crimson">Dev</span></b></li></a>
-		<a><li id="dropdown-widget"><img id="dropdown-icon" src="{% static 'images/dropdown_icon.png' %}"></li></a>
+		<a onclick="toggleNavbar()"><li id="dropdown-widget"><img id="dropdown-icon" src="{% static 'images/dropdown_icon.png' %}"></li></a>
 		<a href="/tasks/"><li>Tasks</li></a>
 		<a href="/accounts/"><li>Users</li></a>
 		<a href="/timeline/"><li>Timeline</li></a>
@@ -19,3 +19,21 @@
 </div>
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
 <script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ user.profile.tasks_completed }}"></script>
+<script>
+function toggleNavbar() {
+	var navbar_object = document.getElementById('settings-widget').parentNode
+	var display_state = navbar_object.style.display
+
+	if (display_state === "" || display_state === "none") {
+		for (var i=2; i < navbar_object.parentNode.children.length; i++) {
+			navbar_object.parentNode.children[i].style.display = "list-item"
+		}
+	}
+	else {
+		for (var i=2; i < navbar_object.parentNode.children.length; i++) {
+			navbar_object.parentNode.children[i].style.display = "none"
+		}
+	}
+}
+</script>
+
