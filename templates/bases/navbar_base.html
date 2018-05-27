@@ -35,5 +35,18 @@ function toggleNavbar() {
 		}
 	}
 }
+
+window.addEventListener('resize', function() {
+	var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+
+	if (width > 639) {
+		var navbar_object = document.getElementById('settings-widget').parentNode
+		var display_state = navbar_object.style.display
+
+		for (var i=2; i < navbar_object.parentNode.children.length; i++) {
+			navbar_object.parentNode.children[i].style.display = "list-item"
+		}
+	}
+})
 </script>
 
