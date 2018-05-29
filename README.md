@@ -10,7 +10,7 @@ An open source collaboration webapp built on Django.
 ## Installation
 
 ### GIF
-Get setup in under 50 seconds following this awesome GIF:
+Get setup in under 50 seconds by following this awesome GIF:
 
 ![Setup GIF](https://i.imgur.com/jPMKhe1.gif)
 ---
