@@ -9,6 +9,12 @@ An open source collaboration webapp built on Django.
 
 ## Installation
 
+### GIF
+Get setup in under 50 seconds following this awesome GIF:
+
+![Setup GIF](https://i.imgur.com/jPMKhe1.gif)
+---
+### Text Alternative
  - Clone this repository using 
  ```
  git clone https://github.com/dob9601/CollaboDev.git
