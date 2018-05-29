@@ -26,12 +26,6 @@ An open source collaboration webapp built on Django.
  
 **NOTE: As this software is early access, debug mode must be enabled for it to function properly (serving of static files not setup completely). For this reason, I would advise against hosting it on the internet (instead, host it within a LAN). Fixing this issue is high up on my list of priorities**
 
-If you aren't ready to commit yet/want to experience CollaboDev to see if you prefer CollaboDev to your current task management application, send me a message via the email associated with [my GitHub account](https://github.com/dob9601) and I'll provide you access to a temporary Heroku server.
-
- ---
- 
-My name is Daniel and I am a student in the UK. I founded this project out of boredom and have been working on it in my spare time with little to no intention of making any revenue from it. However, if you have used this webapp, any donations are greatly appreciated and can be done so via PayPal using the PayPal shield at the top of this readme file.
-
 <p>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
         <img style="border:0;width:88px;height:31px"
