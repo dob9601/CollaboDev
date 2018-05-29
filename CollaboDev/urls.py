@@ -17,7 +17,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.utils import ProgrammingError
+from django.db.utils import ProgrammingError, OperationalError
 
 from cAdmin.views import first_time_setup
 
@@ -44,5 +44,6 @@ except ObjectDoesNotExist:
     urlpatterns = [
         path('', first_time_setup),
     ]
-except ProgrammingError:
+except (OperationalError, ProgrammingError):
     pass
+
