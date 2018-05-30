@@ -46,4 +46,3 @@ except ObjectDoesNotExist:
     ]
 except (OperationalError, ProgrammingError):
     pass
-
