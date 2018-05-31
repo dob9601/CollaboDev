@@ -84,7 +84,7 @@ button,
 	vertical-align: middle;
 }
 
-@media (max-width: 432px) {
+@media screen and (max-width: 432px) {
 	.footer {
 		height: 60px;
 	}

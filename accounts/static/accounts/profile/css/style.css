@@ -1,33 +1,63 @@
-h1 {
-	margin: 2% 0 0 5%;
+.parallax {
+	width:  100%;
+	height:  400px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
-.profile-picture {
+#profile-picture {
+	max-width: 250px;
+	width: 25%;
+	min-width: 200px;
+	background-color: #c6504f;
 	border-radius: 50%;
 	float: left;
-	padding: 0;
-	width: 40%;
+	border-width: 3px;
+	border-color: #aaa;
+	border-style: solid;
 }
 
-.content-text p {
-	margin: 4px;
-	margin-left: 30px;
+h1 {
+	float: left;
+	font-size: 3em;
+	margin-left: 20px;
 }
 
-.content-text {
-	align-content: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+#header-div {
+	margin: -150px 0 270px 40px;
+}
+
+@media screen and (max-width: 639px) {
+	#header-div {
+		margin: -150px 0 0 0;
+		width: 100%;
+		text-align: center;
+	}
+
+	#profile-picture {
+		margin: 0 auto;
+		float: none;
+	}
+
+	h1 {
+		font-size: 2em;
+		margin: 20px 0 0 0;
+		float: none;
+	}
+
+	.content {
+		text-align: center;
+	}
 }
 
 .content {
-	align-items: center;
-	background-color: #c6504f;
-	display: flex;
-	margin: 10% auto;
-	overflow: hidden;
-	padding: 2%;
-	width: 50%;
-	min-width: 320px;
+	margin: 0 20px 0 20px;
+}
+
+@media only screen and (max-device-width: 749px) {
+	.parallax {
+		background-attachment: scroll;
+	}
 }

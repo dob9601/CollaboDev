@@ -22,6 +22,10 @@ class Profile(models.Model):
         default='/accounts/images/default_avatar.png',
         max_length=1000
     )
+    associated_background = models.CharField(
+        default='/accounts/images/default_avatar.png',
+        max_length=1000
+    )
     gravatar_url = models.URLField(
         default='',
         max_length=1000,
