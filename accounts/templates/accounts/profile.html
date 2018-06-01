@@ -19,58 +19,27 @@
 		<div class="parallax" style="background-image: url('{% static chosen_user.profile.associated_background %}')"></div>
 		<div id="header-div">
 			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" {% if chosen_user_online %}style="border-color: #01FF70"{% endif %} />
-			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}</h1>
+			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}{% if chosen_user.is_superuser %} <span class="tooltip">&#9733;<span class="tooltiptext">This user has administrative privileges</span></span>{% endif %}</h1>
 		</div>
 		<div class="content">
-			<p>Maecenas accumsan, sem iaculis egestas gravida, odio nunc aliquet dui, eget
-			cursus diam purus vel augue. Donec eros nisi, imperdiet quis, volutpat ac,
-			sollicitudin sed, arcu. Aenean vel mauris. Mauris tincidunt. Nullam euismod
-			odio at velit. Praesent elit purus, porttitor id, facilisis in, consequat ut,
-			libero. Morbi imperdiet, magna quis ullamcorper malesuada, mi massa pharetra
-			lectus, a pellentesque urna urna id turpis. Nam posuere lectus vitae nibh.
-			Etiam tortor orci, sagittis malesuada, rhoncus quis, hendrerit eget, libero.
-			Quisque commodo nulla at nunc. Mauris consequat, enim vitae venenatis
-			sollicitudin, dolor orci bibendum enim, a sagittis nulla nunc quis elit.
-			Phasellus augue. Nunc suscipit, magna tincidunt lacinia faucibus, lacus tellus
-			ornare purus, a pulvinar lacus orci eget nibh. Maecenas sed nibh non lacus
-			tempor faucibus. In hac habitasse platea dictumst. Vivamus a orci at nulla
-			tristique condimentum. Donec arcu quam, dictum accumsan, convallis accumsan,
-			cursus sit amet, ipsum. In pharetra sagittis nunc.
-
-			Donec consequat mi. Quisque vitae dolor. Integer lobortis. Maecenas id nulla.
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed volutpat felis
-			vitae dui. Vestibulum et est ac ligula dapibus elementum. Nunc suscipit nisl eu
-			felis. Duis nec tortor. Nullam diam libero, semper id, consequat in,
-			consectetuer ut, metus. Phasellus dui purus, vehicula sed, venenatis a, rutrum
-			at, nunc. Pellentesque interdum sapien nec neque.
-
-			Vivamus sagittis, sem sit amet porttitor lobortis, turpis sapien consequat
-			orci, sed commodo nulla pede eget sem. Phasellus sollicitudin. Proin orci erat,
-			blandit ut, molestie sed, fringilla non, odio. Nulla porta, tortor non suscipit
-			gravida, velit enim aliquam quam, nec condimentum orci augue vel magna. Nulla
-			facilisi. Donec ipsum enim, congue in, tempus id, pulvinar sagittis, leo. Donec
-			et elit in nunc blandit auctor. Nulla congue urna quis lorem. Nam rhoncus pede
-			sed nunc. Etiam vitae quam. Fusce feugiat pede vel quam. In et augue.
-
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-
-			Phasellus mollis dictum nulla. Integer vitae neque vitae eros fringilla rutrum.
-			Vestibulum in pede adipiscing mi dapibus condimentum. Etiam felis risus,
-			condimentum in, malesuada eget, pretium ut, sapien. Suspendisse placerat lectus
-			venenatis lorem. Sed accumsan aliquam enim. Etiam hendrerit, metus eu semper
-			rutrum, nisl elit pharetra purus, non interdum nibh enim eget augue. Sed
-			mauris. Nam varius odio a sapien. Aenean rutrum dictum sapien. Fusce pharetra
-			elementum ligula. Nunc eu mi non augue iaculis facilisis. Morbi interdum. Donec
-			nisi arcu, rhoncus ac, vestibulum ut, pellentesque nec, risus. Maecenas tempus
-			facilisis neque. Nulla mattis odio vitae tortor. Fusce iaculis. Aliquam
-			rhoncus, diam quis tincidunt facilisis, sem quam luctus augue, ut posuere neque
-			sem vitae neque.
-
-			Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-			ridiculus mus. Nunc faucibus posuere turpis. Sed laoreet, est sed gravida
-			tempor, nibh enim fringilla quam, et dapibus mi enim sit amet risus. Nulla
-			sollicitudin eros sit amet diam. Aliquam ante. Vestibulum ante ipsum primis in
-			faucibus orci luctus et ultrices posuere cubilia Curae; Ut et est. Donec.</p>
+			<h2>Biography</h2>
+			<p>
+				{% if chosen_user.profile.biography %}
+					{{ chosen_user.profile.biography }}
+				{% else %}
+					{{ chosen_user.first_name }} has not written a biography
+				{% endif %}
+			</p>			
+			<p><u><a href="{{ chosen_user.profile.url }}" target="_blank">{{ chosen_user.profile.url }}</a></u></p>
+			<h2>Contact</h2>
+			<p>
+				{% if chosen_user.email %}
+					<a href="mailto:{{ chosen_user.email }}">{{ chosen_user.email }}</a>
+				{% else %}
+					{{ chosen_user.first_name }} has not provided an email
+				{% endif %}
+			</p>
+			<p><i>Date joined: {{ chosen_user.date_joined }}</i></p>
 		</div>
 		{% include 'bases/footer_base.html' %}
 	</body>
