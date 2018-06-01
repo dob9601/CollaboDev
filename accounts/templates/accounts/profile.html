@@ -72,25 +72,6 @@
 			sollicitudin eros sit amet diam. Aliquam ante. Vestibulum ante ipsum primis in
 			faucibus orci luctus et ultrices posuere cubilia Curae; Ut et est. Donec.</p>
 		</div>
-		<!--<div class="content">
-			<img class="profile-picture" src="
-				{% if chosen_user.profile.gravatar_enabled %}
-					{{ chosen_user.profile.gravatar_url }}
-				{% else %}
-					{% static chosen_user.profile.associated_image %}
-				{% endif %}
-			"></img>
-			<div class="content-text">
-				<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }}</h1>
-				{% if chosen_user.is_superuser %}
-					<p><strong>This user is an admin</strong></p>
-				{% endif %}
-				<p>Username: {{ chosen_user.username }}</p>
-				<p>Joined: {{ chosen_user.date_joined }}</p>
-				<p>Email: {{ chosen_user.email }}</p>
-				<p>Last logged in: {{ chosen_user.last_login }}</p>
-			</div>
-		</div>-->
 		{% include 'bases/footer_base.html' %}
 	</body>
 </html>
