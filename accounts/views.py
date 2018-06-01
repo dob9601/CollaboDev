@@ -1,6 +1,13 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
+
+from django.utils import timezone
+
+import datetime
+import json
 
 from . import user_verification
 
@@ -17,10 +24,29 @@ def index(request):
 @login_required
 def profile(request, user):
     context = {
-        'chosen_user': User.objects.get(username=user)
+        'chosen_user': User.objects.get(username=user),
     }
+    print((context['chosen_user'].profile.last_ping - timezone.now()).seconds)
+    print(context['chosen_user'].profile.last_ping)
+    print(timezone.now())
+    if timezone.now() - context['chosen_user'].profile.last_ping < datetime.timedelta(0, 130):
+        context['chosen_user_online'] = True
+    else:
+        context['chosen_user_online'] = False
     return render(request, 'accounts/profile.html', context)
 
+
+@login_required
+def user_status(request):
+    session = Session.objects.get(session_key=request.body.decode('utf-8'))
+    uid = session.get_decoded().get('_auth_user_id')
+    user = User.objects.get(pk=uid)
+
+    user.profile.last_ping = timezone.now()
+    user.save()
+
+    payload = {'success': True}
+    return HttpResponse(json.dumps(payload), content_type='application/json')
 
 # Remove disable ASAP.
 # pylint: disable-msg=too-many-branches

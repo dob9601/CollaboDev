@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 from tasks.models import Task
 
@@ -38,6 +39,7 @@ class Profile(models.Model):
     biography = models.CharField(max_length=300, blank=True)
     tasks_completed = models.IntegerField(default=0)
     dark_mode = models.BooleanField(default=True)
+    last_ping = models.DateTimeField(default=now)
 
 
 # pylint: disable=unused-argument

@@ -18,7 +18,7 @@
 
 		<div class="parallax" style="background-image: url('{% static chosen_user.profile.associated_background %}')"></div>
 		<div id="header-div">
-			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" />
+			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" {% if chosen_user_online %}style="border-color: #01FF70"{% endif %} />
 			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}</h1>
 		</div>
 		<div class="content">

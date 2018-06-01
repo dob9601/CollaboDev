@@ -27,6 +27,15 @@
 	{% else %}
 		<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_light.css' %}" />
 	{% endif %}
+	<script>
+	var pingRequest = new XMLHttpRequest()
+	pingRequest.open("POST", "/accounts/user_status/")
+	pingRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
+	pingRequest.send("{{ request.session.session_key }}")
+	setInterval(function() {
+		pingRequest.send()
+	}, 60000)
+	</script>
 {% else %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/base_colours_dark.css' %}" />
 {% endif %}
