@@ -26,9 +26,6 @@ def profile(request, user):
     context = {
         'chosen_user': User.objects.get(username=user),
     }
-    print((context['chosen_user'].profile.last_ping - timezone.now()).seconds)
-    print(context['chosen_user'].profile.last_ping)
-    print(timezone.now())
     if timezone.now() - context['chosen_user'].profile.last_ping < datetime.timedelta(0, 130):
         context['chosen_user_online'] = True
     else:
