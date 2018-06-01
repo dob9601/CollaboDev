@@ -1,3 +1,6 @@
+from datetime import timedelta
+from json import dumps
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -5,9 +8,6 @@ from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
 
 from django.utils import timezone
-
-import datetime
-import json
 
 from . import user_verification
 
@@ -26,10 +26,10 @@ def profile(request, user):
     context = {
         'chosen_user': User.objects.get(username=user),
     }
-    if timezone.now() - context['chosen_user'].profile.last_ping < datetime.timedelta(0, 130):
-        context['chosen_user_online'] = True
-    else:
-        context['chosen_user_online'] = False
+
+    time_difference = timezone.now() - context['chosen_user'].profile.last_ping
+    context['chosen_user_online'] = bool(time_difference < timedelta(0, 130))
+
     return render(request, 'accounts/profile.html', context)
 
 
@@ -43,7 +43,8 @@ def user_status(request):
     user.save()
 
     payload = {'success': True}
-    return HttpResponse(json.dumps(payload), content_type='application/json')
+    return HttpResponse(dumps(payload), content_type='application/json')
+
 
 # Remove disable ASAP.
 # pylint: disable-msg=too-many-branches
