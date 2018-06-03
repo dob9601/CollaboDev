@@ -75,12 +75,18 @@
 			<div class="column">
 				{% if user.is_superuser %}
 					<h2>CollaboDev Admin</h2>
+					<p><a href="/admin/users/">Manage users</a></p>
+					<p><a href="/admin/github/">GitHub Integration</a></p>
+					<p><a onclick="show_modal('{{ csrf_token }}', 'reset-collabodev')">Reset CollaboDev to its original settings</a></p>
+					{% include 'bases/modal_base.html' %}
+					<script src="{% static 'admin/js/modal.js' %}"></script>
 				{% endif %}
 			</div>
 			<div class="column">
 				<br>	
 			</div>
 			<div class="column">
+				<h2>Finished?</h2>
 				<input type="submit" class="button" value="Update Settings">
 			</div>
 		</form>		

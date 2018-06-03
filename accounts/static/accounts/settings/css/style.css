@@ -22,7 +22,9 @@
 }
 
 .column input[type="submit"] {
-	margin-top: 60px;
+	font-size: 1em;
+	width: 75%;
+	max-width: 250px;
 }
 
 .column textarea {
@@ -32,6 +34,23 @@
 
 .column h2 {
 	margin-top: 0;
+}
+
+.column a {
+	width: 75%;
+	max-width: 250px;
+	display: block;
+	padding: 8px 0;
+	margin: 0 auto;
+	background-color: #c6504f;
+	transition: 0.4s background-color;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.column a:hover {
+	background-color: #a53533;
 }
 
 .column:nth-child(2) label {
