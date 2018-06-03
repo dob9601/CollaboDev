@@ -36,7 +36,7 @@ class Profile(models.Model):
 
     url = models.URLField(max_length=2000,
                           blank=True)
-    biography = models.CharField(max_length=300, blank=True)
+    biography = models.CharField(max_length=1500, blank=True)
     tasks_completed = models.IntegerField(default=0)
     dark_mode = models.BooleanField(default=True)
     last_ping = models.DateTimeField(default=now)
