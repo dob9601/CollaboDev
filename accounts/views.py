@@ -28,21 +28,36 @@ def profile(request, user):
     }
 
     time_difference = timezone.now() - context['chosen_user'].profile.last_ping
-    context['chosen_user_online'] = bool(time_difference < timedelta(0, 130))
+    context['chosen_user_online'] = bool(time_difference < timedelta(0, 70))
 
     return render(request, 'accounts/profile.html', context)
 
 
 @login_required
 def user_status(request):
-    session = Session.objects.get(session_key=request.body.decode('utf-8'))
-    uid = session.get_decoded().get('_auth_user_id')
-    user = User.objects.get(pk=uid)
+    data = request.body.decode('utf-8').split('@')
 
-    user.profile.last_ping = timezone.now()
-    user.save()
+    if data[0] == 'U':
+        session = Session.objects.get(session_key=data[1])
+        user_id = session.get_decoded().get('_auth_user_id')
+        user = User.objects.get(pk=user_id)
 
-    payload = {'success': True}
+        user.profile.last_ping = timezone.now()
+        user.save()
+
+        payload = {'success': True}
+    
+    elif data[0] == 'R':
+        user = User.objects.get(pk=data[1])
+
+        time_difference = timezone.now() - user.profile.last_ping
+        user_status = bool(time_difference < timedelta(0, 70))
+
+        payload = {'success': True, 'status': user_status}
+
+    else:
+        payload = {'success': False}
+
     return HttpResponse(dumps(payload), content_type='application/json')
 
 

@@ -31,12 +31,12 @@
 	var pingRequest = new XMLHttpRequest()
 	pingRequest.open("POST", "/accounts/user_status/")
 	pingRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
-	pingRequest.send("{{ request.session.session_key }}")
+	pingRequest.send("U@{{ request.session.session_key }}")
 	setInterval(function() {
 		var pingRequest = new XMLHttpRequest()
 		pingRequest.open("POST", "/accounts/user_status/")
 		pingRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
-		pingRequest.send("{{ request.session.session_key }}")
+		pingRequest.send("U@{{ request.session.session_key }}")
 	}, 60000)
 	</script>
 {% else %}

@@ -18,8 +18,48 @@
 
 		<div class="parallax" style="background-image: url('{% static chosen_user.profile.associated_background %}')"></div>
 		<div id="header-div">
-			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" {% if chosen_user_online %}style="border-color: #01FF70"{% endif %} />
+			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" />
 			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}{% if chosen_user.is_superuser %} <span class="tooltip">&#9733;<span class="tooltiptext">This user has administrative privileges</span></span>{% endif %}</h1>
+			<script>
+			var profilePicture = document.getElementById('profile-picture')
+
+			var userStatusRequest = new XMLHttpRequest()
+			userStatusRequest.open("POST", "/accounts/user_status/")
+			userStatusRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
+			userStatusRequest.onreadystatechange = function() {
+				if (userStatusRequest.readyState === 4 && userStatusRequest.status === 200) {
+					var responseData = JSON.parse(userStatusRequest.responseText)
+					var userStatus = responseData["status"]
+
+					if (userStatus === false) {
+						profilePicture.removeAttribute("style")
+					}
+					else {
+						profilePicture.style.borderColor = "#01FF70"
+					}
+				}
+			}
+			userStatusRequest.send("R@{{ chosen_user.id }}")
+			setInterval(function() {
+				let userStatusRequest = new XMLHttpRequest()
+				userStatusRequest.open("POST", "/accounts/user_status/")
+				userStatusRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
+				userStatusRequest.onreadystatechange = function() {
+					if (userStatusRequest.readyState === 4 && userStatusRequest.status === 200) {
+						var responseData = JSON.parse(userStatusRequest.responseText)
+						var userStatus = responseData["status"]
+	
+						if (userStatus === false) {
+							profilePicture.removeAttribute("style")
+						}
+						else {
+							profilePicture.style.borderColor = "#01FF70"
+						}
+					}
+				}
+				userStatusRequest.send("R@{{ chosen_user.id }}")
+			}, 60000)
+			</script>
 		</div>
 		<div class="content">
 			<h2>Biography</h2>
