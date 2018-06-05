@@ -95,7 +95,7 @@ def create_user(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def reset_collabodev():
-    settings = Settings.objects.get(id=1)
+    settings = Settings.objects.get(pk=1)
     settings.settings_initialised = False
 
     system('python manage.py flush --noinput')
@@ -105,7 +105,7 @@ def reset_collabodev():
 
 def reset_page(request):
     try:
-        Settings.objects.get(id=1)
+        Settings.objects.get(pk=1)
         context = {
             'derail': True
         }
@@ -130,7 +130,7 @@ def first_time_setup(request):
     First time setup for when the software is first installed on a server
     """
 
-    settings = Settings.objects.get(id=1)
+    settings = Settings.objects.get(pk=1)
 
     context = {
         'password_page': True,
