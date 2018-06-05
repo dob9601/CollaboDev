@@ -46,14 +46,14 @@ def user_status(request):
         user.save()
 
         payload = {'success': True}
-    
+
     elif data[0] == 'R':
         user = User.objects.get(pk=data[1])
 
         time_difference = timezone.now() - user.profile.last_ping
-        user_status = bool(time_difference < timedelta(0, 70))
+        status = bool(time_difference < timedelta(0, 70))
 
-        payload = {'success': True, 'status': user_status}
+        payload = {'success': True, 'status': status}
 
     else:
         payload = {'success': False}
