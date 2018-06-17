@@ -10,7 +10,6 @@ case 0:
 case 1:
 	progressBar.style.backgroundColor = '#A0B0BF'
 	progressBar.parentNode.style.backgroundColor = '#DDEEFF'
-
 	break
 case 2:
 	progressBar.style.backgroundColor = '#7A3BE3'
