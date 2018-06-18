@@ -71,6 +71,7 @@ button,
 	width: 100%;
 	z-index: 1;
 	clear: left;
+	margin-top: 20px;
 }
 
 .footer a,

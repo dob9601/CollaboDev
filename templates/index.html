@@ -10,21 +10,24 @@
 	</head>
 	<body>
 		<h1><b>Collabo<span class="crimson">Dev</span></b></h1>
-		<div id="collaborate">
-			<blockquote><b>Collaborate:</b> <i>Intransive verb, to work jointly with others or together especially in an intellectual endeavor.</i></blockquote>
-		</div>
-		<div id="develop"> 
-			<blockquote><b>Develop:</b> <i>Transitive verb, to (cause something to) grow or change into a more advanced, larger, or stronger form.</i></blockquote>
-		</div>
-		<div id="login-button">
-			<button onclick="
-			{% if user.is_authenticated %}
-				location.href='/tasks/'">Welcome back{% if user.first_name %}, {{ user.first_name }}{% endif %}
-			{% else %}
-				location.href='/login/'">Login
-			</button>
-			{% endif %}
-		</div>
+		<h2>{% if user.is_authenticated %}{{ user.first_name }} {{ user.last_name }} / {{ user.username }}{% else %}Login{% endif %}</h2>
+		{% if user.is_authenticated %}
+			<img id="profile-picture" src="{% static user.profile.associated_image %}"/>
+			<script src="{% static 'js/profile_picture_border_colour.js' %}" tasks-completed="{{ user.profile.tasks_completed }}"></script>
+			<br>
+			<button onclick="location.href='/tasks/'">Welcome Back</button>
+			<button onclick="location.href='/logout/'">Not {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}?</button>
+		{% else %}
+			<div id="profile-picture">
+				<label>?</label>
+			</div>
+			<form class="standard-form" method="post">
+				{% csrf_token %}
+				<p><label>Username:</label><input type="text" name="username"></p>
+				<p><label>Password:</label><input type="password" name="password"></p>
+				<input type="submit" value="Login" class="button">
+			</form>
+		{% endif %}
 		{% include 'bases/footer_base.html' %}
 	</body>
 </html>

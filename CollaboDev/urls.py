@@ -20,12 +20,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.utils import ProgrammingError, OperationalError
 
 from cAdmin.views import first_time_setup
+from . import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', views.index, name='index'),
     path('tasks/', include('tasks.urls'), name='tasks'),
-    path('login/', auth_views.login, name='login'),
-    path('logout/', auth_views.logout, name='logout'),
+    path('logout/', views.logout, name='logout'),
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('admin/', include('cAdmin.urls'), name='cAdmin'),
 ]
