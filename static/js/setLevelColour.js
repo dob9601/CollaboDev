@@ -1,3 +1,5 @@
+/* exported setLevelColour */
+
 function setLevelColour (level) {
 	const userLevel = Math.floor(parseInt(level) / 10)
 

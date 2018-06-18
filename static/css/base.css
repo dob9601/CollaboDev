@@ -179,7 +179,7 @@ a .nav,
 .navbar-image {
 	margin: auto;
 	transition: 0.4s background-color;
-	vertical-align: middle;
+	vertical-align: text-bottom;
 	width: 30px;
 	display: none;
 }

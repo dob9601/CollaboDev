@@ -1,5 +1,4 @@
 /* global csrf_token */
-/* global level */
 
 const profilePicture = document.getElementById('profile-picture')
 const userId = document.currentScript.getAttribute('uid')
