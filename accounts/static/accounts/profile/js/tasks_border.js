@@ -4,24 +4,6 @@
 const profilePicture = document.getElementById('profile-picture')
 const userId = document.currentScript.getAttribute('uid')
 
-switch (level) {
-case 0:
-	profilePicture.style.borderColor = '#9E9E9E'
-	break
-case 1:
-	profilePicture.style.borderColor = '#A0B0BF'
-	break
-case 2:
-	profilePicture.style.borderColor = '#7A3BE3'
-	break
-case 3:
-	profilePicture.style.borderColor = '#C01FD0'
-	break
-default:
-	profilePicture.style.borderColor = '#D44040'
-	break
-}
-
 var userStatusRequest = new XMLHttpRequest()
 userStatusRequest.open('POST', '/accounts/user_status/')
 userStatusRequest.setRequestHeader('X-CSRFToken', csrf_token)

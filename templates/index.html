@@ -13,7 +13,10 @@
 		<h2>{% if user.is_authenticated %}{{ user.first_name }} {{ user.last_name }} / {{ user.username }}{% else %}Login{% endif %}</h2>
 		{% if user.is_authenticated %}
 			<img id="profile-picture" src="{% static user.profile.associated_image %}"/>
-			<script src="{% static 'js/profile_picture_border_colour.js' %}" tasks-completed="{{ user.profile.tasks_completed }}"></script>
+			<script>
+			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ user.profile.tasks_completed }}')
+			</script>
+
 			<br>
 			<button onclick="location.href='/tasks/'">Welcome Back</button>
 			<button onclick="location.href='/logout/'">Not {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}?</button>
