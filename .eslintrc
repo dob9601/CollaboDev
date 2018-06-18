@@ -1,7 +1,10 @@
 {
 	"extends": "standard",
-	"rules" : {
+	"rules": {
 		"indent": ["error", "tab"],
-		"no-tabs": "off",
+		"no-tabs": "off"
+	},
+	"env": {
+		"browser": 1
 	}
 }
