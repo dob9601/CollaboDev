@@ -5,6 +5,10 @@
 		"no-tabs": "off"
 	},
 	"env": {
-		"browser": 1
+		"browser": false,
+		"node": false
+	},
+	"parserOptions": {
+		"sourceType": "script"
 	}
 }
