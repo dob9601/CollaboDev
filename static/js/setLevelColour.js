@@ -5,14 +5,14 @@ function setLevelColour (level) {
 
 	switch (userLevel) {
 	case 0:
-		return '#9E9E9E'
+		return ['#9e9e9e', '#f1f1f1']
 	case 1:
-		return '#A0B0BF'
+		return ['#a0b0Bf', '#ddeeff']
 	case 2:
-		return '#7A3BE3'
+		return ['#7a3be3', '#b082ff']
 	case 3:
-		return '#C01FD0'
+		return ['#c01fd0', '#f489ff']
 	default:
-		return '#D44040'
+		return ['#d44040', '#ff9b9b']
 	}
 }

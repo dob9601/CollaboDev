@@ -23,7 +23,7 @@
 
 			<script src="{% static 'accounts/profile/js/tasks_border.js' %}" uid="{{ chosen_user.id }}"></script>
 			<script>
-			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ chosen_user.profile.tasks_completed }}')
+			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]
 			</script>
 		</div>
 		<div class="content">

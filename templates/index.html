@@ -14,7 +14,7 @@
 		{% if user.is_authenticated %}
 			<img id="profile-picture" src="{% static user.profile.associated_image %}"/>
 			<script>
-			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ user.profile.tasks_completed }}')
+			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ user.profile.tasks_completed }}')[0]
 			</script>
 
 			<br>

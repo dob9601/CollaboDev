@@ -17,13 +17,19 @@
 		<a href="/accounts/settings"><li id="settings-widget"><img class="navbar-image" src="{% static  'images/settings_icon.png' %}" alt="Settings"><span class="nav-image-text">Settings</span></li></a>
 	</ul>
 </div>
-<script>
-const csrf_token = "{{ csrf_token }}"
-</script>
 
 <div class="progress-bar-div"><div class="progress-bar" style="width:0;"></div></div>
-<script src="{% static 'tasks/js/xp_bar.js' %}" tasks-completed="{{ user.profile.tasks_completed }}"></script>
+<script src="{% static 'js/setLevelColour.js' %}"></script>
 <script>
+progressBar = document.getElementsByClassName('progress-bar')[0]
+
+progressBarColours = setLevelColour('{{ user.profile.tasks_completed }}')
+
+progressBar.style.backgroundColor = progressBarColours[0]
+progressBar.parentNode.style.backgroundColor = progressBarColours[1]
+
+progressBar.style.width = String(((parseInt('{{ user.profile.tasks_completed }}') % 10) / 10) * 100) + '%'
+
 function toggleNavbar() {
 	var navbar_object = document.getElementById('settings-widget').parentNode
 	var display_state = navbar_object.style.display
