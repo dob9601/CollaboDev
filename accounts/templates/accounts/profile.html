@@ -11,14 +11,23 @@
 	<body>
 		{% include 'bases/navbar_base.html' %}
 		<script>
-		if("{{ user.username }}" == "{{ chosen_user.username }}") {
+		if("{{ user.username }}" === "{{ chosen_user.username }}") {
 			document.getElementsByClassName('nav')[0].children[0].children[5].children[0].className = 'active';
 		}
 		</script>
 
-		<div class="parallax" style="background-image: url('{% static chosen_user.profile.associated_background %}')"></div>
+		<div class="parallax"></div>
+		<script>
+		background = document.getElementsByClassName('parallax')[0]
+		background.style.backgroundImage = 'url("{% static '' %}"),linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), repeating-linear-gradient(-55deg,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+','+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+' 10px,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[1]+' 10px,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[1]+' 20px)'
+		</script>
 		<div id="header-div">
-			<img id="profile-picture" src="{% static chosen_user.profile.associated_image %}" />
+			<img id="profile-picture" src="
+				{% if user.profile.avatar %}
+					{{ user.profile.avatar.url }}
+				{% else %}
+					{{ user.profile.gravatar_url }}
+				{% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'" />
 			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}{% if chosen_user.is_superuser %} <span class="tooltip">&#9733;<span class="tooltiptext">This user has administrative privileges</span></span>{% endif %}</h1>
 
 			<script src="{% static 'accounts/profile/js/tasks_border.js' %}" uid="{{ chosen_user.id }}"></script>

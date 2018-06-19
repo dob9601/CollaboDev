@@ -1,4 +1,6 @@
-// eslint-disable-next-line no-unused-vars, camelcase
+/* exported show_modal */
+
+// eslint-disable-next-line camelcase
 function show_modal (data, type) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
 	const modalText = modalBox.children[0].children[1]

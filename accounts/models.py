@@ -1,3 +1,5 @@
+from hashlib import md5
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -19,20 +21,18 @@ class Profile(models.Model):
         default=None,
     )
 
-    associated_image = models.CharField(
-        default='/accounts/images/default_avatar.png',
-        max_length=1000
+    avatar = models.ImageField(
+        blank=True,
+        upload_to='profile_avatars/'
     )
-    associated_background = models.CharField(
-        default='/accounts/images/catground_sample.jpg',
-        max_length=1000
+    background = models.ImageField(
+        blank=True,
+        upload_to='profile_backgrounds/'
     )
     gravatar_url = models.URLField(
         default='',
         max_length=1000,
-        blank=True
     )
-    gravatar_enabled = models.BooleanField(default=False)
 
     url = models.URLField(max_length=2000,
                           blank=True)
@@ -57,4 +57,7 @@ def save_user_profile(sender, instance, **kwargs):
     """
     Save user profile on user save
     """
+    email_hash = md5(instance.email.encode('utf-8').lower()).hexdigest()
+    instance.profile.gravatar_url = ('https://www.gravatar.com/avatar/' +
+                                     email_hash + '?d=404')
     instance.profile.save()

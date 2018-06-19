@@ -1,10 +1,11 @@
+/* exported updateDivs */
+
 const form = document.getElementById('main-form')
 const divCount = form.children.length - 1
 const progressBar = document.getElementsByClassName('prog-bar-inner')[0]
 
 progressBar.style.width = String((1 / divCount) * 100) + '%'
 
-// eslint-disable-next-line no-unused-vars
 function updateDivs (relativeDistance) {
 	const form = document.getElementById('main-form')
 	var currentPosition

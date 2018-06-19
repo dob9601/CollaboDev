@@ -6,14 +6,16 @@
 		<a href="/tasks/"><li>Tasks</li></a>
 		<a href="/accounts/"><li>Users</li></a>
 		<a href="/timeline/"><li>Timeline</li></a>
-		<a href="/accounts/{{ user.username }}"><li id="user-widget"> 
-			<img class="navbar-image" src="
-				{% if user.profile.gravatar_enabled %}
-					{{ user.profile.gravatar_url }}
+		<a href="/accounts/{{ user.username }}">
+			<li id="user-widget"> 
+				<img class="navbar-image" src="
+				{% if user.profile.avatar %}
+					{{ user.profile.avatar.url }}
 				{% else %}
-					{% static user.profile.associated_image %}
-				{% endif %}
-			" alt="Profile Picture"><span class="nav-image-text">Profile</span></li></a>
+					{{ user.profile.gravatar_url }}
+				{% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'"><span class="nav-image-text">Profile</span>
+			</li>
+		</a>
 		<a href="/accounts/settings"><li id="settings-widget"><img class="navbar-image" src="{% static  'images/settings_icon.png' %}" alt="Settings"><span class="nav-image-text">Settings</span></li></a>
 	</ul>
 </div>

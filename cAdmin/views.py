@@ -1,5 +1,3 @@
-from hashlib import md5
-import urllib.request
 from random import choice
 from os import system
 
@@ -68,22 +66,7 @@ def create_user(request):
         last_name=request.POST['last_name'],
         email=request.POST['email'],
         password=temporary_password,
-    )
-
-    encoded_email = request.POST['email'].encode('utf-8')
-
-    gravatar_url = (
-        'https://www.gravatar.com/avatar/' +
-        md5(encoded_email.strip().lower()).hexdigest()
-    )
-
-    try:
-        urllib.request.urlopen(gravatar_url+'?d=404')
-        user.profile.gravatar_url = gravatar_url+'?s=1000'
-        user.profile.gravatar_enabled = True
-    except urllib.error.HTTPError:
-        user.profile.associated_image = 'accounts/images/default_avatar.png'
-        user.profile.gravatar_enabled = False
+    ) 
 
     user.clean()
     user.save()
