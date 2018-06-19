@@ -3,7 +3,7 @@
 ![Python Version](https://img.shields.io/badge/python-3.x-blue.svg) ![Django Version](https://img.shields.io/badge/django%20version-2.0-blue.svg)
  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://www.paypal.me/dob9601)
 
-An open source collaboration webapp built on Django.
+<h2 align=center>An open source collaboration webapp built on Django.</h2>
 
 ---
 
