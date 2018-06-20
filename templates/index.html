@@ -12,7 +12,7 @@
 		<h1><b>Collabo<span class="crimson">Dev</span></b></h1>
 		<h2>{% if user.is_authenticated %}{{ user.first_name }} {{ user.last_name }} / {{ user.username }}{% else %}Login{% endif %}</h2>
 		{% if user.is_authenticated %}
-			<img id="profile-picture" src="{% static user.profile.associated_image %}"/>
+			<img id="profile-picture" src="{% include 'bases/avatar_src_base.html' %}"/>
 			<script>
 			document.getElementById('profile-picture').style.borderColor = setLevelColour('{{ user.profile.tasks_completed }}')[0]
 			</script>

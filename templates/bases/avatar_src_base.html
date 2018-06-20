@@ -1,0 +1,7 @@
+{% load static %}
+
+{% if user.profile.avatar %}
+	{{ user.profile.avatar.url }}
+{% else %}
+	{{ user.profile.gravatar_url }}
+{% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'"
