@@ -59,5 +59,5 @@ def save_user_profile(sender, instance, **kwargs):
     """
     email_hash = md5(instance.email.encode('utf-8').lower()).hexdigest()
     instance.profile.gravatar_url = ('https://www.gravatar.com/avatar/' +
-                                     email_hash + '?d=404')
+                                     email_hash + '?d=404&s=500')
     instance.profile.save()
