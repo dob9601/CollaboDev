@@ -19,7 +19,7 @@
 		<div class="parallax"></div>
 		<script>
 		background = document.getElementsByClassName('parallax')[0]
-		background.style.backgroundImage = 'url("{% static '' %}"),linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), repeating-linear-gradient(-55deg,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+','+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+' 10px,#000 10px,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[1]+' 20px)'
+		background.style.backgroundImage = 'url("{% static '' %}"),linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), repeating-linear-gradient(45deg,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+','+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+' 10px,#000 10px,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[1]+' 20px)'
 		</script>
 		<div id="header-div">
 			<img id="profile-picture" src="{% include 'bases/avatar_src_base.html' %}"/>
