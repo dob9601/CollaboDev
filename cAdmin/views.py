@@ -66,7 +66,7 @@ def create_user(request):
         last_name=request.POST['last_name'],
         email=request.POST['email'],
         password=temporary_password,
-    ) 
+    )
 
     user.clean()
     user.save()

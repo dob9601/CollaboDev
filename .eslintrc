@@ -5,7 +5,7 @@
 		"no-tabs": "off"
 	},
 	"env": {
-		"browser": false,
+		"browser": 1,
 		"node": false
 	},
 	"parserOptions": {

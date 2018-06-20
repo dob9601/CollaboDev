@@ -12,7 +12,7 @@ function updateStatusColour (userID, target) {
 			if (response === true) {
 				target.style.boxShadow = '0 0 0 3px #01FF70'
 			} else {
-				target.removeAttribute('style')	
+				target.removeAttribute('style')
 			}
 		}
 	}
