@@ -51,7 +51,7 @@ def user_status(request):
         user = User.objects.get(pk=data[1])
 
         time_difference = timezone.now() - user.profile.last_ping
-        status = bool(time_difference < timedelta(0, 70))
+        status = bool(time_difference < timedelta(0, 40))
 
         payload = {'success': True, 'status': status}
 
