@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import default_storage
 from django.utils import timezone
 
 from . import user_verification
@@ -96,14 +97,20 @@ def settings(request):
         if background:
             fs = FileSystemStorage()
             extension = background.name[background.name.rfind("."):]
-            image = fs.save(request.user.username + '_background' + extension, background)
+            filename = request.user.username + '_background' + extension
+            if default_storage.exists(filename):
+                default_storage.delete(filename)
+            image = fs.save(filename, background)
             user.profile.background = image
 
         avatar = request.FILES.get('avatar', False)
         if avatar:
             fs = FileSystemStorage()
             extension = avatar.name[avatar.name.rfind("."):]
-            image = fs.save(request.user.username + '_avatar' + extension, avatar)
+            filename = request.user.username + '_avatar' + extension
+            if default_storage.exists(filename):
+                default_storage.delete(filename)
+            image = fs.save(filename, avatar)
             user.profile.avatar = image
 
         # Account
