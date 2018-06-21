@@ -6,8 +6,6 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
-from django.core.files.storage import default_storage
 from django.utils import timezone
 
 from . import user_verification
@@ -79,39 +77,21 @@ def settings(request):
         user_profile_biography = request.POST['profile_biography']
         user_profile_url = request.POST['profile_url']
 
+        background = request.FILES.get('background', False)
+        avatar = request.FILES.get('avatar', False)
+
         profile_clean = user_verification.clean_profile_changes(
             user_first_name,
             user_last_name,
             user_profile_biography,
             user_profile_url,
+            background,
+            avatar,
             user
         )
         user = profile_clean[0]
         context['successful_changes'] += profile_clean[1]
         context['errors'] += profile_clean[2]
-
-        # Profile Images
-        file_system = FileSystemStorage()
-        
-        background = request.FILES.get('background', False)
-        if background:
-            fs = FileSystemStorage()
-            extension = background.name[background.name.rfind("."):]
-            filename = request.user.username + '_background' + extension
-            if default_storage.exists(filename):
-                default_storage.delete(filename)
-            image = fs.save(filename, background)
-            user.profile.background = image
-
-        avatar = request.FILES.get('avatar', False)
-        if avatar:
-            fs = FileSystemStorage()
-            extension = avatar.name[avatar.name.rfind("."):]
-            filename = request.user.username + '_avatar' + extension
-            if default_storage.exists(filename):
-                default_storage.delete(filename)
-            image = fs.save(filename, avatar)
-            user.profile.avatar = image
 
         # Account
         user_username = request.POST['username']

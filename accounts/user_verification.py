@@ -1,9 +1,10 @@
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
+from django.core.files.storage import FileSystemStorage, default_storage
 
 
-def clean_profile_changes(first_name, last_name, biography, url, user):
+def clean_profile_changes(first_name, last_name, biography, url, background, avatar, user):
     errors = []
     success_list = []
 
@@ -39,6 +40,34 @@ def clean_profile_changes(first_name, last_name, biography, url, user):
             success_list.append('url')
         except ValidationError:
             errors.append('url')
+
+    if background:
+        fs = FileSystemStorage()
+        extension = background.name[background.name.rfind(".")+1:]
+        if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
+            filename = user.username + '_background.' + extension
+            old_filename = user.profile.avatar.name
+            default_storage.delete(old_filename)
+            image = fs.save(filename, background)
+            user.profile.background = image
+            user.profile.background_version += 1
+            success_list.append('background')
+        else:
+            errors.append('background')
+
+    if avatar:
+        fs = FileSystemStorage()
+        extension = avatar.name[avatar.name.rfind(".")+1:]
+        if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
+            filename = user.username + '_avatar.' + extension
+            old_filename = user.profile.avatar.name
+            default_storage.delete(old_filename)
+            image = fs.save(filename, avatar)
+            user.profile.avatar = image
+            user.profile.avatar_version += 1
+            success_list.append('avatar')
+        else:
+            errors.append('avatar')
 
     return [user, success_list, errors]
 

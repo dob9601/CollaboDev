@@ -25,10 +25,12 @@ class Profile(models.Model):
         blank=True,
         upload_to='profile_avatars/'
     )
+    avatar_version = models.IntegerField(default=0)
     background = models.ImageField(
         blank=True,
         upload_to='profile_backgrounds/'
     )
+    background_version = models.IntegerField(default=0)
     gravatar_url = models.URLField(
         default='',
         max_length=1000,
