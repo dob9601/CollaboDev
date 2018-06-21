@@ -34,7 +34,7 @@
 
 			{% endif %}
 		</p>
-		<form method="post" action="/accounts/settings/" autocomplete="false">
+		<form method="post" action="/accounts/settings/" autocomplete="false" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="column">
 				<h2>Profile</h2>
@@ -54,6 +54,8 @@
 					<p style="background-color:#ff4136">URL is invalid</p>
 				{% endif %}
 				<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>
+				<p><label>Profile Picture:</label><input type="file" name="avatar" accept="image/x-png,image/jpeg">
+				<p><label>Background:</label><input type="file" name="background" accept="image/x-png,image/jpeg">
 			</div>
 			<div class="column">
 				<h2>Account</h2>

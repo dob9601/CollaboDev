@@ -16,6 +16,8 @@ Including another URLconf
 from django.urls import path, include
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.utils import ProgrammingError, OperationalError
+from django.conf import settings
+from django.conf.urls.static import static
 
 from cAdmin.views import first_time_setup
 from . import views
@@ -27,6 +29,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('admin/', include('cAdmin.urls'), name='cAdmin'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 try:
     from cAdmin.models import Settings

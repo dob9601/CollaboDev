@@ -16,10 +16,15 @@
 }
 
 .column input[type="text"],
-.column input[type="password"] {
+.column input[type="password"],
+.column input[type="file"]{
 	border: 2px solid #3f5882;
 	padding: 5px;
 	width: 201px;
+}
+
+.column input[type="file"] {
+	background-color: #c6504f;
 }
 
 .column input[type="submit"] {
@@ -54,12 +59,7 @@
 	background-color: #a53533;
 }
 
-.column:nth-child(2) label {
-	display: inline-block;
-	width: 80px;
-}
-
-.column:nth-child(3) label {
+.column label {
 	display: inline-block;
 	width: 120px;
 }

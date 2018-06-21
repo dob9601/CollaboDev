@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
-
+from django.core.files.storage import FileSystemStorage
 from django.utils import timezone
 
 from . import user_verification
@@ -88,6 +88,23 @@ def settings(request):
         user = profile_clean[0]
         context['successful_changes'] += profile_clean[1]
         context['errors'] += profile_clean[2]
+
+        # Profile Images
+        file_system = FileSystemStorage()
+        
+        background = request.FILES.get('background', False)
+        if background:
+            fs = FileSystemStorage()
+            extension = background.name[background.name.rfind("."):]
+            image = fs.save(request.user.username + '_background' + extension, background)
+            user.profile.background = image
+
+        avatar = request.FILES.get('avatar', False)
+        if avatar:
+            fs = FileSystemStorage()
+            extension = avatar.name[avatar.name.rfind("."):]
+            image = fs.save(request.user.username + '_avatar' + extension, avatar)
+            user.profile.avatar = image
 
         # Account
         user_username = request.POST['username']
