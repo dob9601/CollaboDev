@@ -71,21 +71,27 @@ def settings(request):
 
     if request.method == 'POST':
         user = request.user
+        
 
-        user_first_name = request.POST['first_name']
-        user_last_name = request.POST['last_name']
-        user_profile_biography = request.POST['profile_biography']
-        user_profile_url = request.POST['profile_url']
+        user_first_name = request.POST.get('first_name', '')
+        user_last_name = request.POST.get('last_name', '')
+        user_profile_biography = request.POST.get('profile_biography', '')
+        user_profile_url = request.POST.get('profile_url', '')
 
         background = request.FILES.get('background', False)
         avatar = request.FILES.get('avatar', False)
+
+        reset_background = request.POST.get('reset_background', False)
+        reset_avatar = request.POST.get('reset_avatar', False)
 
         profile_clean = user_verification.clean_profile_changes(
             user_first_name,
             user_last_name,
             user_profile_biography,
             user_profile_url,
+            reset_background,
             background,
+            reset_avatar,
             avatar,
             user
         )

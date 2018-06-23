@@ -4,7 +4,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.core.files.storage import FileSystemStorage, default_storage
 
 
-def clean_profile_changes(first_name, last_name, biography, url, background, avatar, user):
+def clean_profile_changes(first_name, last_name, biography, url, reset_background, background, reset_avatar, avatar, user):
     errors = []
     success_list = []
 
@@ -41,13 +41,20 @@ def clean_profile_changes(first_name, last_name, biography, url, background, ava
         except ValidationError:
             errors.append('url')
 
-    if background:
+    if reset_background:
+        old_filename = user.profile.background.name
+        if old_filename != '':
+            default_storage.delete(old_filename)
+        user.profile.background = None
+        success_list.append('background')
+    elif background:
         fs = FileSystemStorage()
         extension = background.name[background.name.rfind(".")+1:]
         if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
             filename = user.username + '_background.' + extension
-            old_filename = user.profile.avatar.name
-            default_storage.delete(old_filename)
+            old_filename = user.profile.background.name
+            if old_filename != '':
+                default_storage.delete(old_filename)
             image = fs.save(filename, background)
             user.profile.background = image
             user.profile.background_version += 1
@@ -55,19 +62,26 @@ def clean_profile_changes(first_name, last_name, biography, url, background, ava
         else:
             errors.append('background')
 
+    if reset_avatar:
+        old_filename = user.profile.avatar.name
+        if old_filename != '':
+            default_storage.delete(old_filename)
+        user.profile.avatar = None
+        success_list.append('profile picture')
     if avatar:
         fs = FileSystemStorage()
         extension = avatar.name[avatar.name.rfind(".")+1:]
-        if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
+        if extension in ['jpg', 'jpeg', 'jpe','jif', 'jfif', 'jfi', 'png']:
             filename = user.username + '_avatar.' + extension
             old_filename = user.profile.avatar.name
-            default_storage.delete(old_filename)
+            if old_filename != '':
+                default_storage.delete(old_filename)
             image = fs.save(filename, avatar)
             user.profile.avatar = image
             user.profile.avatar_version += 1
-            success_list.append('avatar')
+            success_list.append('profile picture')
         else:
-            errors.append('avatar')
+            errors.append('profile picture')
 
     return [user, success_list, errors]
 
