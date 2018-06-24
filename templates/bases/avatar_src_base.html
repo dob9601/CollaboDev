@@ -1,7 +1,7 @@
 {% load static %}
 
-{% if user.profile.avatar %}
-	{{ user.profile.avatar.url }}?v={{ user.profile.avatar_version }}
+{% if target_user.profile.avatar %}
+	{{ target_user.profile.avatar.url }}?v={{ target_user.profile.avatar_version }}
 {% else %}
-	{{ user.profile.gravatar_url }}
+	{{ target_user.profile.gravatar_url }}
 {% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'"

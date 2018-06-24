@@ -5,10 +5,10 @@
 		<a onclick="toggleNavbar()"><li id="dropdown-widget"><img id="dropdown-icon" src="{% static 'images/dropdown_icon.png' %}"></li></a>
 		<a href="/tasks/"><li>Tasks</li></a>
 		<a href="/accounts/"><li>Users</li></a>
-		<a href="/timeline/"><li>Timeline</li></a>
+		<a href="/tasks/milestones/"><li>Milestones</li></a>
 		<a href="/accounts/{{ user.username }}">
 			<li id="user-widget"> 
-				<img class="navbar-image" src="{% include 'bases/avatar_src_base.html' %}"><span class="nav-image-text">Profile</span>
+				<img class="navbar-image" src="{% include 'bases/avatar_src_base.html' with target_user=user %}"><span class="nav-image-text">Profile</span>
 			</li>
 		</a>
 		<a href="/accounts/settings"><li id="settings-widget"><img class="navbar-image" src="{% static  'images/settings_icon.png' %}" alt="Settings"><span class="nav-image-text">Settings</span></li></a>
