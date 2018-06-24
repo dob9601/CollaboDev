@@ -83,6 +83,7 @@ def settings(request):
 
         reset_background = request.POST.get('reset_background', False)
         reset_avatar = request.POST.get('reset_avatar', False)
+        gravatar_enabled = request.POST.get('gravatar_enabled', False)
 
         profile_clean = user_verification.clean_profile_changes(
             user_first_name,
@@ -93,6 +94,7 @@ def settings(request):
             background,
             reset_avatar,
             avatar,
+            gravatar_enabled,
             user
         )
         user = profile_clean[0]

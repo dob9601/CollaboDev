@@ -4,7 +4,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.core.files.storage import FileSystemStorage, default_storage
 
 
-def clean_profile_changes(first_name, last_name, biography, url, reset_background, background, reset_avatar, avatar, user):
+def clean_profile_changes(first_name, last_name, biography, url, reset_background, background, reset_avatar, avatar, gravatar_enabled, user):
     errors = []
     success_list = []
 
@@ -82,6 +82,14 @@ def clean_profile_changes(first_name, last_name, biography, url, reset_backgroun
             success_list.append('profile picture')
         else:
             errors.append('profile picture')
+    if gravatar_enabled:
+        if not user.profile.gravatar_enabled:
+            user.profile.gravatar_enabled = True
+            success_list.append('gravatar preferences')
+    else:
+        if user.profile.gravatar_enabled:
+            user.profile.gravatar_enabled = False
+            success_list.append('gravatar preferences')
 
     return [user, success_list, errors]
 

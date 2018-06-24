@@ -2,6 +2,6 @@
 
 {% if target_user.profile.avatar %}
 	{{ target_user.profile.avatar.url }}?v={{ target_user.profile.avatar_version }}
-{% else %}
+{% elif target_user.profile.gravatar_enabled %}
 	{{ target_user.profile.gravatar_url }}
 {% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'"

@@ -24,7 +24,7 @@
 		background.style.backgroundImage = 'url("{% if chosen_user.profile.background %}{{ chosen_user.profile.background.url }}?v={{ chosen_user.profile.avatar_version }}{% endif %}"),linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), repeating-linear-gradient(45deg,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+','+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[0]+' 10px,#000 10px,'+setLevelColour('{{ chosen_user.profile.tasks_completed }}')[1]+' 20px)'
 		</script>
 		<div id="header-div">
-			<img id="profile-picture" src="{% if chosen_user.profile.avatar %}{{ chosen_user.profile.avatar.url }}?v={{ chosen_user.profile.avatar_version }}{% else %}{{ chosen_user.profile.gravatar_url }}{% endif %}" onerror="this.src='{% static 'accounts/images/default_avatar.png' %}'"/>
+			<img id="profile-picture" src="{% include 'bases/avatar_src_base.html' with target_user=chosen_user %}"/>
 			<h1>{{ chosen_user.first_name }} {{ chosen_user.last_name }} / {{ chosen_user.username }}{% if chosen_user.is_superuser %} <span class="tooltip">&#9733;<span class="tooltiptext">This user has administrative privileges</span></span>{% endif %}</h1>
 			<script>
 			var profilePicture = document.getElementById('profile-picture')

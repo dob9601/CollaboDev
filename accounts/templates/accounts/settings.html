@@ -56,6 +56,7 @@
 				<p><label>URL: </label><input type="text" name="profile_url" value="{{ user.profile.url }}"></p>
 				<p><label>Profile Picture:</label><input type="file" name="avatar" accept="image/x-png,image/jpeg">
 				<p><label>Reset Profile Picture</label><input type="checkbox" name="reset_avatar">
+				<p><label>Gravatar Integration</label><input type="checkbox" name="gravatar_enabled" {% if user.profile.gravatar_enabled %}checked{% endif %}>
 				<p><label>Background:</label><input type="file" name="background" accept="image/x-png,image/jpeg">
 				<p><label>Reset Background</label><input type="checkbox" name="reset_background">
 			</div>

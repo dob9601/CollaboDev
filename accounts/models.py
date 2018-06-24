@@ -35,6 +35,7 @@ class Profile(models.Model):
         default='',
         max_length=1000,
     )
+    gravatar_enabled = models.BooleanField(default=True)
 
     url = models.URLField(max_length=2000,
                           blank=True)
