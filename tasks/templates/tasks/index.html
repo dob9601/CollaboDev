@@ -16,7 +16,7 @@
 			{% if error_message %}
 				<p>{{ error_message }}</p>
 			{% else %}
-				<p>On this page you can see a list of all open and closed tasks. You are also able to claim any open and unclaimed tasks for yourself.</p>
+				<p>On this page you can see a list of all open and closed tasks. You are also able to claim any open tasks for yourself or manage tasks that you have already claimed.</p>
 			{% endif %}
 		</div>
 
@@ -102,7 +102,16 @@
 					<td style="display: none">{{ task.task_description }}</td>
 					<td style="display: none">{{ task.task_owner }}</td>
 					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.deadline_date }}</td>
+					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
+						{{ task.deadline_date }}
+						<script>
+						if ('{{ task.deadline_date }}' === 'Jan. 1, 1, midnight') {
+							var tt = document.getElementsByClassName('task-table-deadline');
+							var td = tt[tt.length-1];
+							td.innerHTML = 'None';
+						}
+						</script>
+					</td>
 					<td class="task-table-size"  onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
 					<td class="task-table-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
 					<td style="display: none">{{ task.task_open }}</td>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+		<link rel="stylesheet" type="text/css" href="{% static 'tasks/milestones/css/style.css' %}" />
+	</head>
+	<body>
+		{% include 'bases/navbar_base.html' %}
+		<div id="page-description">
+			{% if error_message %}
+				<p>{{ error_message }}</p>
+			{% else %}
+				<p>Milestones are a way to track progress towards development goals. A milestone will have certain tasks associated with it. Upon the completion of said tasks, the milestone will automatically be marked as met.</p>
+			{% endif %}
+		</div>
+		<table class="header-table">
+			<td><h1>Unmet Milestones</h1></td>
+			<td><button class="header-button" onclick="">Add a milestone</button></td>
+		</table>
+		<h1>Met Milestones</h1>
+		{% include 'bases/footer_base.html' %}
+	</body>
+</html>
