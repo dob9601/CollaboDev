@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from cAdmin.views import first_time_setup
 from . import views
 
+handler404 = 'CollaboDev.views.error404'
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('tasks/', include('tasks.urls'), name='tasks'),

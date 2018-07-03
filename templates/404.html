@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		{% include 'bases/head_base.html' %}
+		<link rel="stylesheet" type="text/css" href="{% static '404/css/style.css' %}">
+		<title>404</title>
+	</head>
+	<body>
+		{% if user.is_authenticated %}{% include 'bases/navbar_base.html' %}{% endif %}
+		<h1>40<span class="crimson">4</span></h1>
+		<h2>Page Not Found</h2>
+		<p><i>{{ message }}?</i></p>
+	</body>
+</html>
