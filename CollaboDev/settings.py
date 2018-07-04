@@ -12,6 +12,24 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+import random
+import string
+
+try:
+    with open('CollaboDev/SECRET_KEY', 'r') as secret_key_file:
+        SECRET_KEY = secret_key_file.read()
+        if SECRET_KEY == '':
+            raise FileNotFoundError
+except FileNotFoundError:
+    with open('CollaboDev/SECRET_KEY', 'w') as secret_key_file:
+        chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
+        SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
+        secret_key_file.write(SECRET_KEY)
+        secret_key_file.close()
+
+ALLOWED_HOSTS = ["127.0.0.1"]
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +38,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't&uv8u$lm$&$g@mb%hq)3zih-7_dxmb#ic@)2sy810f*itf)ve'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ["192.168.0.90", "127.0.0.1"]
 
 
 # Application definition
