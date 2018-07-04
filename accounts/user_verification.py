@@ -4,7 +4,16 @@ from django.contrib.auth import update_session_auth_hash
 from django.core.files.storage import FileSystemStorage, default_storage
 
 
-def clean_profile_changes(first_name, last_name, biography, url, reset_background, background, reset_avatar, avatar, gravatar_enabled, user):
+def clean_profile_changes(first_name,
+                          last_name,
+                          biography,
+                          url,
+                          reset_background,
+                          background,
+                          reset_avatar,
+                          avatar,
+                          gravatar_enabled,
+                          user):
     errors = []
     success_list = []
 
@@ -69,14 +78,14 @@ def clean_profile_changes(first_name, last_name, biography, url, reset_backgroun
         user.profile.avatar = None
         success_list.append('profile picture')
     if avatar:
-        fs = FileSystemStorage()
+        file_system = FileSystemStorage()
         extension = avatar.name[avatar.name.rfind(".")+1:]
-        if extension in ['jpg', 'jpeg', 'jpe','jif', 'jfif', 'jfi', 'png']:
+        if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
             filename = user.username + '_avatar.' + extension
             old_filename = user.profile.avatar.name
             if old_filename != '':
                 default_storage.delete(old_filename)
-            image = fs.save(filename, avatar)
+            image = file_system.save(filename, avatar)
             user.profile.avatar = image
             user.profile.avatar_version += 1
             success_list.append('profile picture')
