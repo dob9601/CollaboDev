@@ -22,8 +22,11 @@ try:
             raise FileNotFoundError
 except FileNotFoundError:
     with open('CollaboDev/SECRET_KEY', 'w') as secret_key_file:
-        chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).replace('\'', '').replace('"', '').replace('\\', '')
-        SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
+        chars = ''.join([string.ascii_letters, string.digits,
+                         string.punctuation])
+        chars.replace('\'', '').replace('"', '').replace('\\', '')
+        string = [random.SystemRandom().choice(chars) for i in range(50)]
+        SECRET_KEY = ''.join(string)
         secret_key_file.write(SECRET_KEY)
         secret_key_file.close()
 

@@ -42,10 +42,12 @@ def index(request):
 
     return render(request, 'tasks/index.html', context)
 
+
 @login_required
 def milestones(request):
     context = {}
     return render(request, 'tasks/milestones.html', context)
+
 
 @login_required
 def delete(request):

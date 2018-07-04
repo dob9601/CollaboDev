@@ -71,7 +71,6 @@ def settings(request):
 
     if request.method == 'POST':
         user = request.user
-        
 
         user_first_name = request.POST.get('first_name', '')
         user_last_name = request.POST.get('last_name', '')
