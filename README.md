@@ -29,8 +29,6 @@ Get setup in under 50 seconds by following this awesome GIF:
  ```
  python manage.py runserver 0.0.0.0:80 
  ```
- 
-**NOTE: As this software is early access, debug mode must be enabled for it to function properly (serving of static files not setup completely). For this reason, I would advise against hosting it on the internet (instead, host it within a LAN). Fixing this issue is high up on my list of priorities**
 
 <p>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
