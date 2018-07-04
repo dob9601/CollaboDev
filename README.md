@@ -10,7 +10,7 @@
 ## Installation
 
 ### GIF
-Get setup in under 50 seconds by following this awesome GIF:
+Get setup in under 50 seconds by following this awesome GIF (outdated, see below):
 
 ![Setup GIF](https://i.imgur.com/jPMKhe1.gif)
 ---
@@ -22,7 +22,8 @@ Get setup in under 50 seconds by following this awesome GIF:
  - Alternatively, if you don't wish to use Git, download the repository [here](https://github.com/dob9601/CollaboDev/archive/master.zip)
  - Open up a console to the project directory and run the following commands in order to create a superuser and run the server on 127.0.0.1:8000.
  ```
- python manage.py createsuperuser
+ python manage.py collectstatic
+ python manage.py migrate
  python manage.py runserver
  ```
  - If you wish to access the CollaboDev web app from other computers within the same network, run the command (server will be hosted on local machine's ip address):
