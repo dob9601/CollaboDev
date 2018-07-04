@@ -21,7 +21,7 @@ def logout(request):
     auth_logout(request)
     return redirect('/')
 
-
+# pylint: disable-msg=unused-argument
 def error404(request, exception):
     draw_pos = str(randint(1, 10))
     if draw_pos[-1] == '1':

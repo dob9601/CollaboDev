@@ -61,7 +61,7 @@ def user_status(request):
 
 
 # Remove disable ASAP.
-# pylint: disable-msg=too-many-branches
+# pylint: disable-msg=too-many-branches, too-many-locals, duplicate-code
 @login_required
 def settings(request):
     context = {
