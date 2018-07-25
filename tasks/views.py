@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from .models import Task
@@ -12,7 +13,14 @@ def index(request):
     View for the main index of the 'tasks' section of the
     webapp
     """
-    tasks = Task.objects.order_by('-publish_date')
+
+    tasks = list(Task.objects.order_by('-publish_date'))
+
+    moved_tasks = 0
+    for task in tasks:
+        if task.task_owner == User.objects.get(username='admin'):
+            tasks.remove(task)
+            tasks.insert(moved_tasks, task)
 
     context = {
         'tasks': tasks,
@@ -45,6 +53,9 @@ def index(request):
 
 @login_required
 def milestones(request):
+    """
+    Temporary placeholder for milestones page
+    """
     context = {}
     return render(request, 'tasks/milestones.html', context)
 
