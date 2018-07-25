@@ -49,7 +49,8 @@ def delete_user(request):
     View to handle the deletion of users
     """
     user = User.objects.get(pk=int(request.POST['user']))
-    user.delete()
+    if not user.is_superuser:
+        user.delete()
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
 
