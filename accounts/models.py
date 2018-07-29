@@ -14,6 +14,8 @@ class Profile(models.Model):
     Extension of user model, added automatically upon user creation.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    server_owner = models.BooleanField(default=False)
+
     current_task = models.OneToOneField(
         Task,
         on_delete=models.CASCADE,

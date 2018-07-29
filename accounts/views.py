@@ -2,10 +2,11 @@ from datetime import timedelta
 from json import dumps
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from django.utils import timezone
 
 from . import user_verification
@@ -64,12 +65,10 @@ def user_status(request):
 # pylint: disable-msg=too-many-branches, too-many-locals, duplicate-code
 @login_required
 def settings(request):
-    context = {
-        'errors': [],
-        'successful_changes': [],
-    }
-
     if request.method == 'POST':
+        request.session['errors'] = []
+        request.session['successful_changes'] = []
+
         user = request.user
 
         user_first_name = request.POST.get('first_name', '')
@@ -97,8 +96,8 @@ def settings(request):
             user
         )
         user = profile_clean[0]
-        context['successful_changes'] += profile_clean[1]
-        context['errors'] += profile_clean[2]
+        request.session['successful_changes'] += profile_clean[1]
+        request.session['errors'] += profile_clean[2]
 
         # Account
         user_username = request.POST['username']
@@ -117,9 +116,22 @@ def settings(request):
             request
         )
         user = password_clean[0]
-        context['successful_changes'] += password_clean[1]
-        context['errors'] += password_clean[2]
+        request.session['successful_changes'] += password_clean[1]
+        request.session['errors'] += password_clean[2]
 
         user.save()
+
+        return HttpResponseRedirect(reverse('accounts:settings'))
+
+    try:
+        context = {
+            'successful_changes': request.session['successful_changes'],
+            'errors': request.session['errors']
+        }
+    
+        del request.session['successful_changes']
+        del request.session['errors']
+    except KeyError:
+        context = {}
 
     return render(request, 'accounts/settings.html', context)
