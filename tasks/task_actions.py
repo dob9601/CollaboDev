@@ -17,11 +17,6 @@ def submit(request):
     request for the task and raises an error if any of the required data is
     missing.
     """
-    if request.POST['deadline_date'] != '':
-        deadline_date = request.POST['deadline_date']
-    else:
-        deadline_date = datetime(1, 1, 1)
-
     if request.POST['task_owner'] != '':
         task_owner = User.objects.get(username=request.POST['task_owner'])
     else:
@@ -33,9 +28,11 @@ def submit(request):
             task_description=request.POST['task_description'],
             task_owner=task_owner,
             task_priority=request.POST['task_priority'],
-            deadline_date=deadline_date,
             task_size=request.POST['task_size'],
         )
+        if request.POST['deadline_date'] != '':
+            new_task.deadline_date = request.POST['deadline_date']
+
         new_task.clean()
         new_task.save()
 

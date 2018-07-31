@@ -44,7 +44,7 @@
 					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
 						{{ task.deadline_date }}
 						<script>
-						if ('{{ task.deadline_date }}' === 'Jan. 1, 1, midnight') {
+							if ('{{ task.deadline_date }}' === '{{ task.publish_date }}') {
 							var tt = document.getElementsByClassName('task-table-deadline');
 							var td = tt[tt.length-1];
 							td.innerHTML = 'None';
