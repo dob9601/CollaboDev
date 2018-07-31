@@ -1,9 +1,12 @@
 ![CollaboDev](https://imgur.com/Vj1C4fO.png)
 <h2 align=center>Contributing Guidelines</h2>
 
+### General
+ - Variable names, front end HTML should all be written in **British English** - American English will be frowned upon
 ### Python
  - Code should conform to flake8 and pylint linters 
 ### HTML
+ - HTML between django `{% %}` tags should be indented
  - Inverted commas should be used for tag attributes
 ### JavaScript
  - Code should conform to the eslint plugin 'eslint-plugin-standard'
