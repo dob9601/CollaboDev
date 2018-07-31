@@ -39,3 +39,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.task_name
+
+class Repository(models.Model):
+    name = models.CharField(max_length=100, blank=False)
+    url = models.CharField(max_length=159, blank=False)
