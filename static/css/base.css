@@ -351,6 +351,11 @@ a .nav,
 	padding: 5px;
 }
 
+.standard-form input[type="submit"] {
+	margin: 0.5%;
+	border: none;
+}
+
 .standard-form label {
 	display: inline-block;
 	width: 300px;
