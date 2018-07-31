@@ -1,5 +1,6 @@
 from django.db import models
 
+from requests import get
 
 class Settings(models.Model):
     """
@@ -7,7 +8,9 @@ class Settings(models.Model):
     There should only be ONE INSTANCE of this model.
     """
     # GITHUB
-    github_integrated = models.BooleanField(default=False)
+    github_org_name = models.CharField(max_length=39, blank=True)
+    github_org_url = models.URLField(max_length=2000, blank=True)
+    github_org_api_url = models.URLField(max_length=2000, blank=True)
 
     # PROFILE
     profile_allow_biography = models.BooleanField(default=True)
@@ -27,3 +30,9 @@ class Settings(models.Model):
     # CONFIG
     settings_initialised = models.BooleanField(default=False)
     settings_setup_code = models.CharField(blank=True, max_length=19)
+    
+    def save(self, *args, **kwargs):
+        if self.github_org_name:
+            self.github_org_url = 'https://github.com/orgs/' + self.github_org_name
+            self.github_org_api_url = 'https://api.github.com/orgs/' + self.github_org_name
+        super(Settings, self).save(*args, **kwargs)
