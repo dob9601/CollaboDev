@@ -161,6 +161,7 @@ def first_time_setup(request):
                     password=admin_pwd,
                     is_superuser=True,
                 )
+                admin_user.profile.server_owner = True
                 admin_user.save()
             else:
                 pass
