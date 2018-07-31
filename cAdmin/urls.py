@@ -9,6 +9,5 @@ urlpatterns = [
     path('users/create/', views.create_user, name='create_user'),
     path('reset_collabodev/', views.reset_collabodev, name='reset_collabodev'),
     path('reset_page/', views.reset_page, name='reset_page'),
-    path('github/', views.github,
-         name='github'),
+    path('github/', views.github, name='github'),
 ]

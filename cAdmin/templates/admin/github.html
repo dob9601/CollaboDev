@@ -7,5 +7,22 @@
 		<title>GitHub Integration</title>
 	</head>
 	<body>
+		{% include 'bases/navbar_base.html' %}
+		<p>Register your GitHub Organisation with CollaboDev below. NOTE: This currently only work with public organisations</p>
+		<form method="post" class="standard-form">
+			{% csrf_token %}
+			<p><label>Organisation name:</label><input type="text" name="org_name"></p>
+			{% if invalid_org_name %}
+				<p>Please enter a valid GitHub Organisation name</p>
+			{% elif valid_org_name %}
+				<p>Organisation successfully linked</p>
+			{% endif %}
+			<p><input class="button" type="submit"></p>
+			<h2>Current Organisation</h2>
+			{% if current_org != '' %}
+				<p>CollaboDev is currently linked with {{ current_org }}</p>
+			{% endif %}
+		</form>
 		{% include 'bases/footer_base.html' %}
 	</body>
+</html>

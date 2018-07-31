@@ -1,5 +1,6 @@
 from random import choice
 from os import system
+from requests import get
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -49,7 +50,7 @@ def delete_user(request):
     View to handle the deletion of users
     """
     user = User.objects.get(pk=int(request.POST['user']))
-    if not user.is_superuser:
+    if not user.is_superuser or request.user.profile.server_owner:
         user.delete()
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
@@ -102,11 +103,33 @@ def reset_page(request):
 @user_passes_test(lambda u: u.is_superuser)
 def github(request):
     """
-    GitHub Integration settings page
+    GitHub Integration settings page. Provides administrators with the ability to
+    associate a GitHub Organisation with CollaboDev and import all of its repositories
     """
-    context = {}
+    session_data = dict(request.session)
 
-    return render(request, 'admin/github.html', context)
+    request.session.pop('invalid_org_name', None)
+    request.session.pop('valid_org_name', None)
+
+    settings = Settings.objects.get(pk=1)
+    session_data['current_org'] = settings.github_org_name
+
+    if request.method == 'POST':
+        org_name = request.POST['org_name']
+        org_data = get('https://api.github.com/orgs/' + org_name).json()
+
+        try:
+            if org_data['login'] == org_name:
+                settings.github_org_name = org_name
+                settings.save()
+                request.session['valid_org_name'] = True
+            else:
+                raise KeyError
+        except KeyError:
+            request.session['invalid_org_name'] = True
+
+        return HttpResponseRedirect(reverse('cAdmin:github'))
+    return render(request, 'admin/github.html', session_data)
 
 
 def first_time_setup(request):
@@ -135,9 +158,9 @@ def first_time_setup(request):
                     first_name=request.POST['admin-first-name'],
                     last_name=request.POST['admin-last-name'],
                     email=request.POST['admin-email'],
-                    password=admin_pwd
+                    password=admin_pwd,
+                    is_superuser=True,
                 )
-                admin_user.is_superuser = True
                 admin_user.save()
             else:
                 pass
