@@ -18,7 +18,7 @@
 			</script>
 
 			<br>
-			<button onclick="location.href='/tasks/'">Welcome Back</button>
+			<button onclick="location.href='/tasks/'">Login</button>
 			<button onclick="location.href='/logout/'">Not {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}?</button>
 		{% else %}
 			<div id="profile-picture">
