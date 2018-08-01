@@ -1,11 +1,12 @@
 from random import choice
 from os import system
 from requests import get
+from json import dumps
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -131,6 +132,14 @@ def github(request):
         return HttpResponseRedirect(reverse('cAdmin:github'))
     return render(request, 'admin/github.html', session_data)
 
+@user_passes_test(lambda u: u.is_superuser)
+def update(request):
+    """
+    Uses Git to update CollaboDev to its latest version.
+    """
+    system('git pull https://github.com/dob9601/CollaboDev.git')
+
+    return HttpResponse(dumps({'success': True}), content_type='application/json')
 
 def first_time_setup(request):
     """

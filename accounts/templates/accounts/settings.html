@@ -82,6 +82,27 @@
 					<h2>CollaboDev Admin</h2>
 					<p><a href="/admin/users/">Manage users</a></p>
 					<p><a href="/admin/github/">GitHub Integration</a></p>
+					<script>
+					function updateCollaboDev() {
+						updateButton = document.getElementById('update-button')
+						updateButton.innerHTML = 'Updating CollaboDev'
+						updateButton.onclick = ''
+						updateButton.style.backgroundColor = '#a53533'
+
+						var request = new XMLHttpRequest()
+						request.open('POST', '/admin/update/')
+						request.setRequestHeader('X-CSRFToken', '{{ csrf_token }}')
+						request.onreadystatechange = function () {
+							if (request.readyState === 4 && request.status === 200) {
+								updateButton.innerHTML = 'Successfully Updated'
+							}
+						}
+						request.send()
+
+					}
+					</script>
+
+					<p><a id="update-button" onclick="updateCollaboDev()">Update CollaboDev</a></p>
 					<p><a onclick="show_modal('{{ csrf_token }}', 'reset-collabodev')">Reset CollaboDev to its original settings</a></p>
 				{% endif %}
 			</div>

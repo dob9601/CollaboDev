@@ -10,4 +10,5 @@ urlpatterns = [
     path('reset_collabodev/', views.reset_collabodev, name='reset_collabodev'),
     path('reset_page/', views.reset_page, name='reset_page'),
     path('github/', views.github, name='github'),
+    path('update/', views.update, name='update'),
 ]
