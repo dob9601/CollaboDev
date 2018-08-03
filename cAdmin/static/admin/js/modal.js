@@ -3,7 +3,7 @@
 // eslint-disable-next-line camelcase
 function show_modal (data, type) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
-	const modalText = modalBox.children[0].children[1]
+	const modalText = modalBox.children[1]
 
 	if (type === 'new-user') {
 		modalText.innerHTML = '<h3>Create User</h3>' +

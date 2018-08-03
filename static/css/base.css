@@ -12,6 +12,10 @@ a {
 	text-decoration: none;
 }
 
+hr {
+	border-style: solid;
+}
+
 a:focus,
 button:focus,
 input[type=button]:focus,
@@ -287,7 +291,7 @@ a .nav,
 }
 
 .modal-box {
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.8);
 	display: none;
 	height: 100%;
 	left: 0;
@@ -300,23 +304,11 @@ a .nav,
 	z-index: 1;
 }
 
-.modal-content {
-	background-color: #8eaebd;
-	margin: 10% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-}
-
-.modal-content * {
-	background-color: #8eaebd;
-	color: #fff;
-}
-
 .modal-close-button {
-	color: #3f5882;
+	color: #fff;
 	float: right;
-	font-size: 2em;
+	font-size: 3em;
+	margin-right: 20px;
 }
 
 .modal-close-button:hover,
@@ -326,9 +318,9 @@ a .nav,
 	cursor: pointer;
 }
 
-.modal-content label {
-	display: inline-block;
-	width: 10%;
+.modal-text {
+	margin: 20px;
+	font-size: 1.1em;
 }
 
 .modal-text select,

@@ -3,7 +3,7 @@
 // eslint-disable-next-line camelcase
 function show_modal (dataType, data) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
-	const modalText = modalBox.children[0].children[1]
+	const modalText = modalBox.children[1]
 
 	if (dataType === 'task_data') {
 		var taskStatus
@@ -12,7 +12,7 @@ function show_modal (dataType, data) {
 		} else {
 			taskStatus = 'Closed'
 		}
-		modalText.innerHTML = '<h3 class="modal-header">' + document.getElementById(data).children[0].innerHTML + '</h3><br>' +
+		modalText.innerHTML = '<h3 class="modal-header">' + document.getElementById(data).children[0].innerHTML + '</h3><hr>' +
 					'<b>Description: </b>' + document.getElementById(data).children[1].innerHTML + '<br>' +
 					'<b>Owner: </b>' + document.getElementById(data).children[2].innerHTML + '<br>' +
 					'<b>Priority: </b>' + document.getElementById(data).children[3].innerHTML + '<br>' +
