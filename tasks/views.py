@@ -18,9 +18,10 @@ def index(request):
 
     moved_tasks = 0
     for task in tasks:
-        if task.task_owner == User.objects.get(username='admin'):
+        if task.task_owner == request.user:
             tasks.remove(task)
             tasks.insert(moved_tasks, task)
+            moved_tasks += 1
 
     context = {
         'tasks': tasks,
