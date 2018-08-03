@@ -70,7 +70,7 @@ button,
 	bottom: 0;
 	font-size: 0.8em;
 	height: 40px;
-	position: absolute;
+	position: static;
 	text-align: center;
 	width: 100%;
 	z-index: 1;
