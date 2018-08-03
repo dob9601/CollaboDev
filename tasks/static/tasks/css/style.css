@@ -81,8 +81,8 @@
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	border: none;
+	background-color: #c6504f;
 	color: #fff;
-	background: #30415d;
 	padding: 4% 20px;
 	text-decoration: none;
 	width: 100%;
@@ -98,7 +98,7 @@
 .claim:hover,
 .yes-button:hover,
 .no-button:hover {
-	background-color: #384d72;
+	background-color: #a53533; 
 }
 
 input:focus,
@@ -107,11 +107,10 @@ button:focus {
 }
 
 #create-task-button {
-	margin: 1% 1% 1% 40%;
+	display: block;
 	width: 20%;
 	text-align: center;
 	padding: 1%;
-	background-color: #3f5882;
 }
 
 ::-webkit-calendar-picker-indicator {

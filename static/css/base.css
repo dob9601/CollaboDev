@@ -333,14 +333,21 @@ a .nav,
 .modal-text select,
 .modal-text input {
 	border: 0;
-	margin: 5px 0 5px 0;
-	width: 90%;
-	background-color: #3f5882;
+	margin: 5px 0;
+	background-color: #fff;
 	padding: 2px;
 }
 
+.modal-text select {
+	width: 100.7%;
+}
+
 .modal-text input {
-	width: 89.5%;
+	width: 100%;
+}
+
+.modal-header {
+	font-size: 1.4em;
 }
 
 .standard-form input {

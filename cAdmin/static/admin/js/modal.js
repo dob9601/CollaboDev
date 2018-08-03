@@ -32,8 +32,3 @@ function show_modal (data, type) {
 }
 
 var modal = document.getElementsByClassName('modal-box')[0]
-window.onclick = function (event) {
-	if (event.target === modal) {
-		modal.style.display = 'none'
-	}
-}

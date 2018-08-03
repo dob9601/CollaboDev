@@ -21,13 +21,13 @@ function show_modal (dataType, data) {
 					'<b>Age: </b>' + document.getElementById(data).children[6].innerHTML + '<br>' +
 					'<b>Status: </b> ' + taskStatus + '<br>'
 	} else if (dataType === 'create_task') {
-		modalText.innerHTML = '<h3>Create Task</h3>' +
+		modalText.innerHTML = '<h3 class="modal-header">Create Task</h3><hr>' +
 					'<form action="/tasks/submit/" method="post">' +
 					'<input type="hidden" name="csrfmiddlewaretoken" value="' + data + '">' +
-					'<label>Task Name: </label><input type="text" name="task_name" id="task_name" autocomplete="off"><br>' +
-					'<label>Task Description: </label><input type="text" name="task_description" id="task_description" autocomplete="off"><br>' +
-					'<label>Task Owner: </label><input type="text" name="task_owner" id="task_owner" autocomplete="off"><br>' +
-					'<label>Task Priority: </label><select name="task_priority" id="task_priority" autocomplete="off">' +
+					'<label>Task Name: </label><br><input type="text" name="task_name" id="task_name" autocomplete="off"><br>' +
+					'<label>Task Description: </label><br><input type="text" name="task_description" id="task_description" autocomplete="off"><br>' +
+					'<label>Task Owner: </label><br><input type="text" name="task_owner" id="task_owner" autocomplete="off"><br>' +
+					'<label>Task Priority: </label><br><select name="task_priority" id="task_priority" autocomplete="off">' +
 					'	<option value="1">1</option>' +
 					'	<option value="2">2</option>' +
 					'	<option value="3">3</option>' +
@@ -39,7 +39,7 @@ function show_modal (dataType, data) {
 					'	<option value="9">9</option>' +
 					'	<option value="10">10</option>' +
 					'</select><br>' +
-					'<label>Task Size: </label><select name="task_size" id="task_size" autocomplete="off">' +
+					'<label>Task Size: </label><br><select name="task_size" id="task_size" autocomplete="off">' +
 					'	<option value="1">XXS</option>' +
 					'	<option value="2">XS</option>' +
 					'	<option value="3">S</option>' +
@@ -48,7 +48,7 @@ function show_modal (dataType, data) {
 					'	<option value="6">XL</option>' +
 					'	<option value="7">XXL</option>' +
 					'</select><br>' +
-					'<label>Deadline: </label><input type="date" name="deadline_date" id="deadline_date" autocomplete="off"><br>' +
+					'<label>Deadline: </label><br><input type="date" name="deadline_date" id="deadline_date" autocomplete="off"><br>' +
 					'<input id="create-task-button" type="submit" value="Create" />' +
 					'</form>'
 	} else if (dataType === 'confirmation') {
@@ -60,8 +60,3 @@ function show_modal (dataType, data) {
 }
 
 var modal = document.getElementsByClassName('modal-box')[0]
-window.onclick = function (event) {
-	if (event.target === modal) {
-		modal.style.display = 'none'
-	}
-}
