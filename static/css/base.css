@@ -323,6 +323,10 @@ a .nav,
 	font-size: 1.1em;
 }
 
+.modal-text hr {
+	width: 100%;
+}
+
 .modal-text select,
 .modal-text input {
 	border: 0;
