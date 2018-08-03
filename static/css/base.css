@@ -75,7 +75,6 @@ button,
 	width: 100%;
 	z-index: 1;
 	clear: left;
-	margin-top: 20px;
 }
 
 .footer a,
@@ -83,6 +82,10 @@ button,
 	line-height: 40px;
 	margin: 0;
 	position: relative;
+}
+
+.footer p {
+	margin: auto 5px;
 }
 
 .footer img {
