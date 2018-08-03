@@ -14,7 +14,7 @@ def index(request):
     webapp
     """
 
-    tasks = list(Task.objects.order_by('-publish_date'))
+    tasks = list(Task.objects.order_by('-bump_date'))
 
     moved_tasks = 0
     for task in tasks:

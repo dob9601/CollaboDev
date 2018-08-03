@@ -132,3 +132,7 @@ button:focus {
 .no-tasks-message {
 	padding: 2%;
 }
+
+.bump-star {
+	color: #2ecc40;
+}

@@ -37,7 +37,7 @@
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}">
-					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
+					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{% if task.publish_date != task.bump_date %}<span class="bump-star">★</span> {% endif %}{{ task.task_name }}</td>
 					<td style="display: none">{{ task.task_description }}</td>
 					<td style="display: none">{{ task.task_owner }}</td>
 					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
