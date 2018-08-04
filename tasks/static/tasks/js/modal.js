@@ -5,6 +5,8 @@ function show_modal (dataType, data) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
 	const modalText = modalBox.children[1]
 
+	document.body.style.overflowY = 'hidden'
+
 	if (dataType === 'task_data') {
 		var taskStatus
 		if (document.getElementById(data).children[7].innerHTML === 'True') {

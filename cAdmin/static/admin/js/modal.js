@@ -4,9 +4,11 @@
 function show_modal (data, type) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
 	const modalText = modalBox.children[1]
+	
+	document.body.style.overflowY = 'hidden'
 
 	if (type === 'new-user') {
-		modalText.innerHTML = '<h3>Create User</h3>' +
+		modalText.innerHTML = '<h3>Create User</h3><hr>' +
 					'<form action="create/" method="post">' +
 					'<input type="hidden" name="csrfmiddlewaretoken" value="' + data + '">' +
 					'<label>Username</label><input type="text" name="username" id="username" autocomplete="off"><br>' +
@@ -16,11 +18,11 @@ function show_modal (data, type) {
 					'<input type="submit" value="Create User" id="create-user-button">' +
 					'</form>'
 	} else if (type === 'show-pass') {
-		modalText.innerHTML = '<div class="pword-content"><h2>Temporary password for new user:</h2>' +
+		modalText.innerHTML = '<div class="pword-content"><h3>Temporary password for new user:</h3><hr>' +
 					'<b><p class="temp-pword">' + data + '</p></b>' +
 					'<p>Take note of this now, it will not be shown again.</p></div>'
 	} else if (type === 'reset-collabodev') {
-		modalText.innerHTML = '<h3>Reset CollaboDev</h3>' +
+		modalText.innerHTML = '<h3>Reset CollaboDev</h3><hr>' +
 					'<p>Are you sure you want to reset CollaboDev? (THIS ACTION CANNOT BE UNDONE)</p>' +
 					'<form action="/admin/reset_collabodev/" method="post">' +
 					'<input type="hidden" name="csrfmiddlewaretoken" value="' + data + '">' +
