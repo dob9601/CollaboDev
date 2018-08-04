@@ -93,8 +93,10 @@
 
 .close-task,
 .unclaim,
-.claim {
+.claim,
+#create-task-button {
 	display: block;
+	height: 30px;
 }
 
 #create-task-button:hover,
@@ -112,10 +114,7 @@ button:focus {
 }
 
 #create-task-button {
-	display: block;
 	width: 20%;
-	text-align: center;
-	padding: 1%;
 	margin: 10px auto;
 }
 
@@ -125,7 +124,8 @@ button:focus {
 
 .yes-button,
 .no-button {
-	width: 10%;
+	width: 40%;
+	max-width: 175px;
 	background-color: #c6504f;
 	padding: 10px 20px;
 	margin: 0 10px;
@@ -133,6 +133,7 @@ button:focus {
 
 .buttons {
 	text-align: center;
+	margin-top: 40vh;
 }
 
 .no-tasks-message {
