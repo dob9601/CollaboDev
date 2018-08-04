@@ -111,6 +111,7 @@ button:focus {
 	width: 20%;
 	text-align: center;
 	padding: 1%;
+	margin: 10px auto;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -120,7 +121,7 @@ button:focus {
 .yes-button,
 .no-button {
 	width: 10%;
-	background-color: #3f5882;
+	background-color: #c6504f;
 	padding: 10px 20px;
 	margin: 0 10px;
 }
