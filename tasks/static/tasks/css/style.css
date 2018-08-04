@@ -83,13 +83,18 @@
 	border: none;
 	background-color: #c6504f;
 	color: #fff;
-	padding: 4% 20px;
 	text-decoration: none;
 	width: 100%;
 	text-align: center;
 	cursor: pointer;
 	-webkit-text-size-adjust: none;
 	transition: 0.4s background-color;
+}
+
+.close-task,
+.unclaim,
+.claim {
+	display: block;
 }
 
 #create-task-button:hover,
