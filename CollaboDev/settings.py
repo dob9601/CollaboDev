@@ -149,7 +149,7 @@ MEDIA_URL = '/user_content/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/tasks/'
-LOGIN_URL = '/login/'
+LOGIN_URL = '/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
