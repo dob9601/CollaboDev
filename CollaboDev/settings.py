@@ -30,7 +30,7 @@ except FileNotFoundError:
         secret_key_file.write(SECRET_KEY)
         secret_key_file.close()
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
