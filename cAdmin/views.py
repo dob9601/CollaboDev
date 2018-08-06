@@ -1,7 +1,7 @@
 from random import choice
-from os import system
+import os
 from requests import get
-from json import dumps
+import json
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -84,7 +84,7 @@ def reset_collabodev(request):
     settings = Settings.objects.get(pk=1)
     settings.settings_initialised = False
 
-    system('python manage.py flush --noinput')
+    os.system('python manage.py flush --noinput')
 
     return HttpResponseRedirect(reverse('cAdmin:reset_page'))
 
@@ -137,9 +137,22 @@ def update(request):
     """
     Uses Git to update CollaboDev to its latest version.
     """
-    system('git pull https://github.com/dob9601/CollaboDev.git')
+    update_response = os.popen('git pull https://github.com/dob9601/CollaboDev.git').read()
 
-    return HttpResponse(dumps({'success': True}), content_type='application/json')
+    if update_response.startswith('Updating'):
+        response = 1
+    elif update_response == 'Already up to date.\n':
+        response = 2
+    elif update_response == '':
+        response = -1
+
+
+    payload = {
+        'success': True,
+        'response': response
+    }
+
+    return HttpResponse(json.dumps(payload), content_type='application/json')
 
 def first_time_setup(request):
     """

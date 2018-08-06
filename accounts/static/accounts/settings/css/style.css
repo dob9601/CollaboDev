@@ -81,3 +81,12 @@
 .textarea-input * {
 	vertical-align: middle;
 }
+
+#response-paragraph {
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.loading-image {
+	margin: 100px auto 0 auto;
+}

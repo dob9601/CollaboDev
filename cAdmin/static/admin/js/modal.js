@@ -21,7 +21,7 @@ function show_modal (data, type) {
 		modalText.innerHTML = '<div class="pword-content"><h3>Temporary password for new user:</h3><hr>' +
 					'<b><p class="temp-pword">' + data + '</p></b>' +
 					'<p>Take note of this now, it will not be shown again.</p></div>'
-	} else if (type === 'reset-collabodev') {
+	} else if (type === 'reset') {
 		modalText.innerHTML = '<h3>Reset CollaboDev</h3><hr>' +
 					'<p>Are you sure you want to reset CollaboDev? (THIS ACTION CANNOT BE UNDONE)</p>' +
 					'<form action="/admin/reset_collabodev/" method="post">' +
@@ -29,8 +29,39 @@ function show_modal (data, type) {
 					'<input type="submit" value="Yes">' +
 					'<input type="button" value="No" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">' +
 					'</form>'
+	} else if (type === 'update') {
+		modalBox.children[0].style.display = 'hidden'
+		modalText.innerHTML = '<h3>Updating CollaboDev</h3><hr>' + 
+					'<img class="loading-image" src="/static/images/loading.gif">' + 
+					'<p id="response-paragraph">Hang tight! CollaboDev is currently being updated</p>'
+		
+		var responseParagraph = document.getElementById('response-paragraph')
+		
+		var request = new XMLHttpRequest()
+		request.open('POST', '/admin/update/')
+		request.setRequestHeader('X-CSRFToken', data)
+		request.onreadystatechange = function () {
+			if (request.readyState === 4 && request.status === 200) {
+				var response = JSON.parse(request.responseText)['response']
+				if (response === 1) {
+					responseParagraph.innerHTML = 'CollaboDev has been successfully updated. Please restart the server.'
+					modalText.children[0].innerHTML = 'Updated CollaboDev'
+					
+				}
+				else if (response === 2) {
+					responseParagraph.innerHTML = 'CollaboDev is already running on the latest version.'
+					modalBox.children[0].style.visibility = 'visible'
+					modalText.children[0].innerHTML = 'Update Failed'
+				}
+				else if (response === -1) {
+					responseParagraph.innerHTML = 'Could not reach the GitHub repository. Please try again later'
+					modalBox.children[0].style.visibility = 'visible'
+					modalText.children[0].innerHTML = 'Update Failed'
+				}
+				modalText.children[2].src = '/static/images/collabodev_logo.png'
+			}
+		}
+		request.send()
 	}
 	modalBox.style.display = 'block'
 }
-
-var modal = document.getElementsByClassName('modal-box')[0]

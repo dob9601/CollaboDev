@@ -347,7 +347,7 @@ a .nav,
 }
 
 .modal-header {
-	font-size: 1.4em;
+	font-size: 1.5em;
 }
 
 .standard-form input {
@@ -405,4 +405,10 @@ a .nav,
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 	opacity: 1;
+}
+
+.loading-image {
+	width: 40%;
+	max-width: 200px;
+	display: block;
 }
