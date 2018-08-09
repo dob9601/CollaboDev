@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	{% if password_page %} 
+	{% if stage == 0 %}
 		<head>
 			{% load static %}
 			{% include 'bases/head_base.html' %}
@@ -21,16 +21,7 @@
 				</div>
 			</div>
 		</body>
-	{% elif setup_complete %}
-		<head>
-			{% load static %}
-			{% include 'bases/head_base.html' %}
-		</head>
-		<body>
-			<h1>Collabo<span class="crimson">Dev</span> Setup</h1>
-			<p>In order to complete setup a system reboot is necessary. Please restart the CollaboDev process on your server</p>
-		</body>
-	{% else %}
+	{% elif stage == 1 %}
 		<head>
 			{% load static %}
 			{% include 'bases/head_base.html' %}
@@ -49,7 +40,7 @@
 						{% csrf_token %}
 						<div id="account-creation">
 							<h2>Let's start by creating you an admin account:</h2>
-							<p><label>Username: </label><input type="text" name="admin-username" autocomplete="username"></p>
+							<p><label>Username: </label><input type="text" name="admin-username" autocomplete="username" value="admin"></p>
 							<p><label>First Name: </label><input type="text" name="admin-first-name" autocomplete="given-name"></p>
 							<p><label>Last Name: </label><input type="text" name="admin-last-name" autocomplete="family-name"></p>
 							<p><label>Email: </label><input type="text" name="admin-email" autocomplete="email"></p>
@@ -69,5 +60,15 @@
 			</div>
 			{% include 'bases/footer_base.html' %}
 		</body>
+	{% elif stage == 2 %}
+		<head>
+			{% load static %}
+			{% include 'bases/head_base.html' %}
+		</head>
+		<body>
+			<h1>Collabo<span class="crimson">Dev</span> Setup</h1>
+			<p>In order to complete setup a system reboot is necessary. Please restart the CollaboDev process on your server</p>
+		</body>
+
 	{% endif %}
 </html>

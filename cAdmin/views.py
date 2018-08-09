@@ -161,15 +161,10 @@ def first_time_setup(request):
 
     settings = Settings.objects.get(pk=1)
 
-    context = {
-        'password_page': True,
-    }
-
     if request.method == 'POST':
         if 'setup-key' in request.POST:
             if request.POST['setup-key'] == settings.settings_setup_code:
-                context['password_page'] = False
-                context['settings'] = settings
+                context['stage'] = 1
         else:
             context = {}
             admin_pwd = request.POST['admin-password']
@@ -186,30 +181,22 @@ def first_time_setup(request):
                 admin_user.profile.server_owner = True
                 admin_user.save()
             else:
-                pass
+                context['stage'] = 1
                 # Raise password error
 
             if context == {}:
+                context['stage'] = 2
                 settings.settings_initialised = True
                 settings.save()
-                context = {
-                    'setup_complete': True
-                }
 
     else:
-
+        context['stage'] = 0
         try:
             open("setup-key.txt", "r")
             if settings.settings_setup_code == "":
                 raise FileNotFoundError
         except FileNotFoundError:
-            key = ((''.join(choice('0123456789ABCDEF') for i in range(4))) +
-                   '-' +
-                   (''.join(choice('0123456789ABCDEF') for i in range(4))) +
-                   '-' +
-                   (''.join(choice('0123456789ABCDEF') for i in range(4))) +
-                   '-' +
-                   (''.join(choice('0123456789ABCDEF') for i in range(4))))
+            key_parts = ''.join(choice('0123456789ABCDEF') for i in range(16))
 
             key_string = "CollaboDev Setup Code: " + key
 
