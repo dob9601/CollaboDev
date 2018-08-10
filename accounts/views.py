@@ -1,5 +1,5 @@
-from datetime import timedelta
-from json import dumps
+import datetime
+import json
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -28,7 +28,7 @@ def profile(request, user):
     }
 
     time_difference = timezone.now() - context['chosen_user'].profile.last_ping
-    context['chosen_user_online'] = bool(time_difference < timedelta(0, 70))
+    context['chosen_user_online'] = bool(time_difference < datetime.timedelta(0, 70))
 
     return render(request, 'accounts/profile.html', context)
 
@@ -51,14 +51,14 @@ def user_status(request):
         user = User.objects.get(pk=data[1])
 
         time_difference = timezone.now() - user.profile.last_ping
-        status = bool(time_difference < timedelta(0, 40))
+        status = bool(time_difference < datetime.timedelta(0, 40))
 
         payload = {'success': True, 'status': status}
 
     else:
         payload = {'success': False}
 
-    return HttpResponse(dumps(payload), content_type='application/json')
+    return HttpResponse(json.dumps(payload), content_type='application/json')
 
 
 # Remove disable ASAP.

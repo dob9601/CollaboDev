@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError

@@ -1,6 +1,5 @@
 from django.db import models
 
-from requests import get
 
 class Settings(models.Model):
     """

@@ -1,4 +1,4 @@
-from hashlib import md5
+import hashlib
 
 from django.db import models
 from django.db.models.signals import post_save
@@ -62,7 +62,7 @@ def save_user_profile(sender, instance, **kwargs):
     """
     Save user profile on user save
     """
-    email_hash = md5(instance.email.encode('utf-8').lower()).hexdigest()
+    email_hash = hashlib.md5(instance.email.encode('utf-8').lower()).hexdigest()
     instance.profile.gravatar_url = ('https://www.gravatar.com/avatar/' +
                                      email_hash + '?d=404&s=500')
     instance.profile.save()

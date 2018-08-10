@@ -1,6 +1,6 @@
-from random import choice
+import random
 import os
-from requests import get
+import requests
 import json
 
 from django.shortcuts import render
@@ -62,7 +62,7 @@ def create_user(request):
     """
     View to handle the creation of user
     """
-    temporary_password = ''.join(choice('0123456789ABCDEF') for i in range(8))
+    temporary_password = ''.join(random.choice('0123456789ABCDEF') for i in range(8))
     user = User.objects.create_user(
         username=request.POST['username'],
         first_name=request.POST['first_name'],
@@ -117,7 +117,7 @@ def github(request):
 
     if request.method == 'POST':
         org_name = request.POST['org_name']
-        org_data = get('https://api.github.com/orgs/' + org_name).json()
+        org_data = requests.get('https://api.github.com/orgs/' + org_name).json()
 
         try:
             if org_data['login'] == org_name:
@@ -196,7 +196,7 @@ def first_time_setup(request):
             if settings.settings_setup_code == "":
                 raise FileNotFoundError
         except FileNotFoundError:
-            key_parts = ''.join(choice('0123456789ABCDEF') for i in range(16))
+            key_parts = ''.join(random.choice('0123456789ABCDEF') for i in range(16))
 
             key_string = "CollaboDev Setup Code: " + key
 

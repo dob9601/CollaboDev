@@ -1,4 +1,4 @@
-from random import choice, randint
+import random
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout as auth_logout
@@ -23,7 +23,7 @@ def logout(request):
 
 # pylint: disable-msg=unused-argument
 def error404(request, exception):
-    draw_pos = str(randint(1, 10))
+    draw_pos = str(random.randint(1, 10))
     if draw_pos[-1] == '1':
         draw_pos += 'st'
     elif draw_pos[-1] == '2':
@@ -34,7 +34,7 @@ def error404(request, exception):
         draw_pos += 'th'
 
     # pylint: disable-msg=line-too-long
-    message = choice(['Have you tried looking '+choice(['under the bed', 'in the fridge', 'down the side of the sofa', 'in the car', 'under your desk', 'in that random pot on your desk', 'in the '+draw_pos+' draw down on the left', 'in the reactor core', 'behind the bookshelf', 'on planet Edmunds', 'in Groots room', 'where Holston went']),                                                                                                                                                                                                                    # noqa: E501
+    message = random.choice(['Have you tried looking '+choice(['under the bed', 'in the fridge', 'down the side of the sofa', 'in the car', 'under your desk', 'in that random pot on your desk', 'in the '+draw_pos+' draw down on the left', 'in the reactor core', 'behind the bookshelf', 'on planet Edmunds', 'in Groots room', 'where Holston went']),                                                                                                                                                                                                                    # noqa: E501
                       'Did you leave it '+choice(['in the taxi', 'on the train', 'on the roof of your car', 'in the tray at airport security', 'on the plane', 'at the bar', 'at the cafe', 'at the office', 'at the playground', 'on the internet', 'on a 404 page']),                                                                                                                                                                                                                                                                                                  # noqa: E501
                       'Did '+choice(['a llama steal it', 'an eagle steal it', 'it get baked into a pastry', 'it get thrown out of the window', 'it run away with your spouse', 'it get sucked into a turbine', 'it get sent into hyperspace', 'decay into muons', 'get turned into a cyborg by the borg', 'you try consulting Deep Thought', 'it get derezzed on the grid', 'it get sucked into Gargantua', 'you try consulting the tree of souls', 'it get chosen as a tribute in the reaping', 'it get sucked into a hydrorig', 'you try reporting it to the Tet'])])  # noqa: E501
 
