@@ -4,7 +4,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.core.files.storage import FileSystemStorage, default_storage
 
 
-# pylint: disable-msg=too-many-arguments, too-many-locals, too-many-branches, too-many-statements
+# pylint: disable-msg=too-many-arguments, too-many-locals
+# pylint: disable-msg=too-many-branches, too-many-statements
 def clean_profile_changes(first_name,
                           last_name,
                           biography,

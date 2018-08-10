@@ -11,5 +11,10 @@
 		<h1>40<span class="crimson">4</span></h1>
 		<h2>Page Not Found</h2>
 		<p><i>{{ message }}?</i></p>
+		{% if user.is_superuser %}
+			<p>Since you are a valued administrator, below is some extra information. Now go hunt those dead links!</p>
+			<p id="error-text">{{ error }}</p>
+		{% endif %}
+		{% include 'bases/footer_base.html' %}
 	</body>
 </html>

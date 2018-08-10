@@ -29,9 +29,11 @@ class Settings(models.Model):
     # CONFIG
     settings_initialised = models.BooleanField(default=False)
     settings_setup_code = models.CharField(blank=True, max_length=19)
-    
+
     def save(self, *args, **kwargs):
         if self.github_org_name:
-            self.github_org_url = 'https://github.com/orgs/' + self.github_org_name
-            self.github_org_api_url = 'https://api.github.com/orgs/' + self.github_org_name
+            self.github_org_url = ('https://github.com/orgs/' +
+                                   self.github_org_name)
+            self.github_org_api_url = ('https://api.github.com/orgs/' +
+                                       self.github_org_name)
         super(Settings, self).save(*args, **kwargs)

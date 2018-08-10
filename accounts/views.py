@@ -28,7 +28,7 @@ def profile(request, user):
     }
 
     time_difference = timezone.now() - context['chosen_user'].profile.last_ping
-    context['chosen_user_online'] = bool(time_difference < datetime.timedelta(0, 70))
+    context['chosen_user_online'] = time_difference < datetime.timedelta(0, 70)
 
     return render(request, 'accounts/profile.html', context)
 
@@ -128,7 +128,7 @@ def settings(request):
             'successful_changes': request.session['successful_changes'],
             'errors': request.session['errors']
         }
-    
+
         del request.session['successful_changes']
         del request.session['errors']
     except KeyError:

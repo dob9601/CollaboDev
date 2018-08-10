@@ -1,7 +1,7 @@
 import random
 import os
-import requests
 import json
+import requests
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -51,7 +51,9 @@ def delete_user(request):
     View to handle the deletion of users
     """
     user = User.objects.get(pk=int(request.POST['user']))
-    if not user.is_superuser or request.user.profile.server_owner and user != request.user:
+    if (not user.is_superuser or
+            request.user.profile.server_owner and user != request.user):
+
         user.delete()
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
@@ -62,19 +64,19 @@ def create_user(request):
     """
     View to handle the creation of user
     """
-    temporary_password = ''.join(random.choice('0123456789ABCDEF') for i in range(8))
+    password = ''.join(random.choice('0123456789ABCDEF') for i in range(8))
     user = User.objects.create_user(
         username=request.POST['username'],
         first_name=request.POST['first_name'],
         last_name=request.POST['last_name'],
         email=request.POST['email'],
-        password=temporary_password,
+        password=password,
     )
 
     user.clean()
     user.save()
 
-    request.session['temp_password'] = temporary_password
+    request.session['temp_password'] = password
 
     return HttpResponseRedirect(reverse('cAdmin:users'))
 
@@ -104,8 +106,9 @@ def reset_page(request):
 @user_passes_test(lambda u: u.is_superuser)
 def github(request):
     """
-    GitHub Integration settings page. Provides administrators with the ability to
-    associate a GitHub Organisation with CollaboDev and import all of its repositories
+    GitHub Integration settings page. Provides administrators with the ability
+    to associate a GitHub Organisation with CollaboDev and import all of its
+    repositories
     """
     session_data = dict(request.session)
 
@@ -117,7 +120,8 @@ def github(request):
 
     if request.method == 'POST':
         org_name = request.POST['org_name']
-        org_data = requests.get('https://api.github.com/orgs/' + org_name).json()
+        org_api_url = 'https://api.github.com/orgs/' + org_name
+        org_data = requests.get(org_api_url).json()
 
         try:
             if org_data['login'] == org_name:
@@ -132,12 +136,14 @@ def github(request):
         return HttpResponseRedirect(reverse('cAdmin:github'))
     return render(request, 'admin/github.html', session_data)
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def update(request):
     """
     Uses Git to update CollaboDev to its latest version.
     """
-    update_response = os.popen('git pull https://github.com/dob9601/CollaboDev.git').read()
+    update_response = False
+    # os.popen('git pull https://github.com/dob9601/CollaboDev.git').read()
 
     if update_response.startswith('Updating'):
         response = 1
@@ -146,7 +152,6 @@ def update(request):
     elif update_response == '':
         response = -1
 
-
     payload = {
         'success': True,
         'response': response
@@ -154,12 +159,14 @@ def update(request):
 
     return HttpResponse(json.dumps(payload), content_type='application/json')
 
+
 def first_time_setup(request):
     """
     First time setup for when the software is first installed on a server
     """
 
     settings = Settings.objects.get(pk=1)
+    context = {}
 
     if request.method == 'POST':
         if 'setup-key' in request.POST:
@@ -196,7 +203,7 @@ def first_time_setup(request):
             if settings.settings_setup_code == "":
                 raise FileNotFoundError
         except FileNotFoundError:
-            key_parts = ''.join(random.choice('0123456789ABCDEF') for i in range(16))
+            key = ''.join(random.choice('0123456789ABCDEF') for i in range(16))
 
             key_string = "CollaboDev Setup Code: " + key
 
