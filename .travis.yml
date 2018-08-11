@@ -21,6 +21,6 @@ install:
 
 script:
         - flake8 . --exclude=migrations
-        - find -name "*.py" -not -path "*/migrations/*" | xargs pylint --load-plugins pylint_django
+        - find -name "*.py" -not -path "*/migrations/*" -not -name "apps.py" | xargs pylint --load-plugins pylint_django
         - stylelint **/static/**/*.css
         - eslint .
