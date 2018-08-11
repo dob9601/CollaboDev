@@ -12,6 +12,7 @@ python:
 install:
         - pip install flake8
         - pip install pylint
+        - pip install pylint-django
         - pip install -r requirements.txt
         - npm install -g stylelint
         - npm install stylelint-config-standard --save-dev
@@ -20,6 +21,6 @@ install:
 
 script:
         - flake8 . --exclude=migrations
-        - find -name "*.py" -not -path "*/migrations/*" | xargs pylint
+        - find -name "*.py" -not -path "*/migrations/*" | xargs pylint --load-plugins pylint_django
         - stylelint **/static/**/*.css
         - eslint .
