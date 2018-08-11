@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponseNotFound
 from .settings import BASE_DIR
 
+
 def index(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'],
@@ -21,6 +22,7 @@ def index(request):
 def logout(request):
     auth_logout(request)
     return redirect('/')
+
 
 # pylint: disable-msg=unused-argument
 def error404(request, exception):
