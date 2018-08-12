@@ -21,7 +21,8 @@ install:
         - npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 
 script:
-        - flake8 . --exclude migrations,tests.py,__init__.py,apps.py
+        - flake8 . --exclude 
+migrations,tests.py,__init__.py,apps.py,manage.py
         - find -name "*.py" -not -path "*/migrations/*" -not -name "apps.py" | xargs pylint --load-plugins pylint_django
         - stylelint **/static/**/*.css
         - eslint .
