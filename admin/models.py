@@ -1,11 +1,10 @@
+"""Models regarding CollaboDev administration."""
 from django.db import models
 
 
 class Settings(models.Model):
-    """
-    Global settings for the whole CollaboDev WebApp.
-    There should only be ONE INSTANCE of this model.
-    """
+    """Global settings for the whole CollaboDev WebApp."""
+
     # GITHUB
     github_org_name = models.CharField(max_length=39, blank=True)
     github_org_url = models.URLField(max_length=2000, blank=True)
@@ -30,10 +29,13 @@ class Settings(models.Model):
     settings_initialised = models.BooleanField(default=False)
     settings_setup_code = models.CharField(blank=True, max_length=19)
 
-    def save(self, *args, **kwargs):
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        """Override for default Settings save method."""
         if self.github_org_name:
             self.github_org_url = ('https://github.com/orgs/' +
                                    self.github_org_name)
             self.github_org_api_url = ('https://api.github.com/orgs/' +
                                        self.github_org_name)
-        super(Settings, self).save(*args, **kwargs)
+        super(Settings, self).save(force_insert=False, force_update=False,
+                                   using=None, update_fields=None)

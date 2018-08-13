@@ -5,6 +5,7 @@
  - Variable names, front end HTML should all be written in **British English** - American English will be frowned upon
 ### Python
  - Code should conform to flake8 and pylint linters 
+ - If a view does not use the request variable, it should be renamed to \_request
 ### HTML
  - HTML between django `{% %}` tags should be indented
  - Inverted commas should be used for tag attributes

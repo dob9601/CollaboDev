@@ -1,36 +1,22 @@
+"""Views for admin app."""
+
 import random
 import os
-import json
 import requests
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Settings
 
-# Create your views here.
-
-
-@user_passes_test(lambda u: u.is_superuser)
-def index(request):
-    """
-    Front page of administrative app
-    """
-
-    context = {}
-
-    return render(request, 'admin/index.html', context)
-
 
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
-    """
-    User management page of administrative app
-    """
+    """User management page of administrative app."""
     try:
         temporary_password = request.session['temp_password']
         del request.session['temp_password']
@@ -47,23 +33,19 @@ def users(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def delete_user(request):
-    """
-    View to handle the deletion of users
-    """
+    """View to handle the deletion of users."""
     user = User.objects.get(pk=int(request.POST['user']))
     if (not user.is_superuser or
             request.user.profile.server_owner and user != request.user):
 
         user.delete()
 
-    return HttpResponseRedirect(reverse('cAdmin:users'))
+    return HttpResponseRedirect(reverse('admin:users'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def create_user(request):
-    """
-    View to handle the creation of user
-    """
+    """View to handle the creation of user."""
     password = ''.join(random.choice('0123456789ABCDEF') for i in range(8))
     user = User.objects.create_user(
         username=request.POST['username'],
@@ -78,20 +60,22 @@ def create_user(request):
 
     request.session['temp_password'] = password
 
-    return HttpResponseRedirect(reverse('cAdmin:users'))
+    return HttpResponseRedirect(reverse('admin:users'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def reset_collabodev(request):
+def reset_collabodev(_request):
+    """View to facilitate the complete reset of CollaboDev."""
     settings = Settings.objects.get(pk=1)
     settings.settings_initialised = False
 
     os.system('python manage.py flush --noinput')
 
-    return HttpResponseRedirect(reverse('cAdmin:reset_page'))
+    return HttpResponseRedirect(reverse('admin:reset_page'))
 
 
 def reset_page(request):
+    """Page displaying reset message post reset."""
     try:
         Settings.objects.get(pk=1)
         context = {
@@ -106,9 +90,10 @@ def reset_page(request):
 @user_passes_test(lambda u: u.is_superuser)
 def github(request):
     """
-    GitHub Integration settings page. Provides administrators with the ability
-    to associate a GitHub Organisation with CollaboDev and import all of its
-    repositories
+    Github Integration settings page.
+
+    Provides administrators with the ability to associate a GitHub
+    Organisation with CollaboDev and import all of its repositories
     """
     session_data = dict(request.session)
 
@@ -133,16 +118,14 @@ def github(request):
         except KeyError:
             request.session['invalid_org_name'] = True
 
-        return HttpResponseRedirect(reverse('cAdmin:github'))
+        return HttpResponseRedirect(reverse('admin:github'))
     return render(request, 'admin/github.html', session_data)
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def update(request):
-    """
-    Uses Git to update CollaboDev to its latest version.
-    """
-    update_response = False
+def update(_request):
+    """Facilitates the updating of CollaboDev to its latest settings."""
+    update_response = ''
     # os.popen('git pull https://github.com/dob9601/CollaboDev.git').read()
 
     if update_response.startswith('Updating'):
@@ -157,14 +140,11 @@ def update(request):
         'response': response
     }
 
-    return HttpResponse(json.dumps(payload), content_type='application/json')
+    return JsonResponse(payload)
 
 
 def first_time_setup(request):
-    """
-    First time setup for when the software is first installed on a server
-    """
-
+    """First time setup for when CollaboDev is first started up."""
     settings = Settings.objects.get(pk=1)
     context = {}
 

@@ -1,3 +1,5 @@
+"""Module containing views for task manipulation."""
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
@@ -11,9 +13,10 @@ from .models import Task
 @login_required
 def submit(request):
     """
-    Function to handle the submission of task data, parses all data from the
-    request for the task and raises an error if any of the required data is
-    missing.
+    View that handles the submission of task data.
+
+    Works by parsing all data from the request for the task and raising an
+    error if any of the required data is missing.
     """
     if request.POST['task_owner'] != '':
         task_owner = User.objects.get(username=request.POST['task_owner'])
@@ -43,9 +46,7 @@ def submit(request):
 
 @login_required
 def claim(request):
-    """
-    Function that handles the claiming of new tasks
-    """
+    """View that handles the claiming of new tasks."""
     try:
         task_id = request.POST['task_id']
         new_owner = request.user
@@ -79,9 +80,7 @@ def claim(request):
 
 @login_required
 def unclaim(request):
-    """
-    Function that handles the pressing of the 'unclaim task' button.
-    """
+    """View that handles the pressing of the 'unclaim task' button."""
     try:
         task_id = request.POST['task_id']
         task = Task.objects.get(pk=int(task_id))
@@ -102,9 +101,7 @@ def unclaim(request):
 
 @login_required
 def close(request):
-    """
-    Function that handles the closing/completion of tasks
-    """
+    """View that handles the closing/completion of tasks."""
     try:
         task_id = request.POST['task_id']
         chosen_task = Task.objects.get(pk=int(task_id))

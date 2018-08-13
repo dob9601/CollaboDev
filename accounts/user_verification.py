@@ -1,3 +1,5 @@
+"""Module containing clean_profile_changes function."""
+
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
@@ -16,6 +18,7 @@ def clean_profile_changes(first_name,
                           avatar,
                           gravatar_enabled,
                           user):
+    """Cleaner for user profile changes."""
     errors = []
     success_list = []
 
@@ -59,14 +62,14 @@ def clean_profile_changes(first_name,
         user.profile.background = None
         success_list.append('background')
     elif background:
-        fs = FileSystemStorage()
+        file_system = FileSystemStorage()
         extension = background.name[background.name.rfind(".")+1:]
         if extension in ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'png']:
             filename = user.username + '_background.' + extension
             old_filename = user.profile.background.name
             if old_filename != '':
                 default_storage.delete(old_filename)
-            image = fs.save(filename, background)
+            image = file_system.save(filename, background)
             user.profile.background = image
             user.profile.background_version += 1
             success_list.append('background')
@@ -107,6 +110,7 @@ def clean_profile_changes(first_name,
 
 def clean_password_changes(old_pword, new_pword, new_pword_conf, user,
                            request):
+    """Cleaner for password changes."""
     errors = []
     success_list = []
 

@@ -1,8 +1,14 @@
+"""
+Module containing views for accounts app.
+
+The accounts module contains all views regarding users and preferences along
+with the view to which user status information is posted.
+"""
+
 import datetime
-import json
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
@@ -14,6 +20,7 @@ from . import user_verification
 
 @login_required
 def index(request):
+    """View for the user directory page."""
     users = User.objects.all()
     context = {
         'users': users,
@@ -23,6 +30,7 @@ def index(request):
 
 @login_required
 def profile(request, user):
+    """View for user profile page."""
     context = {
         'chosen_user': User.objects.get(username=user),
     }
@@ -35,6 +43,7 @@ def profile(request, user):
 
 @login_required
 def user_status(request):
+    """View for monitoring user statuses."""
     data = request.body.decode('utf-8').split('@')
 
     if data[0] == 'U':
@@ -58,43 +67,45 @@ def user_status(request):
     else:
         payload = {'success': False}
 
-    return HttpResponse(json.dumps(payload), content_type='application/json')
+    return JsonResponse(payload)
 
 
 # Remove disable ASAP.
 # pylint: disable-msg=too-many-branches, too-many-locals, duplicate-code
 @login_required
 def settings(request):
+    """View for the user settings page."""
     if request.method == 'POST':
         request.session['errors'] = []
         request.session['successful_changes'] = []
 
         user = request.user
 
-        user_first_name = request.POST.get('first_name', '')
-        user_last_name = request.POST.get('last_name', '')
-        user_profile_biography = request.POST.get('profile_biography', '')
-        user_profile_url = request.POST.get('profile_url', '')
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
+        profile_biography = request.POST.get('profile_biography', '')
+        profile_url = request.POST.get('profile_url', '')
 
         background = request.FILES.get('background', False)
         avatar = request.FILES.get('avatar', False)
 
-        reset_background = request.POST.get('reset_background', False)
-        reset_avatar = request.POST.get('reset_avatar', False)
+        background_reset = request.POST.get('reset_background', False)
+        avatar_reset = request.POST.get('reset_avatar', False)
         gravatar_enabled = request.POST.get('gravatar_enabled', False)
 
         profile_clean = user_verification.clean_profile_changes(
-            user_first_name,
-            user_last_name,
-            user_profile_biography,
-            user_profile_url,
-            reset_background,
+            first_name,
+            last_name,
+            profile_biography,
+            profile_url,
+            background_reset,
             background,
-            reset_avatar,
+            avatar_reset,
             avatar,
             gravatar_enabled,
             user
         )
+
         user = profile_clean[0]
         request.session['successful_changes'] += profile_clean[1]
         request.session['errors'] += profile_clean[2]

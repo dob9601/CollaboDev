@@ -22,11 +22,12 @@ try:
             raise FileNotFoundError
 except FileNotFoundError:
     with open('CollaboDev/SECRET_KEY', 'w') as secret_key_file:
-        chars = ''.join([string.ascii_letters, string.digits,
-                         string.punctuation])
-        chars.replace('\'', '').replace('"', '').replace('\\', '')
-        string = [random.SystemRandom().choice(chars) for i in range(50)]
-        SECRET_KEY = ''.join(string)
+        KEY_CHARS = ''.join([string.ascii_letters, string.digits,
+                             string.punctuation])
+        KEY_CHARS = KEY_CHARS.replace('\'', '').replace('"', '')
+        KEY_CHARS = KEY_CHARS.replace('\\', '')
+        KEY_LIST = [random.SystemRandom().choice(KEY_CHARS) for i in range(50)]
+        SECRET_KEY = ''.join(KEY_LIST)
         secret_key_file.write(SECRET_KEY)
         secret_key_file.close()
 
@@ -36,23 +37,15 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 
 # Application definition
 
 INSTALLED_APPS = [
-    'cAdmin.apps.cAdminConfig',
+    'admin.apps.adminConfig',
     'tasks.apps.TasksConfig',
     'accounts.apps.AccountsConfig',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

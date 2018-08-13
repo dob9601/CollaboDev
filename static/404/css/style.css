@@ -18,6 +18,8 @@ body {
 
 #error-text {
 	margin: 10px;
+	padding: 10px;
+	text-align: left;
 	font-size: 0.9em;
 	background-color: #031424;
 	overflow-x: scroll;

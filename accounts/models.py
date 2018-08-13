@@ -1,3 +1,5 @@
+"""Models related to accounts and account management."""
+
 import hashlib
 
 from django.db import models
@@ -10,9 +12,8 @@ from tasks.models import Task
 
 
 class Profile(models.Model):
-    """
-    Extension of user model, added automatically upon user creation.
-    """
+    """Extension of user model, created automatically upon user creation."""
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     server_owner = models.BooleanField(default=False)
 
@@ -50,18 +51,14 @@ class Profile(models.Model):
 # pylint: disable=unused-argument
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    """
-    Create profile model upon user creation
-    """
+    """Receiver that creates profile model upon user creation."""
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    """
-    Save user profile on user save
-    """
+    """Receiver that saves user profile on saving of user model."""
     email = instance.email.encode('utf-8').lower()
     email_hash = hashlib.md5(email).hexdigest()
 

@@ -1,3 +1,5 @@
+"""Views for CollaboDev WebApp."""
+
 import random
 import os
 
@@ -9,6 +11,7 @@ from .settings import BASE_DIR
 
 
 def index(request):
+    """View for front page of CollaboDev WebApp."""
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'],
                             password=request.POST['password'])
@@ -20,12 +23,13 @@ def index(request):
 
 
 def logout(request):
+    """Logout view of CollaboDev WebApp."""
     auth_logout(request)
     return redirect('/')
 
 
-# pylint: disable-msg=unused-argument
 def error404(request, exception):
+    """View for 404 page."""
     responses = open(os.path.join(BASE_DIR, 'CollaboDev/404_responses.txt'))
     responses = responses.read().split('\n')
 

@@ -4,7 +4,7 @@
 function show_modal (data, type) {
 	const modalBox = document.getElementsByClassName('modal-box')[0]
 	const modalText = modalBox.children[1]
-	
+
 	document.body.style.overflowY = 'hidden'
 
 	if (type === 'new-user') {
@@ -31,12 +31,12 @@ function show_modal (data, type) {
 					'</form>'
 	} else if (type === 'update') {
 		modalBox.children[0].style.display = 'hidden'
-		modalText.innerHTML = '<h3>Updating CollaboDev</h3><hr>' + 
-					'<img class="loading-image" src="/static/images/loading.gif">' + 
+		modalText.innerHTML = '<h3>Updating CollaboDev</h3><hr>' +
+					'<img class="loading-image" src="/static/images/loading.gif">' +
 					'<p id="response-paragraph">Hang tight! CollaboDev is currently being updated</p>'
-		
+
 		var responseParagraph = document.getElementById('response-paragraph')
-		
+
 		var request = new XMLHttpRequest()
 		request.open('POST', '/admin/update/')
 		request.setRequestHeader('X-CSRFToken', data)
@@ -46,14 +46,11 @@ function show_modal (data, type) {
 				if (response === 1) {
 					responseParagraph.innerHTML = 'CollaboDev has been successfully updated. Please restart the server.'
 					modalText.children[0].innerHTML = 'Updated CollaboDev'
-					
-				}
-				else if (response === 2) {
+				} else if (response === 2) {
 					responseParagraph.innerHTML = 'CollaboDev is already running on the latest version.'
 					modalBox.children[0].style.visibility = 'visible'
 					modalText.children[0].innerHTML = 'Update Failed'
-				}
-				else if (response === -1) {
+				} else if (response === -1) {
 					responseParagraph.innerHTML = 'Could not reach the GitHub repository. Please try again later'
 					modalBox.children[0].style.visibility = 'visible'
 					modalText.children[0].innerHTML = 'Update Failed'

@@ -60,5 +60,3 @@ function show_modal (dataType, data) {
 	}
 	modalBox.style.display = 'block'
 }
-
-var modal = document.getElementsByClassName('modal-box')[0]

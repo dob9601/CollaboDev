@@ -1,3 +1,5 @@
+"""Views for tasks app."""
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datastructures import MultiValueDictKeyError
@@ -8,11 +10,7 @@ from .models import Task
 
 @login_required
 def index(request):
-    """
-    View for the main index of the 'tasks' section of the
-    webapp
-    """
-
+    """View for the tasks list."""
     tasks = list(Task.objects.order_by('-bump_date'))
 
     moved_tasks = 0
@@ -53,9 +51,7 @@ def index(request):
 
 @login_required
 def milestones(request):
-    """
-    Temporary placeholder for milestones page
-    """
+    """Temporary placeholder for milestones page."""
     context = {}
     return render(request, 'tasks/milestones.html', context)
 
@@ -63,8 +59,9 @@ def milestones(request):
 @login_required
 def delete(request):
     """
-    Temporary view to facilitate the removal of tasks. To be removed
-    as soon as viable alternative available.
+    Temporary view to facilitate the removal of tasks.
+
+    To be removed as soon as viable alternative available.
     """
     try:
         task_id = request.POST['id']
