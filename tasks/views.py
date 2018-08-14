@@ -52,8 +52,7 @@ def index(request):
 @login_required
 def milestones(request):
     """Temporary placeholder for milestones page."""
-    context = {}
-    return render(request, 'tasks/milestones.html', context)
+    return render(request, 'tasks/milestones.html', {})
 
 
 @login_required
