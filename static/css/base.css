@@ -412,3 +412,9 @@ a .nav,
 	max-width: 200px;
 	display: block;
 }
+
+.debug-message {
+	background-color: #ff851b;
+	text-align: center;
+	padding: 2px;
+}
