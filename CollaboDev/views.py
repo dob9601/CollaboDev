@@ -18,7 +18,7 @@ def index(request):
         if user is not None:
             auth_login(request, user)
             return redirect('/tasks/')
-        return render(request, 'index.html', {})
+        return render(request, 'index.html', {'login_failed': True})
     return render(request, 'index.html', {})
 
 

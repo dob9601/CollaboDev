@@ -26,6 +26,7 @@
 			</div>
 			<form class="standard-form" method="post">
 				{% csrf_token %}
+                                {% if login_failed %}<p>Incorrect username or password</p>{% endif %}
 				<p><label>Username:</label><input type="text" name="username"></p>
 				<p><label>Password:</label><input type="password" name="password"></p>
 				<input type="submit" value="Login" class="button">
