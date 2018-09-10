@@ -1,9 +1,5 @@
 {
 	"extends": "standard",
-	"rules": {
-		"indent": ["error", "tab"],
-		"no-tabs": "off"
-	},
 	"env": {
 		"browser": 1,
 		"node": false
