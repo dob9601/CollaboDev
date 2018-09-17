@@ -5,18 +5,18 @@ var intSize = target.innerHTML
 var size
 
 if (intSize === '1') {
-	size = 'XXS'
+  size = 'XXS'
 } else if (intSize === '2') {
-	size = 'XS'
+  size = 'XS'
 } else if (intSize === '3') {
-	size = 'S'
+  size = 'S'
 } else if (intSize === '4') {
-	size = 'M'
+  size = 'M'
 } else if (intSize === '5') {
-	size = 'L'
+  size = 'L'
 } else if (intSize === '6') {
-	size = 'XL'
+  size = 'XL'
 } else if (intSize === '7') {
-	size = 'XXL'
+  size = 'XXL'
 }
 target.innerHTML = size
