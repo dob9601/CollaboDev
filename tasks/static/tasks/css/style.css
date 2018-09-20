@@ -70,6 +70,7 @@
 .close-task,
 .unclaim,
 .claim,
+.pin-task,
 .yes-button,
 .no-button {
 	-webkit-appearance: none;
@@ -87,9 +88,14 @@
 	transition: 0.4s background-color;
 }
 
+.pin-task {
+        border-radius: 0 0 8px 8px; 
+}
+
 .close-task,
 .unclaim,
 .claim,
+.pin-task,
 #create-task-button {
 	display: block;
 	height: 30px;
@@ -99,9 +105,14 @@
 .close-task:hover,
 .unclaim:hover,
 .claim:hover,
+.pin-task:hover,
 .yes-button:hover,
 .no-button:hover {
 	background-color: #a53533;
+}
+
+.pin-task {
+        background-color: #0074d9;
 }
 
 input:focus,
@@ -138,4 +149,6 @@ button:focus {
 
 .bump-star {
 	color: #2ecc40;
+        font-size: 1.5em;
+        vertical-align: middle;
 }

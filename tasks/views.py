@@ -11,17 +11,20 @@ from .models import Task
 @login_required
 def index(request):
     """View for the tasks list."""
-    tasks = list(Task.objects.order_by('-bump_date'))
+    tasks = list(Task.objects.order_by('-publish_date'))
 
-    moved_tasks = 0
+    claimed_tasks = []
+    pinned_tasks = []
     for task in tasks:
         if task.task_owner == request.user:
+            claimed_tasks.append(task)
             tasks.remove(task)
-            tasks.insert(moved_tasks, task)
-            moved_tasks += 1
+        elif task.is_pinned:
+            pinned_tasks.append(task)
+            tasks.remove(task)
 
     context = {
-        'tasks': tasks,
+        'tasks': claimed_tasks + pinned_tasks + tasks,
     }
     try:
         message_id = request.session['response_message']

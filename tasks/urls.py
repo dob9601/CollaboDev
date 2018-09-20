@@ -13,5 +13,6 @@ urlpatterns = [
     path('milestones/', views.milestones, name='milestones'),
     path('claim/', task_actions.claim, name='claim'),
     path('unclaim/', task_actions.unclaim, name='unclaim'),
-    path('close/', task_actions.close, name='close')
+    path('close/', task_actions.close, name='close'),
+    path('pin_task/', task_actions.pin_task, name='pin_task')
 ]

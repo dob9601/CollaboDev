@@ -23,7 +23,7 @@ class Task(models.Model):
                                                 MinValueValidator(1)],
                                     blank=False)
 
-    bump_date = models.DateTimeField(default=now)
+    is_pinned = models.BooleanField(default=False)
 
     created_by = models.CharField(max_length=20, blank=False)
     publish_date = models.DateTimeField(default=now, blank=True)

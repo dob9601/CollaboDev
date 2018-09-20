@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ValidationError
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
 from .models import Task
@@ -115,6 +115,22 @@ def close(request):
         user.save()
 
         request.session['response_message'] = 7
+        return HttpResponseRedirect(reverse('tasks:index'))
+
+    except MultiValueDictKeyError:
+        request.session['response_message'] = 3
+        return HttpResponseRedirect(reverse('tasks:index'))
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def pin_task(request):
+    """View that handles the pinning/unpinning of tasks."""
+    try:
+        task_id = request.POST['task_id']
+        chosen_task = Task.objects.get(pk=int(task_id))
+        chosen_task.is_pinned = not chosen_task.is_pinned
+        chosen_task.save()
+
         return HttpResponseRedirect(reverse('tasks:index'))
 
     except MultiValueDictKeyError:

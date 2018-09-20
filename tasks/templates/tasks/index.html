@@ -37,7 +37,7 @@
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}">
-					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{% if task.publish_date != task.bump_date %}<span class="bump-star">★</span> {% endif %}{{ task.task_name }}</td>
+					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{% if task.is_pinned %}<span class="bump-star">★</span> {% endif %}{{ task.task_name }}</td>
 					<td style="display: none">{{ task.task_description }}</td>
 					<td style="display: none">{{ task.task_owner }}</td>
 					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
@@ -77,14 +77,26 @@
 							<input type="hidden" value="{{ task.id }}" name="task_id">
 							<input type="button" value="Unclaim" class="unclaim" onclick="show_modal('confirmation', ['{{ task.id }}', '2', 'Are you sure you want to unclaim this task?'])"/>
 						</form>
+                                                <form action="/tasks/pin_task/" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{ task.id }}" name="task_id">
+							<input type="submit" class="pin-task" value=
+							{% if task.is_pinned %}
+                                                                "Unpin task"
+	  						{% else %}
+	  							"Pin task"
+					  		{% endif %}
+                                                        "/>
+                                                </form>
 					</td>
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
-					<script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}" current-user="{{ user.username }}"></script>
+                                        <script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}" current-user="{{ user.username }}" user-admin="{{ user.is_superuser }}"></script>
 					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
 				{% endif %}
 				{% endfor %}
 			</table>
+
 			<div class="horizontal-break"></div>
 			<h1 class="closed-tasks-header">Closed Tasks</h1>
 			<table class="task-table">
