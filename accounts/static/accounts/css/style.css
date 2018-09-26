@@ -1,27 +1,27 @@
 h1 {
-	margin: 2% 0 0 5%;
+  margin: 2% 0 0 5%;
 }
 
 .card {
-	align-items: center;
-	background-color: #c6504f;
-	display: flex;
-	margin: 2% 4% 4% 4%;
-	overflow: hidden;
-	transition: 0.3s;
+  align-items: center;
+  background-color: #c6504f;
+  display: flex;
+  margin: 2% 4% 4% 4%;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
 .card:hover {
-	-webkit-box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
-	box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
-	cursor: pointer;
+  -webkit-box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 133px -7px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
 }
 
 .profile-picture {
-	border-radius: 50%;
-	float: left;
-	margin: 2%;
-	padding: 0;
-	width: 18%;
+  border-radius: 50%;
+  float: left;
+  margin: 2%;
+  padding: 0;
+  width: 18%;
 }

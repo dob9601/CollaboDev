@@ -1,92 +1,92 @@
 .column {
-	width: 33.33333333%;
-	float: left;
-	text-align: center;
+  width: 33.33333333%;
+  float: left;
+  text-align: center;
 }
 
 @media screen and (max-width: 700px) {
-	.column {
-		width: 100%;
-	}
+  .column {
+    width: 100%;
+  }
 
-	.column label {
-		display: block !important;
-		margin: 0 auto;
-	}
+  .column label {
+    display: block !important;
+    margin: 0 auto;
+  }
 }
 
 .column input[type="text"],
 .column input[type="password"],
 .column input[type="file"] {
-	border: 2px solid #3f5882;
-	padding: 5px;
-	width: 201px;
+  border: 2px solid #3f5882;
+  padding: 5px;
+  width: 201px;
 }
 
 .column input[type="file"] {
-	background-color: #c6504f;
+  background-color: #c6504f;
 }
 
 .column input[type="submit"] {
-	font-size: 1em;
-	width: 75%;
-	max-width: 250px;
+  font-size: 1em;
+  width: 75%;
+  max-width: 250px;
 }
 
 .column textarea {
-	border: 2px solid #3f5882;
-	resize: none;
+  border: 2px solid #3f5882;
+  resize: none;
 }
 
 .column h2 {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .column a {
-	width: 75%;
-	max-width: 250px;
-	display: block;
-	padding: 8px 0;
-	margin: 0 auto;
-	background-color: #c6504f;
-	transition: 0.4s background-color;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+  width: 75%;
+  max-width: 250px;
+  display: block;
+  padding: 8px 0;
+  margin: 0 auto;
+  background-color: #c6504f;
+  transition: 0.4s background-color;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 
 .column a:hover {
-	background-color: #a53533;
+  background-color: #a53533;
 }
 
 .column label {
-	display: inline-block;
-	width: 120px;
+  display: inline-block;
+  width: 120px;
 }
 
 .column:nth-child(8) {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .column-breaker {
-	clear: left;
+  clear: left;
 }
 
 .response-message {
-	text-align: center;
-	margin: 10px 0 0 0;
-	height: 30px;
+  text-align: center;
+  margin: 10px 0 0 0;
+  height: 30px;
 }
 
 .textarea-input * {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 #response-paragraph {
-	text-align: center;
-	font-size: 1.3em;
+  text-align: center;
+  font-size: 1.3em;
 }
 
 .loading-image {
-	margin: 100px auto 0 auto;
+  margin: 100px auto 0 auto;
 }

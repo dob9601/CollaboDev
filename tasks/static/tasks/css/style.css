@@ -1,69 +1,69 @@
 @media screen and (max-width: 570px) {
-	.task-table-priority,
-	.task-table-deadline,
-	.task-table-size,
-	.task-table-age {
-		display: none;
-	}
+  .task-table-priority,
+  .task-table-deadline,
+  .task-table-size,
+  .task-table-age {
+    display: none;
+  }
 
-	.task-table-name {
-		width: 60%;
-	}
+  .task-table-name {
+    width: 60%;
+  }
 
-	.claim-info {
-		width: 40%;
-	}
+  .claim-info {
+    width: 40%;
+  }
 
-	.claim-info input {
-		font-size: 0.7em;
-	}
+  .claim-info input {
+    font-size: 0.7em;
+  }
 }
 
 #page-description * {
-	margin: 0;
-	padding: 5%;
-	background-color: #8eaebd;
+  margin: 0;
+  padding: 5%;
+  background-color: #8eaebd;
 }
 
 .task-table-name {
-	width: 35%;
+  width: 35%;
 }
 
 .tast-table-priority {
-	width: 5%;
+  width: 5%;
 }
 
 .task-table-deadline {
-	width: 15%;
+  width: 15%;
 }
 
 .task-table-size {
-	width: 10%;
+  width: 10%;
 }
 
 .task-table-age {
-	width: 13%;
+  width: 13%;
 }
 
 .claim-info {
-	width: 17%;
+  width: 17%;
 }
 
 .claim-info form {
-	font-size: 0;
+  font-size: 0;
 }
 
 .claim-info input {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .close-task-form input {
-	margin-bottom: -2px;
+  margin-bottom: -2px;
 }
 
 .closed-tasks-header {
-	margin: 1% 2%;
-	cursor: default;
+  margin: 1% 2%;
+  cursor: default;
 }
 
 #create-task-button,
@@ -73,23 +73,19 @@
 .pin-task,
 .yes-button,
 .no-button {
-	-webkit-appearance: none;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	border: none;
-	background-color: #c6504f;
-	color: #fff;
-	text-decoration: none;
-	width: 100%;
-	text-align: center;
-	cursor: pointer;
-	-webkit-text-size-adjust: none;
-	transition: 0.4s background-color;
-}
-
-.pin-task {
-        border-radius: 0 0 8px 8px; 
+  -webkit-appearance: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: #c6504f;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-text-size-adjust: none;
+  transition: 0.4s background-color;
 }
 
 .close-task,
@@ -97,8 +93,8 @@
 .claim,
 .pin-task,
 #create-task-button {
-	display: block;
-	height: 30px;
+  display: block;
+  height: 30px;
 }
 
 #create-task-button:hover,
@@ -107,47 +103,48 @@
 .claim:hover,
 .yes-button:hover,
 .no-button:hover {
-	background-color: #a53533;
+  background-color: #a53533;
 }
 
 .pin-task {
-        background-color: #0074d9;
+  background-color: #0074d9;
+  border-radius: 0 0 8px 8px;
 }
 
 input:focus,
 button:focus {
-	outline: 0;
+  outline: 0;
 }
 
 #create-task-button {
-	width: 20%;
-	margin: 10px auto;
+  width: 20%;
+  margin: 10px auto;
 }
 
 ::-webkit-calendar-picker-indicator {
-	background: transparent;
+  background: transparent;
 }
 
 .yes-button,
 .no-button {
-	width: 40%;
-	max-width: 175px;
-	background-color: #c6504f;
-	padding: 10px 20px;
-	margin: 0 10px;
+  width: 40%;
+  max-width: 175px;
+  background-color: #c6504f;
+  padding: 10px 20px;
+  margin: 0 10px;
 }
 
 .buttons {
-	text-align: center;
-	margin-top: 40vh;
+  text-align: center;
+  margin-top: 40vh;
 }
 
 .no-tasks-message {
-	padding: 2%;
+  padding: 2%;
 }
 
 .bump-star {
-	color: #2ecc40;
-        font-size: 1.5em;
-        vertical-align: middle;
+  color: #2ecc40;
+  font-size: 1.5em;
+  vertical-align: middle;
 }

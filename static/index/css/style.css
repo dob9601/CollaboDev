@@ -1,36 +1,36 @@
 body {
-	text-align: center;
+  text-align: center;
 }
 
 #profile-picture {
-	width: 200px;
-	height: 200px;
-	border: 3px solid #031424;
-	border-radius: 50%;
-	margin-top: 15px;
-	display: inline-block;
-	line-height: 200px;
-	color: #031424;
-	font-size: 8em;
+  width: 200px;
+  height: 200px;
+  border: 3px solid #031424;
+  border-radius: 50%;
+  margin-top: 15px;
+  display: inline-block;
+  line-height: 200px;
+  color: #031424;
+  font-size: 8em;
 }
 
 h1 {
-	font-size: 4em;
-	margin: 20px 0 0 0;
+  font-size: 4em;
+  margin: 20px 0 0 0;
 }
 
 h2 {
-	font-size: 3em;
-	margin: 0;
+  font-size: 3em;
+  margin: 0;
 }
 
 .standard-form label {
-	margin-right: 70px;
-	margin-left: -110px;
+  margin-right: 70px;
+  margin-left: -110px;
 }
 
 input[type="submit"] {
-	border: none;
-	margin: -20px 0 0 0;
-	padding: 8px 32px;
+  border: none;
+  margin: -20px 0 0 0;
+  padding: 8px 32px;
 }

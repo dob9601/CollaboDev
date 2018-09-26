@@ -1,64 +1,64 @@
 .parallax {
-	width: 100%;
-	height: 400px;
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+  width: 100%;
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #profile-picture {
-	max-width: 250px;
-	width: 25%;
-	min-width: 200px;
-	background-color: #c6504f;
-	border-radius: 50%;
-	float: left;
-	box-shadow: 0 0 0 3px #aaa;
-	border-width: 3px;
-	border-color: #aaa;
-	border-style: solid;
+  max-width: 250px;
+  width: 25%;
+  min-width: 200px;
+  background-color: #c6504f;
+  border-radius: 50%;
+  float: left;
+  box-shadow: 0 0 0 3px #aaa;
+  border-width: 3px;
+  border-color: #aaa;
+  border-style: solid;
 }
 
 h1 {
-	float: left;
-	font-size: 3em;
-	margin-left: 20px;
+  float: left;
+  font-size: 3em;
+  margin-left: 20px;
 }
 
 #header-div {
-	margin: -150px 0 270px 40px;
+  margin: -150px 0 270px 40px;
 }
 
 @media screen and (max-width: 639px) {
-	#header-div {
-		margin: -150px 0 0 0;
-		width: 100%;
-		text-align: center;
-	}
+  #header-div {
+    margin: -150px 0 0 0;
+    width: 100%;
+    text-align: center;
+  }
 
-	#profile-picture {
-		margin: 0 auto;
-		float: none;
-	}
+  #profile-picture {
+    margin: 0 auto;
+    float: none;
+  }
 
-	h1 {
-		font-size: 2em;
-		margin: 20px 0 0 0;
-		float: none;
-	}
+  h1 {
+    font-size: 2em;
+    margin: 20px 0 0 0;
+    float: none;
+  }
 
-	.content {
-		text-align: center;
-	}
+  .content {
+    text-align: center;
+  }
 }
 
 .content {
-	margin: 0 20px 0 20px;
+  margin: 0 20px 0 20px;
 }
 
 @media only screen and (max-device-width: 749px) {
-	.parallax {
-		background-attachment: scroll;
-	}
+  .parallax {
+    background-attachment: scroll;
+  }
 }

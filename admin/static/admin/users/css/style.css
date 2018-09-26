@@ -1,32 +1,32 @@
 #create-user-button {
-	margin: 1% 1% 1% 40%;
-	width: 20%;
-	text-align: center;
-	padding: 1%;
-	background-color: #3f5882;
+  margin: 1% 1% 1% 40%;
+  width: 20%;
+  text-align: center;
+  padding: 1%;
+  background-color: #3f5882;
 }
 
 .delete-user-form {
-	display: inline-block;
-	background-color: transparent;
+  display: inline-block;
+  background-color: transparent;
 }
 
 .delete-user {
-	background-color: #ff851b !important;
+  background-color: #ff851b !important;
 }
 
 .delete-user:hover {
-	background-color: #ff851b !important;
+  background-color: #ff851b !important;
 }
 
 .pword-content {
-	text-align: center;
+  text-align: center;
 }
 
 .pword-content h2 {
-	font-size: 2em;
+  font-size: 2em;
 }
 
 .temp-pword {
-	font-size: 3em;
+  font-size: 3em;
 }
