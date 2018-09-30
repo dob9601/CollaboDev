@@ -18,6 +18,7 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
 <meta name="theme-color" content="#30405C">
+<meta id="user-info" username="{{ user.username }}" is_admin="{{ user.is_superuser }}">
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
 
