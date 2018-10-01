@@ -57,7 +57,7 @@
   font-size: 14px;
 }
 
-.close-task-form input {
+.close-form input {
   margin-bottom: -2px;
 }
 
@@ -67,10 +67,10 @@
 }
 
 #create-task-button,
-.close-task,
-.unclaim,
-.claim,
-.pin-task,
+.close-button,
+.unclaim-button,
+.claim-button,
+.pin-button,
 .yes-button,
 .no-button {
   -webkit-appearance: none;
@@ -88,27 +88,41 @@
   transition: 0.4s background-color;
 }
 
-.close-task,
-.unclaim,
-.claim,
-.pin-task,
+.close-button,
+.unclaim-button,
+.claim-button,
+.pin-button,
 #create-task-button {
   display: block;
   height: 30px;
 }
 
 #create-task-button:hover,
-.close-task:hover,
-.unclaim:hover,
-.claim:hover,
 .yes-button:hover,
 .no-button:hover {
   background-color: #a53533;
 }
 
-.pin-task {
+.pin-button {
   background-color: #0074d9;
   border-radius: 0 0 8px 8px;
+}
+
+.claim-button {
+  background-color: #2ecc40;
+  border-radius: 8px;
+}
+
+.close-button {
+  background-color: #2ecc40;
+}
+
+.unclaim-button {
+  background-color: #aaaaaa;
+}
+
+.pin-button {
+  background-color: #0074d9;
 }
 
 input:focus,
