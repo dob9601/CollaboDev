@@ -1,47 +1,43 @@
-var scriptTag = document.getElementsByTagName('script')
-var target = scriptTag[scriptTag.length - 1].parentNode.children[8].children[0].children[2]
-var taskOwner = document.currentScript.getAttribute('task-owner')
-var currentUser = document.currentScript.getAttribute('current-user')
-var userAdmin = document.currentScript.getAttribute('user-admin')
+const taskList = document.getElementsByClassName('open-task')
+const userAdmin = document.getElementById('user-info').getAttribute('is_admin')
+const currentUser = document.getElementById('user-info').getAttribute('username')
 
-if (taskOwner === 'None') {
-  target.value = 'Claim'
-  target.style.backgroundColor = '#2ECC40'
-  target.style.cursor = 'pointer'
-  if (userAdmin) {
-    target.style.borderRadius = '8px 8px 0 0'
-  }
-} else {
-  target.style.backgroundColor = '#FF851B'
-  target.style.cursor = 'not-allowed'
-  target.disabled = true
-  if (taskOwner === currentUser) {
-    target.value = 'Claimed by you'
+for (var i = 0; i < taskList.length; i++) {
+  var currentTask = taskList[i]
 
-    const unclaimElements = document.getElementsByClassName('unclaim')
-    const unclaim = unclaimElements[unclaimElements.length - 1]
-    const closeElements = document.getElementsByClassName('close-task')
-    const close = closeElements[closeElements.length - 1]
-    unclaim.parentNode.style = 'display: inline'
-    unclaim.style.backgroundColor = '#AAAAAA'
-    unclaim.style.cursor = 'pointer'
+  var taskOwner = currentTask.getElementsByClassName('task-owner')[0].innerHTML
 
-    close.parentNode.style = 'display: inline'
-    close.style.backgroundColor = '#2ECC40'
-    close.style.cursor = 'pointer'
+  var claimButton = currentTask.getElementsByClassName('claim-button')[0]
+  var closeButton = currentTask.getElementsByClassName('close-button')[0]
+  var unclaimButton = currentTask.getElementsByClassName('unclaim-button')[0]
 
-    target.style.borderRadius = '8px 8px 0 0'
-    close.style.borderRadius = '0'
+  if (taskOwner !== 'None') {
+    claimButton.style.backgroundColor = '#ff851b'
+    claimButton.style.cursor = 'not-allowed'
+    claimButton.disabled = true
+    if (taskOwner === currentUser) {
+      claimButton.value = 'Claimed by you'
 
-    if (!userAdmin) {
-      unclaim.style.borderRadius = '0 0 8px 8px'
+      unclaimButton.parentNode.style = 'display: inline'
+      unclaimButton.style.backgroundColor = '#AAAAAA'
+      unclaimButton.style.cursor = 'pointer'
+
+      closeButton.parentNode.style = 'display: inline'
+      closeButton.style.backgroundColor = '#2ECC40'
+      closeButton.style.cursor = 'pointer'
+
+      closeButton.style.borderRadius = '0'
+
+      if (!userAdmin) {
+        unclaimButton.style.borderRadius = '0 0 8px 8px'
+      } else {
+        unclaimButton.style.borderRadius = '0'
+      }
     } else {
-      unclaim.style.borderRadius = '0'
-    }
-  } else {
-    target.value = 'Claimed by ' + taskOwner
-    if (userAdmin) {
-      target.style.borderRadius = '8px 8px 0 0'
+      claimButton.value = 'Claimed by ' + taskOwner
+      if (userAdmin) {
+        claimButton.style.borderRadius = '8px 8px 0 0'
+      }
     }
   }
 }

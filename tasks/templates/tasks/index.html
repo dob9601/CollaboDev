@@ -36,10 +36,10 @@
 				</tr>
 				{% for task in tasks %}
 				{% if task.task_open %}
-				<tr id="{{ task.id }}">
+				<tr id="{{ task.id }}" class="open-task">
 					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{% if task.is_pinned %}<span class="bump-star">★</span> {% endif %}{{ task.task_name }}</td>
-					<td style="display: none">{{ task.task_description }}</td>
-					<td style="display: none">{{ task.task_owner }}</td>
+					<td class="task-description" style="display: none">{{ task.task_description }}</td>
+					<td class="task-owner" style="display: none">{{ task.task_owner }}</td>
 					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
 					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
 						{{ task.deadline_date }}
@@ -53,13 +53,13 @@
 					</td>
 					<td class="task-table-size" onclick="show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
 					<td class="task-table-age" onclick="show_modal('task_data', '{{ task.id }}')"></td>
-					<td style="display: none">{{ task.task_open }}</td>
+					<td class="task-open" style="display: none">{{ task.task_open }}</td>
 
 					<td class="claim-info">
 						<form action="/tasks/claim/" method="post" class="claim-form">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input value="Claim" class="claim"
+                                                        <input value="Claim" class="claim-button" {% if user.is_superuser %}style="border-radius: 8px 8px 0 0"{% endif %}
 							{% if user.profile.current_task is None %}
 	  							type="submit"
 	  						{% else %}
@@ -67,20 +67,20 @@
 					  		{% endif %}
 							/>
 						</form>
-						<form action="/tasks/close/" method="post" style="display: none" class="close-task-form">
+						<form action="/tasks/close/" method="post" style="display: none" class="close-form">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="button" value="Complete" class="close-task" onclick="show_modal('confirmation', ['{{ task.id }}', '1', 'Are you sure you want to close this task?'])"/>
+							<input type="button" value="Complete" class="close-button" onclick="show_modal('confirmation', ['{{ task.id }}', '1', 'Are you sure you want to close this task?'])"/>
 						</form>
 						<form action="/tasks/unclaim/" method="post" style="display: none">
 							{% csrf_token %}
 							<input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="button" value="Unclaim" class="unclaim" onclick="show_modal('confirmation', ['{{ task.id }}', '2', 'Are you sure you want to unclaim this task?'])"/>
+							<input type="button" value="Unclaim" class="unclaim-button" onclick="show_modal('confirmation', ['{{ task.id }}', '2', 'Are you sure you want to unclaim this task?'])"/>
 						</form>
                                                 <form action="/tasks/pin_task/" method="post">
                                                         {% csrf_token %}
                                                         <input type="hidden" value="{{ task.id }}" name="task_id">
-							<input type="submit" class="pin-task" value=
+							<input type="submit" class="pin-button" value=
 							{% if task.is_pinned %}
                                                                 "Unpin task"
 	  						{% else %}
@@ -90,11 +90,11 @@
                                                 </form>
 					</td>
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
-                                        <script src="{% static 'tasks/js/create_buttons.js' %}" task-owner="{{ task.task_owner }}" current-user="{{ user.username }}" user-admin="{{ user.is_superuser }}"></script>
 					<script src="{% static 'tasks/js/date_to_age.js' %}" task-publish-date="{{ task.publish_date.isoformat }}"></script>
 				</tr>
 				{% endif %}
 				{% endfor %}
+                                <script src="{% static 'tasks/js/create_buttons.js' %}"></script>
 			</table>
 
 			<div class="horizontal-break"></div>
@@ -109,7 +109,7 @@
 				</tr>
 				{% for task in tasks %}
 				{% if not task.task_open %}
-				<tr id="{{ task.id }}">
+				<tr id="{{ task.id }}" class="closed-task">
 					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
 					<td style="display: none">{{ task.task_description }}</td>
 					<td style="display: none">{{ task.task_owner }}</td>
