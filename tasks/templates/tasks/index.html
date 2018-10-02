@@ -45,9 +45,9 @@
 						{{ task.deadline_date }}
 						<script>
 							if ('{{ task.deadline_date }}' === '{{ task.publish_date }}') {
-							var tt = document.getElementsByClassName('task-table-deadline');
-							var td = tt[tt.length-1];
-							td.innerHTML = 'None';
+							var taskDeadlines = document.getElementsByClassName('task-table-deadline');
+							var taskData = taskDeadlines[taskDeadlines.length-1];
+							taskData.innerHTML = 'None';
 						}
 						</script>
 					</td>
