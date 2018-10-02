@@ -1,5 +1,5 @@
 var scriptTag = document.getElementsByTagName('script')
-var target = scriptTag[scriptTag.length - 1].parentNode.children[6]
+var target = scriptTag[scriptTag.length - 1].parentNode.getElementsByClassName('task-table-size')[0]
 
 var intSize = target.innerHTML
 var size
