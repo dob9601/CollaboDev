@@ -1,5 +1,5 @@
 var scriptTag = document.getElementsByTagName('script')
-var target = scriptTag[scriptTag.length - 1].parentNode.children[7]
+var target = scriptTag[scriptTag.length - 1].parentNode.getElementsByClassName('task-table-age')[0]
 
 var publishDate = document.currentScript.getAttribute('task-publish-date')
 var dateDifference = Math.abs(new Date(publishDate).getTime() - new Date().getTime())

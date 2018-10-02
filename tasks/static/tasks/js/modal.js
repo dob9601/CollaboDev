@@ -55,7 +55,7 @@ function show_modal (dataType, data) {
                           '</form>'
   } else if (dataType === 'confirmation') {
     modalText.innerHTML = '<div class="buttons"><p>' + data[2] + '</p>' +
-                          '<button class="yes-button" onclick="document.getElementById(' + data[0] + ').children[8].children[' + data[1] + '].submit()">Yes</button>' +
+                          '<button class="yes-button" onclick="document.getElementById(' + data[0] + ').getElementsByClassName(\'claim-info\')[0].children[' + data[1] + '].submit()">Yes</button>' +
                           '<button class="no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>'
   }
   modalBox.style.display = 'block'
