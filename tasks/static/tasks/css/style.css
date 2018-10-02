@@ -1,12 +1,12 @@
 @media screen and (max-width: 570px) {
-  .task-table-priority,
-  .task-table-deadline,
-  .task-table-size,
-  .task-table-age {
+  .task-priority,
+  .task-deadline,
+  .task-size,
+  .task-age {
     display: none;
   }
 
-  .task-table-name {
+  .task-name {
     width: 55%;
   }
 
@@ -29,23 +29,23 @@
   width: 5%;
 }
 
-.task-table-name {
+.task-name {
   width: 35%;
 }
 
-.tast-table-priority {
+.task-priority {
   width: 5%;
 }
 
-.task-table-deadline {
+.task-deadline {
   width: 15%;
 }
 
-.task-table-size {
+.task-size {
   width: 10%;
 }
 
-.task-table-age {
+.task-age {
   width: 13%;
 }
 

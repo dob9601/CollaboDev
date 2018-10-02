@@ -28,33 +28,33 @@
 			<table class="task-table">
 				<tr>
                                         <th class="task-pinned"></th>
-					<th class="task-table-name">Name</th>
-					<th class="task-table-priority">Priority</th>
-					<th class="task-table-deadline">Deadline</th>
-					<th class="task-table-size">Size</th>
-					<th class="task-table-age">Age</th>
+					<th class="task-name">Name</th>
+					<th class="task-priority">Priority</th>
+					<th class="task-deadline">Deadline</th>
+					<th class="task-size">Size</th>
+					<th class="task-age">Age</th>
 					<th class="claim-info"></th>
 				</tr>
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}" class="open-task">
                                         <td class="task-pinned">{% if task.is_pinned %}<span class="bump-star">★</span> {% endif %}</td>
-					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
+					<td class="task-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
 					<td class="task-description" style="display: none">{{ task.task_description }}</td>
 					<td class="task-owner" style="display: none">{{ task.task_owner }}</td>
-					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
+					<td class="task-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
+					<td class="task-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
 						{{ task.deadline_date }}
 						<script>
 							if ('{{ task.deadline_date }}' === '{{ task.publish_date }}') {
-							var taskDeadlines = document.getElementsByClassName('task-table-deadline');
+							var taskDeadlines = document.getElementsByClassName('task-deadline');
 							var taskData = taskDeadlines[taskDeadlines.length-1];
 							taskData.innerHTML = 'None';
 						}
 						</script>
 					</td>
-					<td class="task-table-size" onclick="show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick="show_modal('task_data', '{{ task.id }}')"></td>
+					<td class="task-size" onclick="show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
+					<td class="task-age" onclick="show_modal('task_data', '{{ task.id }}')"></td>
 					<td class="task-open" style="display: none">{{ task.task_open }}</td>
 
 					<td class="claim-info">
@@ -103,31 +103,31 @@
 			<h1 class="closed-tasks-header">Closed Tasks</h1>
 			<table class="task-table">
 				<tr>
-					<th class="task-table-name">Name</th>
-					<th class="task-table-priority">Priority</th>
-					<th class="task-table-deadline">Deadline</th>
-					<th class="task-table-size">Size</th>
-					<th class="task-table-age">Age</th>
+					<th class="task-name">Name</th>
+					<th class="task-priority">Priority</th>
+					<th class="task-deadline">Deadline</th>
+					<th class="task-size">Size</th>
+					<th class="task-age">Age</th>
 				</tr>
 				{% for task in tasks %}
 				{% if not task.task_open %}
 				<tr id="{{ task.id }}" class="closed-task">
-					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
-					<td style="display: none">{{ task.task_description }}</td>
-					<td style="display: none">{{ task.task_owner }}</td>
-					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
-					<td class="task-table-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
+					<td class="task-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
+					<td class="task-description" style="display: none">{{ task.task_description }}</td>
+					<td class="task-owner" style="display: none">{{ task.task_owner }}</td>
+					<td class="task-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>
+					<td class="task-deadline" onclick = "show_modal('task_data', '{{ task.id }}')">
 						{{ task.deadline_date }}
 						<script>
 						if ('{{ task.deadline_date }}' === 'Jan. 1, 1, midnight') {
-							var tt = document.getElementsByClassName('task-table-deadline');
+							var tt = document.getElementsByClassName('task-deadline');
 							var td = tt[tt.length-1];
 							td.innerHTML = 'None';
 						}
 						</script>
 					</td>
-					<td class="task-table-size"  onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
-					<td class="task-table-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
+					<td class="task-size"  onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_size }}</td>
+					<td class="task-age" onclick = "show_modal('task_data', '{{ task.id }}')"></td>
 					<td style="display: none">{{ task.task_open }}</td>
 
 					<script src="{% static 'tasks/js/size_int_to_str.js' %}"></script>
