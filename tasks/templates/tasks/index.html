@@ -27,6 +27,7 @@
 			</table>
 			<table class="task-table">
 				<tr>
+                                        <th class="task-pinned"></th>
 					<th class="task-table-name">Name</th>
 					<th class="task-table-priority">Priority</th>
 					<th class="task-table-deadline">Deadline</th>
@@ -37,7 +38,8 @@
 				{% for task in tasks %}
 				{% if task.task_open %}
 				<tr id="{{ task.id }}" class="open-task">
-					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{% if task.is_pinned %}<span class="bump-star">★</span> {% endif %}{{ task.task_name }}</td>
+                                        <td class="task-pinned">{% if task.is_pinned %}<span class="bump-star">★</span> {% endif %}</td>
+					<td class="task-table-name" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_name }}</td>
 					<td class="task-description" style="display: none">{{ task.task_description }}</td>
 					<td class="task-owner" style="display: none">{{ task.task_owner }}</td>
 					<td class="task-table-priority" onclick = "show_modal('task_data', '{{ task.id }}')">{{ task.task_priority }}</td>

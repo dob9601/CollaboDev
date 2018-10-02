@@ -7,7 +7,7 @@
   }
 
   .task-table-name {
-    width: 60%;
+    width: 55%;
   }
 
   .claim-info {
@@ -23,6 +23,10 @@
   margin: 0;
   padding: 5%;
   background-color: #8eaebd;
+}
+
+.task-pinned {
+  width: 5%;
 }
 
 .task-table-name {
