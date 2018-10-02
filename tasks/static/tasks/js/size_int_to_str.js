@@ -1,5 +1,5 @@
 var scriptTag = document.getElementsByTagName('script')
-var target = scriptTag[scriptTag.length - 1].parentNode.children[5]
+var target = scriptTag[scriptTag.length - 1].parentNode.children[6]
 
 var intSize = target.innerHTML
 var size
