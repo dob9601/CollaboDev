@@ -5,7 +5,8 @@ function show_modal (data, type) {
   const modalBox = document.getElementsByClassName('modal-box')[0]
   const modalText = modalBox.children[1]
 
-  document.body.style.overflowY = 'hidden'
+  document.body.style.position = 'fixed'
+  document.body.style.overflowY = 'scroll'
 
   if (type === 'new-user') {
     modalText.innerHTML = '<h3>Create User</h3><hr>' +
@@ -27,7 +28,7 @@ function show_modal (data, type) {
                           '<form action="/admin/reset_collabodev/" method="post">' +
                           '<input type="hidden" name="csrfmiddlewaretoken" value="' + data + '">' +
                           '<input type="submit" value="Yes">' +
-                          '<input type="button" value="No" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">' +
+                          '<input type="button" value="No" onclick="document.getElementsByClassName(\'modal-box\')[0].children[0].click()">' +
                           '</form>'
   } else if (type === 'update') {
     modalBox.children[0].style.display = 'hidden'
