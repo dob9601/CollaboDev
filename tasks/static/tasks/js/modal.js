@@ -5,7 +5,8 @@ function show_modal (dataType, data) {
   const modalBox = document.getElementsByClassName('modal-box')[0]
   const modalText = modalBox.children[1]
 
-  document.body.style.overflowY = 'hidden'
+  document.body.style.position = 'fixed'
+  document.body.style.overflowY = 'scroll'
 
   if (dataType === 'task_data') {
     var taskStatus
@@ -56,7 +57,7 @@ function show_modal (dataType, data) {
   } else if (dataType === 'confirmation') {
     modalText.innerHTML = '<div class="buttons"><p>' + data[2] + '</p>' +
                           '<button class="yes-button" onclick="document.getElementById(' + data[0] + ').getElementsByClassName(\'claim-info\')[0].children[' + data[1] + '].submit()">Yes</button>' +
-                          '<button class="no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].style.display = \'none\'">No</button></div>'
+                          '<button class="no-button" onclick="document.getElementsByClassName(\'modal-box\')[0].children[0].click()">No</button></div>'
   }
   modalBox.style.display = 'block'
 }
