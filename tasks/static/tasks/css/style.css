@@ -131,8 +131,9 @@ button:focus {
 }
 
 #create-task-button {
-  width: 20%;
+  width: 40%;
   margin: 10px auto;
+  height: 40px;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -144,7 +145,7 @@ button:focus {
   width: 40%;
   max-width: 175px;
   background-color: #c6504f;
-  padding: 10px 20px;
+  height: 40px;
   margin: 0 10px;
 }
 
