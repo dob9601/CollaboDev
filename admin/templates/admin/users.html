@@ -11,7 +11,7 @@
 		{% include 'bases/navbar_base.html' %}
 		<table class="header-table">
 			<td><h1>Manage Users</h1></td>
-			<td><button class="header-button" onclick="show_modal('{{ csrf_token }}', 'new-user')">Create User</button></td>
+			<td><button class="header-button" onclick="showModal('{{ csrf_token }}', 'new-user')">Create User</button></td>
 		</table>
 		<table>
 			<tr>
@@ -48,7 +48,7 @@
 		<script src="{% static 'admin/js/modal.js' %}"></script>
 		{% if temporary_password != '' %}
 			<script>
-			show_modal('{{ temporary_password }}', 'show-pass')
+			showModal('{{ temporary_password }}', 'show-pass')
 			</script>
 		{% endif %}
 
