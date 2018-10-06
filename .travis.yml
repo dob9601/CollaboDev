@@ -23,6 +23,7 @@ install:
         - npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 
 script:
+        - python -c "from CollaboDev.settings import DEBUG; assert not DEBUG"
         - find -name "*.py" -not -path "*/migrations/*" -not -name "apps.py" -not -name "wsgi.py" -not -name "manage.py" | xargs pylint --load-plugins pylint_django
         - flake8 . --exclude migrations,tests.py,__init__.py,apps.py,manage.py
         - stylelint **/static/**/*.css
