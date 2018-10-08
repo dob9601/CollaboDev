@@ -1,1 +1,1 @@
-web: gunicorn Neurogrow.wsgi
+web: gunicorn CollaboDev.wsgi
