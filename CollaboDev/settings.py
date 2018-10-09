@@ -156,4 +156,5 @@ HEROKU_ENVIRONMENT = False
 
 # Heroku autoconfig
 if 'DYNO' in os.environ:
+    ALLOWED_HOSTS = ['*']
     HEROKU_ENVIRONMENT = True
