@@ -2,3 +2,4 @@ Django==2.1.2
 requests==2.18.4
 gunicorn
 Pillow
+dj-database-url

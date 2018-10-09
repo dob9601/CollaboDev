@@ -157,4 +157,8 @@ HEROKU_ENVIRONMENT = False
 # Heroku autoconfig
 if 'DYNO' in os.environ:
     ALLOWED_HOSTS = ['*']
+
+    import dj_database_url
+    DB_FROM_ENV = dj_database_url.config()
+    DATABASES['default'].update(DB_FROM_ENV)
     HEROKU_ENVIRONMENT = True
