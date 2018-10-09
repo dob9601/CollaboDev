@@ -1,5 +1,4 @@
 Django==2.1.2
-django_heroku==0.3.1
 requests==2.18.4
 gunicorn
 Pillow

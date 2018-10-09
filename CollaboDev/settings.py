@@ -152,7 +152,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ADMIN_ENABLED = False
 
+HEROKU_ENVIRONMENT = False
+
 # Heroku autoconfig
 if 'DYNO' in os.environ:
-    import django_heroku
-    django_heroku.settings(locals())
+    HEROKU_ENVIRONMENT = True
