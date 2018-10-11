@@ -47,10 +47,7 @@ try:
         urlpatterns = [
             path('', first_time_setup),
         ]
-    print(' '+'_'*48)
-    print('|'+' '*48+'|')
-    print('|   CollaboDev Setup Code: '+SETTINGS.settings_setup_code+'   |')
-    print('|'+'_'*48+'|')
+    print('COLLABODEV SETUP CODE: '+SETTINGS.settings_setup_code)
 
 except ObjectDoesNotExist:
     SETTINGS = Settings.objects.create(pk=1)
