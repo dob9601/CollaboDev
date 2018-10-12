@@ -177,6 +177,9 @@ def first_time_setup(request):
                 settings.save()
 
     else:
+        settings_model = Settings.objects.get(pk=1)
+        print('COLLABODEV SETUP CODE: '+settings_model.settings_setup_code)
+
         context['stage'] = 0
         try:
             open("setup-key.txt", "r")
