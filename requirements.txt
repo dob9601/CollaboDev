@@ -1,5 +1,5 @@
 requests==2.22.0
-Django==2.2.18
+Django==2.2.28
 dj_database_url==0.5.0
 gunicorn
 Pillow
